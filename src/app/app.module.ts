@@ -26,6 +26,7 @@ import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DelegateServiceService } from './delegate-service.service';
+import { SpinnerComponent } from './varie/spinner/spinner.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -42,6 +43,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     NavBarComponent,
     PageHomeComponent,
     SideBarComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
