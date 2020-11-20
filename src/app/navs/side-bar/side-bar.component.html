@@ -10,7 +10,6 @@
             </button>
         </div>
         <div *ngIf="!isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <app-modal-signin-user></app-modal-signin-user>
         </div>
         <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
             <button mat-button (click)="logout()" style="color: #6c757d;">
@@ -18,12 +17,7 @@
                 Logout
             </button>
         </div>
-        <div *ngIf="!isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <app-modal-login-user></app-modal-login-user>
-        </div>
-        <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <app-modal-corso></app-modal-corso>
-        </div>
+       
     </div>
 
     <mat-divider style="margin-bottom: 5px;"></mat-divider>
