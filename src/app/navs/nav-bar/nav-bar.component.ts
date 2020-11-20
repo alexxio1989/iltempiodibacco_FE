@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DelegateServiceService } from 'src/app/services/delegate-service.service';
+import { DelegateServiceService } from 'src/app/delegate-service.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,8 +10,7 @@ export class NavBarComponent implements OnInit {
 
   constructor(private ds: DelegateServiceService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   openSideBar(){
     this.ds.updateSideBar(!this.ds.isOpenSideBar);

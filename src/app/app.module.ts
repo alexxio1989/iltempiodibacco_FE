@@ -13,7 +13,6 @@ import { NgxStarsModule } from 'ngx-stars';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
-import { DelegateServiceService } from './services/delegate-service.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -26,6 +25,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DelegateServiceService } from './delegate-service.service';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -39,34 +39,32 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 @NgModule({
   declarations: [
     AppComponent,
-    PageHomeComponent,
     NavBarComponent,
-    SideBarComponent
+    PageHomeComponent,
+    SideBarComponent,
   ],
   imports: [
-    RouterModule.forRoot(AppRoutes),
     BrowserModule,
     AppRoutingModule,
-      AngularEditorModule,
-      FormsModule,
-      HttpClientModule,
-      NgbModule,
-      HttpClientModule,
-      BrowserAnimationsModule,
-      NgxStarsModule,
-      MatSidenavModule,
-      MatProgressSpinnerModule,
-      MatButtonModule,
-      MatIconModule,
-      MatSnackBarModule,
-      MatPaginatorModule,
-      MatDividerModule,
-      MatExpansionModule,
-      SwiperModule,
-      BrowserModule,
-      FlexLayoutModule
-    
-    
+    AngularEditorModule,
+    FormsModule,
+    HttpClientModule,
+    NgbModule,
+    RouterModule.forRoot(AppRoutes),
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NgxStarsModule,
+    MatSidenavModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatDividerModule,
+    MatExpansionModule,
+    SwiperModule,
+    BrowserModule,
+    FlexLayoutModule
   ],
   providers: [
     DelegateServiceService,

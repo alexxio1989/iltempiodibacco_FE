@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DelegateServiceService } from 'src/app/delegate-service.service';
 import { User } from 'src/app/model/User';
-import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -13,10 +13,12 @@ export class SideBarComponent implements OnInit {
   utente: User;
 
   constructor(private ds: DelegateServiceService) { 
-    this.ds.getOBSSideBar().subscribe(next=>{
-      this.openSideBar = next;
+    this.ds.getOBSSideBar().subscribe(next => {
+      console.error(next);
+      this.openSideBar = next
+    },error => {
+      console.error(error);
     })
-    
   }
 
   ngOnInit(): void {
