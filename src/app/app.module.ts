@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutes } from './app.routes';
@@ -27,6 +27,15 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DelegateServiceService } from './delegate-service.service';
 import { SpinnerComponent } from './varie/spinner/spinner.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ContentModalLoginComponent } from './modals/modal-login/content-modal-login/content-modal-login.component';
+import { ModalLoginComponent } from './modals/modal-login/modal-login.component';
+import { ModalSigninComponent } from './modals/modal-signin/modal-signin.component';
+import { ModalProdottoComponent } from './modals/modal-prodotto/modal-prodotto.component';
+import { ModalPrenotazioneComponent } from './modals/modal-prenotazione/modal-prenotazione.component';
+import { ContentModalSigninComponent } from './modals/modal-signin/content-modal-signin/content-modal-signin.component';
+import {MatInputModule} from '@angular/material/input';
+
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -43,7 +52,13 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     NavBarComponent,
     PageHomeComponent,
     SideBarComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ModalLoginComponent,
+    ModalSigninComponent,
+    ModalProdottoComponent,
+    ModalPrenotazioneComponent,
+    ContentModalLoginComponent,
+    ContentModalSigninComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +81,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatExpansionModule,
     SwiperModule,
     BrowserModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDialogModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [
     DelegateServiceService,

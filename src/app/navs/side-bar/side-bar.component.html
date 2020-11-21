@@ -9,14 +9,9 @@
                 {{utente.nome}} {{utente.cognome}}
             </button>
         </div>
-        <div *ngIf="!isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-        </div>
-        <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <button mat-button (click)="logout()" style="color: #6c757d;">
-                <mat-icon style="margin-top: -3px;">exit_to_app</mat-icon>
-                Logout
-            </button>
-        </div>
+       
+        <app-modal-login></app-modal-login>
+        <app-modal-signin></app-modal-signin>
        
     </div>
 
