@@ -15,26 +15,26 @@ export class ProdottoServiceService {
 
   getOBSSave(obj: Prodotto): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.getAPI_ENDPOINT + EndPoint.API_PRODOTTO + "save", obj);
+    return this.http.post(ServiceCore.baseURl + EndPoint.API_PRODOTTO + "save", obj);
   }
 
   getOBSUpdate(obj: Prodotto): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.getAPI_ENDPOINT + EndPoint.API_PRODOTTO + "update", obj);
+    return this.http.post(ServiceCore.baseURl + EndPoint.API_PRODOTTO + "update", obj);
   }
 
   getOBSGet(obj: Prodotto): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.getAPI_ENDPOINT  + EndPoint.API_PRODOTTO + "get", obj);
+    return this.http.post(ServiceCore.baseURl  + EndPoint.API_PRODOTTO + "get", obj);
   }
 
   getOBSDelete(obj: Prodotto): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.getAPI_ENDPOINT  + EndPoint.API_PRODOTTO + "delete", obj);
+    return this.http.post(ServiceCore.baseURl  + EndPoint.API_PRODOTTO + "delete", obj);
   }
 
   getOBSGetAll(): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.get(ServiceCore.getAPI_ENDPOINT  + EndPoint.API_PRODOTTO + "getall");
+    return this.http.get(ServiceCore.baseURl  + EndPoint.API_PRODOTTO + "getall");
   }
 }
