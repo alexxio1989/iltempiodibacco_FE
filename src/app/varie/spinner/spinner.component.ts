@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DelegateServiceService } from 'src/app/delegate-service.service';
+import { DelegateServiceService } from 'src/app/service/delegate-service.service';
 
 @Component({
   selector: 'app-spinner',

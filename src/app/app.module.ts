@@ -25,7 +25,6 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { DelegateServiceService } from './delegate-service.service';
 import { SpinnerComponent } from './varie/spinner/spinner.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ContentModalLoginComponent } from './modals/modal-login/content-modal-login/content-modal-login.component';
@@ -35,6 +34,14 @@ import { ModalProdottoComponent } from './modals/modal-prodotto/modal-prodotto.c
 import { ModalPrenotazioneComponent } from './modals/modal-prenotazione/modal-prenotazione.component';
 import { ContentModalSigninComponent } from './modals/modal-signin/content-modal-signin/content-modal-signin.component';
 import {MatInputModule} from '@angular/material/input';
+import { DelegateServiceService } from './service/delegate-service.service';
+import { UtenteServiceService } from './service/utente-service.service';
+import { PageAdminComponent } from './pages/page-admin/page-admin.component';
+import { PageCartComponent } from './pages/page-cart/page-cart.component';
+import { PageUserComponent } from './pages/page-user/page-user.component';
+import { ProdottoServiceService } from './service/prodotto-service.service';
+import { NegozioServiceService } from './service/negozio-service.service';
+import { MagazinoServiceService } from './service/magazino-service.service';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -58,7 +65,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ModalProdottoComponent,
     ModalPrenotazioneComponent,
     ContentModalLoginComponent,
-    ContentModalSigninComponent
+    ContentModalSigninComponent,
+    PageCartComponent,
+    PageAdminComponent,
+    PageUserComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +98,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   ],
   providers: [
     DelegateServiceService,
+    UtenteServiceService,
+    ProdottoServiceService,
+    NegozioServiceService,
+    MagazinoServiceService,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

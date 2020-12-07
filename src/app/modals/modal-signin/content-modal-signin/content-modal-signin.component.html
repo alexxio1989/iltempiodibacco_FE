@@ -42,34 +42,14 @@
         </form>
     </div>
 
-    <div>
-        <mat-form-field class="example-form-field">
-            <mat-label>Citta</mat-label>
-            <input matInput type="text" [(ngModel)]="utente.citta">
-            <button mat-button *ngIf="utente.citta" matSuffix mat-icon-button aria-label="Clear"
-                (click)="utente.citta=''">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-    </div>
+    
 
     <div>
         <mat-form-field class="example-form-field" style="width: 30vh;">
             <mat-label>Indirizzo</mat-label>
-            <input matInput type="text" [(ngModel)]="utente.indirizzo">
-            <button mat-button *ngIf="utente.indirizzo" matSuffix mat-icon-button aria-label="Clear"
-                (click)="utente.indirizzo=''">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-    </div>
-
-    <div>
-        <mat-form-field class="example-form-field" style="width: 30vh;">
-            <mat-label>Dati extra Indirizzo</mat-label>
-            <input matInput type="text" placeholder="es. scala D , interno 1" [(ngModel)]="utente.extraIndirizzo">
-            <button mat-button *ngIf="utente.extraIndirizzo" matSuffix mat-icon-button aria-label="Clear"
-                (click)="utente.extraIndirizzo=''">
+            <input matInput type="text" [(ngModel)]="utente.recapito.indirizzo">
+            <button mat-button *ngIf="utente.recapito.indirizzo" matSuffix mat-icon-button aria-label="Clear"
+                (click)="utente.recapito.indirizzo=''">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
@@ -78,7 +58,21 @@
     <div>
         <mat-form-field class="example-full-width">
             <mat-label>Codice postale</mat-label>
-            <input matInput maxlength="5" [(ngModel)]="utente.zip" placeholder="Es. 00172">
+            <input matInput maxlength="5" [(ngModel)]="utente.recapito.zip" placeholder="Es. 00172">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Citta</mat-label>
+            <input matInput [(ngModel)]="utente.recapito.citta" placeholder="Es. Roma">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Recapito telefonico</mat-label>
+            <input matInput [(ngModel)]="utente.recapito.telefono" placeholder="Es. 333 34 ...">
         </mat-form-field>
     </div>
 
@@ -100,5 +94,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Registrati</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Registrati</button>
 </mat-dialog-actions>

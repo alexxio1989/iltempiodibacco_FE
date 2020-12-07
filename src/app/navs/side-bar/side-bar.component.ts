@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DelegateServiceService } from 'src/app/delegate-service.service';
 import { User } from 'src/app/model/User';
+import { DelegateServiceService } from 'src/app/service/delegate-service.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -34,6 +34,16 @@ export class SideBarComponent implements OnInit {
   logout(){
     localStorage.removeItem('USER');
     this.route.navigate(['/']);
+    this.ds.updateSideBar(false);
+  }
+
+  goToUserPage(){
+    this.route.navigate(['/user']);
+    this.ds.updateSideBar(false);
+  }
+
+  goToAdminPage(){
+    this.route.navigate(['/admin']);
     this.ds.updateSideBar(false);
   }
 

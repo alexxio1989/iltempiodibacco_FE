@@ -3,15 +3,32 @@
         <div class="w-100 p-2 d-flex justify-content-center">
             <button mat-button></button>
         </div>
-        <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <button mat-button (click)="logout()" style="color: #6c757d;">
+        <div *ngIf="isUtenteLogged && utente.tipoUtente.codice === 'U'" class="w-100 p-2 d-flex justify-content-center">
+            <button mat-button style="color: #6c757d;" (click)="goToUserPage()">
                 <mat-icon style="margin-top: -3px;">account_circle</mat-icon>
                 {{utente.nome}} {{utente.cognome}}
             </button>
         </div>
+
+        <div *ngIf="isUtenteLogged && utente.tipoUtente.codice === 'SU'" class="w-100 p-2 d-flex justify-content-center">
+            <button mat-button style="color: #6c757d;" (click)="goToAdminPage()">
+                <mat-icon style="margin-top: -3px;">admin_panel_settings</mat-icon>
+                Pagina amministrativa
+            </button>
+        </div>
+
+        <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
+            <button mat-button (click)="logout()" style="color: #6c757d;">
+                Logout
+            </button>
+        </div>
        
-        <app-modal-login></app-modal-login>
-        <app-modal-signin></app-modal-signin>
+        <div class="w-100 p-2 d-flex justify-content-center" *ngIf="!isUtenteLogged">
+            <app-modal-login></app-modal-login>
+        </div>
+        <div class="w-100 p-2 d-flex justify-content-center" *ngIf="!isUtenteLogged">
+            <app-modal-signin></app-modal-signin>
+        </div>
        
     </div>
 

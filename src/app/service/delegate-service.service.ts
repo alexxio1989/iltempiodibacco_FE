@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Dominio } from './model/Dominio';
-import { User } from './model/User';
+import { Dominio } from '../model/Dominio';
+import { User } from '../model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +20,11 @@ export class DelegateServiceService {
 
   constructor() { }
 
-  updateTipiProdotti(tipi: Dominio[]){
+  updateTipiCorso(tipi: Dominio[]){
     this._sbjTipiCorso.next(tipi);
   }
 
-  getOBSTipiProdotti(): Observable<any>{
+  getOBSTipiCorso(): Observable<any>{
     return this._sbjTipiCorso.asObservable();
   }
 
@@ -50,5 +50,13 @@ export class DelegateServiceService {
 
   getOBSSideBar (): Observable<any>{
     return this._sbjSideBar.asObservable();
+  }
+
+  updateUser (utente: User){
+    this._sbjUser.next(utente);
+  }
+
+  getOBSUser (): Observable<any>{
+    return this._sbjUser.asObservable();
   }
 }

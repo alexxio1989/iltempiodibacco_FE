@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DelegateServiceService } from 'src/app/delegate-service.service';
+import { Router } from '@angular/router';
+import { DelegateServiceService } from 'src/app/service/delegate-service.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,13 +9,18 @@ import { DelegateServiceService } from 'src/app/delegate-service.service';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private ds: DelegateServiceService) { }
+  constructor(private ds: DelegateServiceService,private route: Router) { }
 
   ngOnInit(): void {}
 
   openSideBar(){
     this.ds.updateSideBar(!this.ds.isOpenSideBar);
     this.ds.isOpenSideBar = !this.ds.isOpenSideBar;
+  }
+
+  goToAdminPage(){
+    this.route.navigate(['/cart']);
+    this.ds.updateSideBar(false);
   }
 
 }
