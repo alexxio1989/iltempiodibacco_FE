@@ -15,26 +15,26 @@ export class NegozioServiceService {
 
   getOBSSave(obj: Negozio): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.getAPI_ENDPOINT + EndPoint.API_NEGOZIO + "save", obj);
+    return this.http.post(ServiceCore.baseURl + EndPoint.API_NEGOZIO + "save", obj);
   }
 
   getOBSUpdate(obj: Negozio): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.getAPI_ENDPOINT + EndPoint.API_NEGOZIO + "update", obj);
+    return this.http.post(ServiceCore.baseURl + EndPoint.API_NEGOZIO + "update", obj);
   }
 
   getOBSGet(obj: Negozio): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.getAPI_ENDPOINT  + EndPoint.API_NEGOZIO + "get", obj);
+    return this.http.post(ServiceCore.baseURl  + EndPoint.API_NEGOZIO + "get", obj);
   }
 
   getOBSDelete(obj: Negozio): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(EndPoint.API_ENDPOINT_LOCAL + EndPoint.API_NEGOZIO + "delete", obj);
+    return this.http.post(ServiceCore.baseURl + EndPoint.API_NEGOZIO + "delete", obj);
   }
 
   getOBSGetAll(): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.get(EndPoint.API_ENDPOINT_LOCAL + EndPoint.API_NEGOZIO + "getall");
+    return this.http.get(ServiceCore.baseURl + EndPoint.API_NEGOZIO + "getall");
   }
 }

@@ -3,9 +3,6 @@ import { environment } from '../../../environments/environment';
 
 export class ServiceCore{
 
-    static isLocal= false;
+    public static baseURl = environment.API_ENDPOINT;
 
-    public static getAPI_ENDPOINT(){
-        return environment.API_ENDPOINT;
-    }
 }

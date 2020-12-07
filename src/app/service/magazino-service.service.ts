@@ -15,21 +15,21 @@ export class MagazinoServiceService {
 
   getOBSSave(obj: Magazino): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.getAPI_ENDPOINT + EndPoint.API_MAGAZINO + "save", obj);
+    return this.http.post(ServiceCore.baseURl + EndPoint.API_MAGAZINO + "save", obj);
   }
 
   getOBSUpdate(obj: Magazino): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.getAPI_ENDPOINT + EndPoint.API_MAGAZINO + "update", obj);
+    return this.http.post(ServiceCore.baseURl + EndPoint.API_MAGAZINO + "update", obj);
   }
 
   getOBSGet(obj: Magazino): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.getAPI_ENDPOINT  + EndPoint.API_MAGAZINO + "get", obj);
+    return this.http.post(ServiceCore.baseURl  + EndPoint.API_MAGAZINO + "get", obj);
   }
 
   getOBSDelete(obj: Magazino): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(EndPoint.API_ENDPOINT_LOCAL + EndPoint.API_MAGAZINO + "delete", obj);
+    return this.http.post(ServiceCore.baseURl + EndPoint.API_MAGAZINO + "delete", obj);
   }
 }
