@@ -1,15 +1,11 @@
 import { EndPoint } from 'src/app/Constants';
-
+import { environment } from '../../../environments/environment';
 
 export class ServiceCore{
 
-    static isLocal: true;
+    static isLocal= false;
 
     public static getAPI_ENDPOINT(){
-        if(this.isLocal){
-            return EndPoint.API_ENDPOINT_LOCAL;
-        } else {
-            return EndPoint.API_ENDPOINT_PROD;
-        }
+        return environment.API_ENDPOINT;
     }
 }

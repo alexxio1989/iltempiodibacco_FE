@@ -30,11 +30,11 @@ export class ProdottoServiceService {
 
   getOBSDelete(obj: Prodotto): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(EndPoint.API_ENDPOINT_LOCAL + EndPoint.API_PRODOTTO + "delete", obj);
+    return this.http.post(ServiceCore.getAPI_ENDPOINT  + EndPoint.API_PRODOTTO + "delete", obj);
   }
 
   getOBSGetAll(): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.get(EndPoint.API_ENDPOINT_LOCAL + EndPoint.API_PRODOTTO + "getall");
+    return this.http.get(ServiceCore.getAPI_ENDPOINT  + EndPoint.API_PRODOTTO + "getall");
   }
 }
