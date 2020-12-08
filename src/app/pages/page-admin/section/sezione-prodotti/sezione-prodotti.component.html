@@ -44,7 +44,37 @@
                                                 </mat-panel-title>
 
                                             </mat-expansion-panel-header>
-                                            <div class="row">
+
+                                            <div class="row"
+                                                *ngIf="prodotto.id !== undefined && prodotto.id > 0 && !prodotto.edit">
+
+                                                <div class="col-12">
+                                                    <h5>{{prodotto.descrizione}}</h5>
+                                                </div>
+
+
+
+                                                <div class="col-12">
+                                                    <img *ngIf="prodotto.image !== undefined && prodotto.image !== null && prodotto.image !== ''"
+                                                        alt="Web Studio" class="img-fluid" src="{{prodotto.image}}" />
+                                                    <img *ngIf="prodotto.image === undefined || prodotto.image === null || prodotto.image === ''"
+                                                        alt="Web Studio" class="img-fluid"
+                                                        src="../../../assets/images/default.png" />
+                                                </div>
+
+
+
+                                                <div class="col-12">
+                                                    <h5>Prezzo : {{prodotto.prezzo }} €</h5>
+                                                </div>
+
+
+                                                <div *ngIf="prodotto.id !== undefined && prodotto.id > 0">
+                                                    <button mat-button (click)="prodotto.edit = true">Modifica</button>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="(prodotto.id === undefined || prodotto.id === 0) || prodotto.edit"
+                                                class="row">
                                                 <div class="col-12">
 
                                                     <div class="row mb-2">
@@ -94,7 +124,8 @@
 
                                                     <div class="row mb-2">
 
-                                                        <mat-form-field appearance="fill" class="example-form-field ml-3">
+                                                        <mat-form-field appearance="fill"
+                                                            class="example-form-field ml-3">
                                                             <mat-label>Prezzo prodotto</mat-label>
                                                             <input matInput type="number" [(ngModel)]="prodotto.prezzo"
                                                                 class="example-right-align">
@@ -103,10 +134,12 @@
 
                                                     </div>
 
-                                                    <div *ngIf="prodotto.id === undefined || prodotto.id === 0">
+                                                    <div
+                                                        *ngIf="(prodotto.id === undefined || prodotto.id === 0) || prodotto.edit">
                                                         <button mat-button
                                                             (click)="save(sottoTipo,prodotto)">Salva</button>
                                                     </div>
+
                                                 </div>
                                             </div>
 

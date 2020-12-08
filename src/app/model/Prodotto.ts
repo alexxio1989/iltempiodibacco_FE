@@ -11,4 +11,5 @@ export class Prodotto{
     image: string;
     qntRimanente: number;
     panelOpenState: boolean;
+    edit: boolean;
 }

@@ -43,12 +43,22 @@ export class SezioneProdottiComponent implements OnInit {
     let newTipo = new SubDominio();
     newTipo.id = sottoTipo.id;
     prodotto.tipo = newTipo
-    this.ps.getOBSSave(prodotto).subscribe(next => {
-      this.getTipi();
-    },error=>{
-      this.ds.updateResultService("Errore salvataggio");
-      this.ds.updateSpinner(false);
-    })
+    if(prodotto.edit){
+      this.ps.getOBSUpdate(prodotto).subscribe(next => {
+        this.getTipi();
+      },error=>{
+        this.ds.updateResultService("Errore salvataggio");
+        this.ds.updateSpinner(false);
+      })
+    } else {
+      this.ps.getOBSSave(prodotto).subscribe(next => {
+        this.getTipi();
+      },error=>{
+        this.ds.updateResultService("Errore salvataggio");
+        this.ds.updateSpinner(false);
+      })
+
+    }
   }
 
   addProdotto(tipo: Dominio , sottoTipo: SubDominio){
