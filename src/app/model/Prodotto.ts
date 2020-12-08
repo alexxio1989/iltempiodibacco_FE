@@ -10,5 +10,5 @@ export class Prodotto{
     tipo: SubDominio = new SubDominio();
     image: string;
     qntRimanente: number;
-    
+    panelOpenState: boolean;
 }

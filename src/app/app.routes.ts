@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { PageUserComponent } from './pages/page-user/page-user.component';
 import { PageAdminComponent } from './pages/page-admin/page-admin.component';
-import { PageCartComponent } from './pages/page-cart/page-cart.component';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
+import { PageCartComponent } from './pages/page-cart/page-cart.component';
  
 export const AppRoutes: Routes = [
     { path: '', component: PageHomeComponent },

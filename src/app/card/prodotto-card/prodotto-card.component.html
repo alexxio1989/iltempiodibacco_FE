@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+    <img *ngIf="prodotto.image !== undefined && prodotto.image !== null && prodotto.image !== ''" alt="Web Studio" class="img-fluid" src="{{prodotto.image}}" />
+    <img *ngIf="prodotto.image === undefined || prodotto.image === null || prodotto.image === ''" alt="Web Studio" class="img-fluid" src="../../../assets/images/default.png" />
+    <div class="card-body">
+      <h5 class="card-title">{{prodotto.nomeProdotto}}</h5>
+      <p class="card-text">{{prodotto.descrizione}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>

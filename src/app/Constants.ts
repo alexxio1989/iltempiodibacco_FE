@@ -7,4 +7,6 @@ export class EndPoint {
     public static API_NEGOZIO='/negozio/';
     public static API_PRODOTTO='/prodotto/';
     public static API_MAGAZINO='/magazino/';
+    public static API_TIPO='/tipo/';
+    public static API_SOTTOTIPO='/sottotipo/';
 }

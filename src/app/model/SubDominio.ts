@@ -1,3 +1,4 @@
+import { Prodotto } from './Prodotto';
 
 export class SubDominio{
 
@@ -5,4 +6,5 @@ export class SubDominio{
     codice: string;
     descrizione: string;
     idPadre: number;
+    prodottiAssociati: Prodotto[];
 }

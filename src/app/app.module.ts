@@ -37,11 +37,20 @@ import {MatInputModule} from '@angular/material/input';
 import { DelegateServiceService } from './service/delegate-service.service';
 import { UtenteServiceService } from './service/utente-service.service';
 import { PageAdminComponent } from './pages/page-admin/page-admin.component';
-import { PageCartComponent } from './pages/page-cart/page-cart.component';
 import { PageUserComponent } from './pages/page-user/page-user.component';
 import { ProdottoServiceService } from './service/prodotto-service.service';
 import { NegozioServiceService } from './service/negozio-service.service';
 import { MagazinoServiceService } from './service/magazino-service.service';
+import { NegozioCardComponent } from './card/negozio-card/negozio-card.component';
+import {MatSelectModule} from '@angular/material/select';
+import { ProdottoCardComponent } from './card/prodotto-card/prodotto-card.component';
+import { PageCartComponent } from './pages/page-cart/page-cart.component';
+import { AdminNegozioCardComponent } from './card/admin-negozio-card/admin-negozio-card.component';
+import {MatListModule} from '@angular/material/list';
+import { SezioneProdottiComponent } from './pages/page-admin/section/sezione-prodotti/sezione-prodotti.component';
+import { SezioneNegoziComponent } from './pages/page-admin/section/sezione-negozi/sezione-negozi.component';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -66,9 +75,14 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ModalPrenotazioneComponent,
     ContentModalLoginComponent,
     ContentModalSigninComponent,
-    PageCartComponent,
     PageAdminComponent,
-    PageUserComponent
+    PageUserComponent,
+    NegozioCardComponent,
+    ProdottoCardComponent,
+    PageCartComponent,
+    AdminNegozioCardComponent,
+    SezioneProdottiComponent,
+    SezioneNegoziComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +108,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FlexLayoutModule,
     MatDialogModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatListModule,
+    MatTabsModule
   ],
   providers: [
     DelegateServiceService,

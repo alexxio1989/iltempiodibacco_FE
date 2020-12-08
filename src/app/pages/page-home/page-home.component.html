@@ -1,1 +1,14 @@
-<p>page-home works!</p>
+<mat-form-field appearance="fill">
+    <mat-label>Negozi disponibili</mat-label>
+    <mat-select [formControl]="toppings">
+
+        <mat-option *ngFor="let negozio of negozi" [value]="negozio" (click)="negozioSelected = negozio">
+            {{negozio.nome}}
+        </mat-option>
+
+    </mat-select>
+</mat-form-field>
+
+<div *ngIf="negozioSelected !== undefined">
+    <app-negozio-card [negozio]="negozioSelected"></app-negozio-card>
+</div>
