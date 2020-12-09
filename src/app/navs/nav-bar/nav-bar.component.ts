@@ -24,7 +24,10 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     let cart = localStorage.getItem("CART");
     this.carrello = JSON.parse(cart);
-    this.badgeCount = this.carrello.prodotti.length;
+    if(this.carrello !== undefined && this.carrello !== null){
+      this.badgeCount = this.carrello.prodotti.length;
+
+    }
   }
 
 
