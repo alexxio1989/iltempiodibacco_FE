@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -23,6 +23,7 @@ export class IncrementerComponent implements OnInit {
   _max: number = Infinity;
   _wrap: boolean = false;
   color: string = 'default';
+  @Output() valueOutput = new EventEmitter<number>();
 
   @Input('value')
   set inputValue(_value: number) {
@@ -74,6 +75,7 @@ export class IncrementerComponent implements OnInit {
     }
 
     this._value = inputValue;
+    this.valueOutput.emit(inputValue);
   }
 
   private wrappedValue(inputValue): number {

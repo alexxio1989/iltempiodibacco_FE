@@ -27,6 +27,8 @@ export class ProdottoCardComponent implements OnInit {
   _max: number = Infinity;
   _wrap: boolean = false;
 
+  quantityToCart: number;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -38,6 +40,10 @@ export class ProdottoCardComponent implements OnInit {
 
   aggiungiAlCarrello(){
     console.log("prodotto aggiunto")
+  }
+
+  countQuantityToCart(count: number){
+    this.quantityToCart = count;
   }
 
 }
