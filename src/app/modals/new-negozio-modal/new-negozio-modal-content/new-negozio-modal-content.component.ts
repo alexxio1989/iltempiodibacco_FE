@@ -18,18 +18,38 @@ export class NewNegozioModalContentComponent implements OnInit {
   citta = CittaEnums.citta;
 
   ngOnInit(): void {
+
+    if(this.ns.negozioSelected !== undefined){
+
+      this.negozio = this.ns.negozioSelected;
+
+    }
   }
 
   salva(){
 
-    this.ns.getOBSSave(this.negozio).subscribe(next => {
-      this.ds.updateNegozi(next.list)
-      this.ds.updateResultService(next.status);
-      this.ds.updateSpinner(false);
-    },error => {
-      this.ds.updateResultService(error.status);
-      this.ds.updateSpinner(false);
-    })
+    if(this.negozio.id > 0){
+
+      this.ns.getOBSUpdate(this.negozio).subscribe(next => {
+        this.ds.updateNegozi(next.list)
+        this.ds.updateResultService(next.status);
+        this.ds.updateSpinner(false);
+      },error => {
+        this.ds.updateResultService(error.status);
+        this.ds.updateSpinner(false);
+      })
+
+    } else { 
+      this.ns.getOBSSave(this.negozio).subscribe(next => {
+        this.ds.updateNegozi(next.list)
+        this.ds.updateResultService(next.status);
+        this.ds.updateSpinner(false);
+      },error => {
+        this.ds.updateResultService(error.status);
+        this.ds.updateSpinner(false);
+      })
+
+    }
 
   }
 

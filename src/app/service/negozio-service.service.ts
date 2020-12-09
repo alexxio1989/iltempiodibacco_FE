@@ -11,6 +11,8 @@ import { DelegateServiceService } from './delegate-service.service';
 })
 export class NegozioServiceService {
 
+  negozioSelected: Negozio;
+
   constructor(private http: HttpClient , private ds: DelegateServiceService) { }
 
   getOBSSave(obj: Negozio): Observable<any>{

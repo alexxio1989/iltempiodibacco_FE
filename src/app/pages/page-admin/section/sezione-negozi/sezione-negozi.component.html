@@ -23,6 +23,9 @@
     <div class="row mb-3">
         <div class="col-12">
             <h5 class="ml-3">{{negozioSelected !== undefined ? negozioSelected.nome : ''}}</h5>
+            <button mat-button (click)="openDialog()" style="color: #6c757d;">
+                            Modifica
+            </button>
         </div>
     </div>
 

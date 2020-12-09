@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { NewNegozioModalContentComponent } from 'src/app/modals/new-negozio-modal/new-negozio-modal-content/new-negozio-modal-content.component';
 import { Negozio } from 'src/app/model/Negozio';
 import { DelegateServiceService } from 'src/app/service/delegate-service.service';
 import { NegozioServiceService } from 'src/app/service/negozio-service.service';
@@ -13,11 +15,11 @@ export class SezioneNegoziComponent implements OnInit {
 
   toppings = new FormControl();
 
-  negozi: Negozio[];
+  negozi: Negozio[]; 
 
   negozioSelected: Negozio;
 
-  constructor(private ns: NegozioServiceService , private ds: DelegateServiceService) {
+  constructor(public dialog: MatDialog , private ns: NegozioServiceService , private ds: DelegateServiceService) {
     this.ns.getOBSGetAll().subscribe(next => {
       this.negozi = next.list;
       if(next.list.length === 1){
@@ -36,6 +38,15 @@ export class SezioneNegoziComponent implements OnInit {
 
   addNegozio(){
 
+  }
+
+  openDialog() {
+    this.ns.negozioSelected = this.negozioSelected;
+    const dialogRef = this.dialog.open(NewNegozioModalContentComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }
