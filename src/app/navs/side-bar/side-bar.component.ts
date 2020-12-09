@@ -11,7 +11,7 @@ import { DelegateServiceService } from 'src/app/service/delegate-service.service
 export class SideBarComponent implements OnInit {
 
   openSideBar: boolean;
-  utente: User;
+  utente: User = new User();
 
   constructor(private ds: DelegateServiceService , private route: Router) { 
     this.ds.getOBSSideBar().subscribe(next => {
@@ -27,10 +27,17 @@ export class SideBarComponent implements OnInit {
 
   get isUtenteLogged(): boolean{
     const localUser = localStorage.getItem('USER');
-    this.utente = JSON.parse(localUser);
+    let LoggedUtente = JSON.parse(localUser);
+    if(LoggedUtente !== undefined && LoggedUtente !== null){
+      this.utente = LoggedUtente;
+    }
     return localUser !== undefined && localUser !== null;
   }
 
+  get isSuperUser(): boolean{
+    return this.utente.tipoUtente.codice === "SU";
+
+  }
   logout(){
     localStorage.removeItem('USER');
     this.route.navigate(['/']);

@@ -9,6 +9,6 @@ export class User{
     nome: string;
     cognome: string;
     recapito: Recapito = new Recapito();
-    tipoUtente: Dominio;
+    tipoUtente: Dominio = new Dominio();
     
 }

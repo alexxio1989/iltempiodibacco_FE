@@ -17,3 +17,10 @@
     -webkit-animation-play-state: paused;
     animation-play-state: paused;
   }
+
+  app-incrementer {
+    display: block;
+    width: 95px;
+    font-size: 20px;
+    margin: 0 auto;
+  }

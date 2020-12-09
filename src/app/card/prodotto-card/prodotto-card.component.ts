@@ -21,6 +21,11 @@ export class ProdottoCardComponent implements OnInit {
   @Input() prodotto: Prodotto;
 
   state = 0;
+  _value: number = 0;
+  _step: number = 1;
+  _min: number = 0;
+  _max: number = Infinity;
+  _wrap: boolean = false;
 
   constructor() { }
 
@@ -29,6 +34,10 @@ export class ProdottoCardComponent implements OnInit {
 
   scrollDone() {
     this.state++;
+  }
+
+  aggiungiAlCarrello(){
+    console.log("prodotto aggiunto")
   }
 
 }

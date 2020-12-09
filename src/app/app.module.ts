@@ -54,6 +54,8 @@ import {MatCardModule} from '@angular/material/card';
 import { NewNegozioModalComponent } from './modals/new-negozio-modal/new-negozio-modal.component';
 import { NewNegozioModalContentComponent } from './modals/new-negozio-modal/new-negozio-modal-content/new-negozio-modal-content.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { CarrelloServiceService } from './service/carrello-service.service';
+import { IncrementerComponent } from './varie/incrementer/incrementer.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -86,7 +88,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SezioneProdottiComponent,
     SezioneNegoziComponent,
     NewNegozioModalComponent,
-    NewNegozioModalContentComponent
+    NewNegozioModalContentComponent,
+    IncrementerComponent
   ],
   imports: [
     BrowserModule,
@@ -125,6 +128,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ProdottoServiceService,
     NegozioServiceService,
     MagazinoServiceService,
+    CarrelloServiceService,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

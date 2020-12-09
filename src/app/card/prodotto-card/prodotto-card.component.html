@@ -14,7 +14,7 @@
     </div>
     <div class="col-7 ml-auto d-flex align-items-center ">
       <div class="card-body pl-0 pr-0 pb-2 pt-2">
-
+        
         <div *ngIf="prodotto.nomeProdotto.length < 10" class="d-flex justify-content-center"
           style="margin-bottom: -15px; margin-top: -5px;">
           <h5
@@ -36,10 +36,6 @@
             Prezzo : <b style="opacity: 0.7;">{{prodotto.prezzo + '€'}}</b></h6>
         </div>
 
-
-
-
-
       </div>
     </div>
     <div class="col-1 pl-0">
@@ -47,6 +43,10 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
+        <app-incrementer  (click)="$event.stopPropagation()" [value]="_value || 0" [step]="_step" [min]="_min" [max]="_max" [wrap]="_wrap"></app-incrementer>
+        <button mat-button (click)="$event.stopPropagation();  aggiungiAlCarrello()"  style="color: #6c757d;">
+          Aggiungi al carrello
+        </button>
 
       </mat-menu>
     </div>
