@@ -1,3 +1,4 @@
+import { Dominio } from './Dominio';
 import { Prodotto } from './Prodotto';
 
 export class SubDominio{
@@ -6,5 +7,6 @@ export class SubDominio{
     codice: string;
     descrizione: string;
     idPadre: number;
+    tipoPadre: Dominio = new Dominio();
     prodottiAssociati: Prodotto[];
 }

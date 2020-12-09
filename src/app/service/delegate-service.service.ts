@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Dominio } from '../model/Dominio';
+import { Negozio } from '../model/Negozio';
 import { User } from '../model/User';
 
 @Injectable({
@@ -15,17 +16,17 @@ export class DelegateServiceService {
   private _sbjSpinner = new Subject();
   private _sbjResultService = new Subject();
   private _sbjSideBar = new Subject();
-  private _sbjTipiCorso= new Subject();
+  private _sbjNegozio= new Subject();
   private _sbjUser = new Subject();
 
   constructor() { }
 
-  updateTipiCorso(tipi: Dominio[]){
-    this._sbjTipiCorso.next(tipi);
+  updateNegozi(tipi: Negozio[]){
+    this._sbjNegozio.next(tipi);
   }
 
-  getOBSTipiCorso(): Observable<any>{
-    return this._sbjTipiCorso.asObservable();
+  getOBSNegozi(): Observable<any>{
+    return this._sbjNegozio.asObservable();
   }
 
   updateSpinner(update: boolean){

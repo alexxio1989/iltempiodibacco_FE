@@ -4,6 +4,7 @@ import { Prodotto } from 'src/app/model/Prodotto';
 import { SubDominio } from 'src/app/model/SubDominio';
 import { DelegateServiceService } from 'src/app/service/delegate-service.service';
 import { ProdottoServiceService } from 'src/app/service/prodotto-service.service';
+import { SottoTipoServiceService } from 'src/app/service/sotto-tipo-service.service';
 import { TipoServiceService } from 'src/app/service/tipo-service.service';
 
 @Component({
@@ -16,15 +17,23 @@ export class SezioneProdottiComponent implements OnInit {
 
   listTipi: Dominio[];
 
-  constructor(private ps: ProdottoServiceService ,
-              private ds: DelegateServiceService , 
-              private ts: TipoServiceService) {
+  editTipo: boolean;
 
-    
+  editSottoTipo: boolean;
 
-    this.getTipi();
-    
-  } 
+  newTipo: Dominio = new Dominio();
+
+  newSottoTipo: SubDominio = new SubDominio();
+
+  constructor(private ps: ProdottoServiceService,
+    private ds: DelegateServiceService,
+    private ts: TipoServiceService,
+    private sts: SottoTipoServiceService) {
+
+
+
+
+  }
 
 
   private getTipi() {
@@ -37,23 +46,24 @@ export class SezioneProdottiComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getTipi();
   }
 
-  save(sottoTipo: SubDominio , prodotto : Prodotto){
+  save(sottoTipo: SubDominio, prodotto: Prodotto) {
     let newTipo = new SubDominio();
     newTipo.id = sottoTipo.id;
     prodotto.tipo = newTipo
-    if(prodotto.edit){
+    if (prodotto.edit) {
       this.ps.getOBSUpdate(prodotto).subscribe(next => {
         this.getTipi();
-      },error=>{
+      }, error => {
         this.ds.updateResultService("Errore salvataggio");
         this.ds.updateSpinner(false);
       })
     } else {
       this.ps.getOBSSave(prodotto).subscribe(next => {
         this.getTipi();
-      },error=>{
+      }, error => {
         this.ds.updateResultService("Errore salvataggio");
         this.ds.updateSpinner(false);
       })
@@ -61,13 +71,13 @@ export class SezioneProdottiComponent implements OnInit {
     }
   }
 
-  addProdotto(tipo: Dominio , sottoTipo: SubDominio){
+  addProdotto(tipo: Dominio, sottoTipo: SubDominio) {
     let newprodotto = new Prodotto();
 
     this.listTipi.forEach(tipoIterate => {
-      if(tipoIterate.id === tipo.id){
+      if (tipoIterate.id === tipo.id) {
         tipoIterate.sottoTipi.forEach(sottoTipoIterate => {
-          if(sottoTipoIterate.id ===  sottoTipo.id){
+          if (sottoTipoIterate.id === sottoTipo.id) {
             sottoTipoIterate.prodottiAssociati.push(newprodotto);
           }
         })
@@ -76,13 +86,38 @@ export class SezioneProdottiComponent implements OnInit {
 
   }
 
-  fileChange(event , prodotto: Prodotto){
+  fileChange(event, prodotto: Prodotto) {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
       prodotto.image = reader.result as string;
     };
+  }
+
+  salvaTipo(){
+
+    this.ts.getOBSSave(this.newTipo).subscribe(next=>{
+      this.getTipi();
+      this.ds.updateResultService(next.status);
+      this.ds.updateSpinner(false);
+    },error=>{
+      this.ds.updateResultService("Errore salvataggio");
+        this.ds.updateSpinner(false);
+    })
+
+  }
+
+  salvaSottoTipo(dominioPadre: Dominio){
+    this.newSottoTipo.tipoPadre.id = dominioPadre.id;
+    this.sts.getOBSSave(this.newSottoTipo).subscribe(next=>{
+      this.getTipi();
+      this.ds.updateResultService(next.status);
+      this.ds.updateSpinner(false);
+    },error=>{
+      this.ds.updateResultService("Errore salvataggio");
+        this.ds.updateSpinner(false);
+    })
   }
 
 }
