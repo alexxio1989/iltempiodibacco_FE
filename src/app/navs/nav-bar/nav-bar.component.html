@@ -1,11 +1,11 @@
 <div class="navbar navbar-dark bg-dark">
     <a href="" class="navbar-brand" style="font-family: American Typewriter, serif">
         
-        Il tempio di bacco
+        Il tempio di bacco 
     </a>
     <form class="form-inline">
         <button mat-button style="color: white;" (click)="goToAdminPage()">
-            <mat-icon style="margin-top: -3px;">shopping_cart</mat-icon>
+            <mat-icon matBadge="{{badgeCount}}" matBadgeColor="warn" style="margin-top: -3px;">shopping_cart</mat-icon>
         </button>
        
         <button class="btn btn-lg" (click)="openSideBar()">

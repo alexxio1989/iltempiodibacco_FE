@@ -56,6 +56,8 @@ import { NewNegozioModalContentComponent } from './modals/new-negozio-modal/new-
 import {MatMenuModule} from '@angular/material/menu';
 import { CarrelloServiceService } from './service/carrello-service.service';
 import { IncrementerComponent } from './varie/incrementer/incrementer.component';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -120,7 +122,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatListModule,
     MatTabsModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatBadgeModule
   ],
   providers: [
     DelegateServiceService,

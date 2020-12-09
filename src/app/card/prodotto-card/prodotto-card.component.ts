@@ -1,6 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
+import { Carrello } from 'src/app/model/Carrello';
 import { Prodotto } from 'src/app/model/Prodotto';
+import { CarrelloServiceService } from 'src/app/service/carrello-service.service';
 
 @Component({
   selector: 'app-prodotto-card',
@@ -29,7 +31,7 @@ export class ProdottoCardComponent implements OnInit {
 
   quantityToCart: number;
 
-  constructor() { }
+  constructor(private cs: CarrelloServiceService) { }
 
   ngOnInit(): void {
   }
@@ -39,7 +41,28 @@ export class ProdottoCardComponent implements OnInit {
   }
 
   aggiungiAlCarrello(){
+    let carrello = undefined;
     console.log("prodotto aggiunto")
+    let cart = localStorage.getItem("CART");
+    let carrelloPharse = JSON.parse(cart);
+    if(carrelloPharse !== undefined && carrelloPharse !== null){
+      carrello = carrelloPharse;
+      localStorage.removeItem("CART");
+      if(carrello.prodotti !== undefined && carrello.prodotti !== null && carrello.prodotti.length > 0){
+        carrello.prodotti.forEach(element => {
+          if(element.id === this.prodotto.id){
+            element.qnt =element.qnt + this.quantityToCart;
+          }
+        });
+      }
+        
+    } else {
+      this.prodotto.qnt = this.quantityToCart;
+      carrello = new Carrello();
+      carrello.prodotti.push(this.prodotto)
+    }
+    localStorage.setItem("CART", JSON.stringify(carrello));
+    this.cs.updateCarrello(carrello);
   }
 
   countQuantityToCart(count: number){

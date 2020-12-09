@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Carrello } from 'src/app/model/Carrello';
+import { CarrelloServiceService } from 'src/app/service/carrello-service.service';
 import { DelegateServiceService } from 'src/app/service/delegate-service.service';
 
 @Component({
@@ -8,10 +10,23 @@ import { DelegateServiceService } from 'src/app/service/delegate-service.service
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  
+  private carrello: Carrello = new Carrello();
 
-  constructor(private ds: DelegateServiceService,private route: Router) { }
+  badgeCount: number;
 
-  ngOnInit(): void {}
+  constructor(private ds: DelegateServiceService,private route: Router , private cs: CarrelloServiceService) { 
+    this.cs.getOBSCarrello().subscribe(next=>{
+      this.carrello = next;
+    })
+  }
+
+  ngOnInit(): void {
+    let cart = localStorage.getItem("CART");
+    this.carrello = JSON.parse(cart);
+    this.badgeCount = this.carrello.prodotti.length;
+  }
+
 
   openSideBar(){
     this.ds.updateSideBar(!this.ds.isOpenSideBar);

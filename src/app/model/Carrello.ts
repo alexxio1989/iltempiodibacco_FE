@@ -1,9 +1,9 @@
 import { Prodotto } from './Prodotto';
 
-export class Ordine{
+export class Carrello{
 
     id: number;
-    prodotti: Prodotto[];
+    prodotti: Prodotto[] = [];
     aquistato: string;
     
 }

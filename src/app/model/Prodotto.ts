@@ -12,4 +12,5 @@ export class Prodotto{
     qntRimanente: number;
     panelOpenState: boolean;
     edit: boolean;
+    qnt: number;
 }
