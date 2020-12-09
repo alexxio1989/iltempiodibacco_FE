@@ -11,12 +11,10 @@
         </div>
     </div>
     <div class="row">
-        <div *ngFor="let prodotto of item.value">
-
-            <div class="col-4">
-                <app-prodotto-card [prodotto]="prodotto"></app-prodotto-card>
-            </div>
-
+        <div *ngFor="let prodotto of item.value" class="col-md-4 col-sm-6 col-xs-6">
+            <app-prodotto-card [prodotto]="prodotto"></app-prodotto-card>
         </div>
     </div>
 </div>
+
+

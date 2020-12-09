@@ -53,7 +53,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import { NewNegozioModalComponent } from './modals/new-negozio-modal/new-negozio-modal.component';
 import { NewNegozioModalContentComponent } from './modals/new-negozio-modal/new-negozio-modal-content/new-negozio-modal-content.component';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -116,7 +116,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatSelectModule,
     MatListModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule
   ],
   providers: [
     DelegateServiceService,
