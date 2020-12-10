@@ -1,1 +1,10 @@
 <p>page-cart works!</p>
+
+<div *ngFor="let prodotto of carrello.prodotti">
+    <div class="row">
+        
+    </div>
+    <mat-card>
+        {{prodotto.nomeProdotto}} {{prodotto.qnt}}
+    </mat-card>
+</div>

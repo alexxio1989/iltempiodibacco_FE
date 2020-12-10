@@ -13,11 +13,12 @@ export class NavBarComponent implements OnInit {
   
   private carrello: Carrello = new Carrello();
 
-  badgeCount: number;
+  badgeCount: number = 0;
 
   constructor(private ds: DelegateServiceService,private route: Router , private cs: CarrelloServiceService) { 
     this.cs.getOBSCarrello().subscribe(next=>{
       this.carrello = next;
+      this.badgeCount = this.carrello.prodotti.length;
     })
   }
 
@@ -36,7 +37,7 @@ export class NavBarComponent implements OnInit {
     this.ds.isOpenSideBar = !this.ds.isOpenSideBar;
   }
 
-  goToAdminPage(){
+  goToCartPage(){
     this.route.navigate(['/cart']);
     this.ds.updateSideBar(false);
   }

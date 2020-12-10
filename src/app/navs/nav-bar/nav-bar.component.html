@@ -4,8 +4,12 @@
         Il tempio di bacco 
     </a>
     <form class="form-inline">
-        <button mat-button style="color: white;" (click)="goToAdminPage()">
+        <button *ngIf="badgeCount > 0" mat-button style="color: white;" (click)="goToCartPage()">
             <mat-icon matBadge="{{badgeCount}}" matBadgeColor="warn" style="margin-top: -3px;">shopping_cart</mat-icon>
+        </button>
+
+        <button *ngIf="badgeCount === 0" mat-button style="color: white;" disabled="true">
+            <mat-icon style="margin-top: -3px;">remove_shopping_cart</mat-icon>
         </button>
        
         <button class="btn btn-lg" (click)="openSideBar()">

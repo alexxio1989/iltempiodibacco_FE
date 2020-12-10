@@ -42,12 +42,22 @@
       <button mat-icon-button style="margin-left: -20px"  [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
       </button>
-      <mat-menu class="p-3" #menu="matMenu">
+      <mat-menu class="p-3 " #menu="matMenu">
+        
         <mat-label>Seleziona qnt. prodotto</mat-label>
         <app-incrementer (valueOutput) ="countQuantityToCart($event)"  (click)="$event.stopPropagation()" [value]="_value || 0" [step]="_step" [min]="_min" [max]="_max" [wrap]="_wrap"></app-incrementer>
-        <button *ngIf="quantityToCart > 0" mat-button (click)="$event.stopPropagation();  aggiungiAlCarrello()"  style="color: #6c757d;">
-          Aggiungi al carrello
-        </button>
+        
+        <div>
+          <button *ngIf="(quantityToCart > 0 && !isProdottoInCart) || ((quantityToCart > qntInCart) || (quantityToCart < qntInCart))" mat-button (click)="$event.stopPropagation();  aggiungiCarrello()"  style="color: #6c757d;">
+            {{qntInCart > 0 && (quantityToCart > qntInCart) || (quantityToCart < qntInCart) ? 'Aggiorna carrello' : 'Aggiungi al carrello'}}
+          </button>
+        </div>
+
+        <div>
+          <button  *ngIf="isProdottoInCart  " mat-button (click)="$event.stopPropagation();  rimuoviCarrello()"  style="color: #6c757d;">
+            Rimuovi dal carrello
+          </button>
+        </div>
 
       </mat-menu>
     </div>

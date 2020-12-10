@@ -23,49 +23,66 @@ export class ProdottoCardComponent implements OnInit {
   @Input() prodotto: Prodotto;
 
   state = 0;
-  _value: number = 0;
-  _step: number = 1;
-  _min: number = 0;
-  _max: number = Infinity;
-  _wrap: boolean = false;
+  public _value: number;
+  public _step: number = 1;
+  public _min: number = 0;
+  public _max: number = Infinity;
+  public _wrap: boolean = false;
+
+  qntInCart: number;
 
   quantityToCart: number;
 
-  constructor(private cs: CarrelloServiceService) { }
+  isProdottoInCart: boolean;
+
+  constructor(private cs: CarrelloServiceService) { 
+    this.cs.getOBSCardProdotto().subscribe(next => {
+      this.retrieveQntProdottoFromCart();
+    });
+  }
 
   ngOnInit(): void {
+    this._value = 0;
+    this.retrieveQntProdottoFromCart();
+  }
+
+  
+
+  private retrieveQntProdottoFromCart() {
+    let cart = localStorage.getItem("CART");
+    let carrelloPharse = JSON.parse(cart);
+    if (this.prodotto !== undefined && this.prodotto !== null && carrelloPharse !== undefined && carrelloPharse !== null) {
+      carrelloPharse.prodotti.forEach(element => {
+        if (element.id === this.prodotto.id) {
+          this._value = element.qnt;
+          this.qntInCart = element.qnt;
+          this.isProdottoInCart = true;
+        }
+      });
+    } else {
+      this._value = 0;
+      this.quantityToCart = 0;
+      this.qntInCart = 0;
+      this.isProdottoInCart = false;
+    }
   }
 
   scrollDone() {
     this.state++;
   }
 
-  aggiungiAlCarrello(){
-    let carrello = undefined;
-    console.log("prodotto aggiunto")
-    let cart = localStorage.getItem("CART");
-    let carrelloPharse = JSON.parse(cart);
-    if(carrelloPharse !== undefined && carrelloPharse !== null){
-      carrello = carrelloPharse;
-      localStorage.removeItem("CART");
-      if(carrello.prodotti !== undefined && carrello.prodotti !== null && carrello.prodotti.length > 0){
-        carrello.prodotti.forEach(element => {
-          if(element.id === this.prodotto.id){
-            element.qnt =element.qnt + this.quantityToCart;
-          }
-        });
-      }
-        
-    } else {
-      this.prodotto.qnt = this.quantityToCart;
-      carrello = new Carrello();
-      carrello.prodotti.push(this.prodotto)
-    }
-    localStorage.setItem("CART", JSON.stringify(carrello));
-    this.cs.updateCarrello(carrello);
+  aggiungiCarrello(){
+    this.cs.aggiungiProdotto(this.prodotto , this.quantityToCart);
+  }
+
+  rimuoviCarrello(){
+    this.cs.rimuoviCarrello();
   }
 
   countQuantityToCart(count: number){
+    if(count === 0 && this.isProdottoInCart){
+      this.cs.rimuoviCarrello();
+    }
     this.quantityToCart = count;
   }
 
