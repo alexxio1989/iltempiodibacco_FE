@@ -1,4 +1,4 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+
 import { Component, Input, OnInit } from '@angular/core';
 import { Carrello } from 'src/app/model/Carrello';
 import { Prodotto } from 'src/app/model/Prodotto';
@@ -7,16 +7,7 @@ import { CarrelloServiceService } from 'src/app/service/carrello-service.service
 @Component({
   selector: 'app-prodotto-card',
   templateUrl: './prodotto-card.component.html',
-  styleUrls: ['./prodotto-card.component.css'],
-  animations: [
-    trigger('scroll', [
-      state('on', style({left: '-100px'})),
-      transition('* => *', [
-        style({right: '-100px'}),
-        animate(10000, style({right: '100%'}))
-      ])
-    ])
-  ]
+  styleUrls: ['./prodotto-card.component.css']
 })
 export class ProdottoCardComponent implements OnInit {
 
@@ -36,9 +27,9 @@ export class ProdottoCardComponent implements OnInit {
   isProdottoInCart: boolean;
 
   constructor(private cs: CarrelloServiceService) { 
-    this.cs.getOBSCardProdotto().subscribe(next => {
-      this.retrieveQntProdottoFromCart();
-    });
+     this.cs.getOBSCardProdotto().subscribe(next => {
+       this.retrieveQntProdottoFromCart();
+     });
   }
 
   ngOnInit(): void {
@@ -67,9 +58,6 @@ export class ProdottoCardComponent implements OnInit {
     }
   }
 
-  scrollDone() {
-    this.state++;
-  }
 
   aggiungiCarrello(){
     this.cs.aggiungiProdotto(this.prodotto , this.quantityToCart);

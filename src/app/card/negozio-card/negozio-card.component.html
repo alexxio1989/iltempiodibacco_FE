@@ -1,20 +1,33 @@
 <h4>{{negozio.nome}}</h4>
-<h6>{{negozio.recapito.indirizzo}}</h6>
+<h6 class="text-muted">{{negozio.recapito.indirizzo}}</h6>
 
 <hr/>
 
-<div *ngFor="let item of mapProdotti | keyvalue" class="p-2 pt-4">
+
+
+<div *ngFor="let tipo of negozio.magazino.tipiAssociati" class="p-2 pt-4">
         
     <div class="row">
         <div class="col-12">
-            <h4 class="text-muted" style="font-weight: 700; font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important;">{{item.key}}</h4>   
+            <h4 class="text-muted" style="font-weight: 700; font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important;">{{tipo.descrizione}}</h4>   
         </div>
     </div>
-    <div class="row">
-        <div *ngFor="let prodotto of item.value" class="col-md-4 col-sm-6 col-xs-6">
-            <app-prodotto-card [prodotto]="prodotto"></app-prodotto-card>
+    <mat-tab-group>
+        <div class="row ">
+            <div *ngFor="let sottoTipo of tipo.sottoTipi">
+                <mat-tab label="{{sottoTipo.descrizione}}" > 
+                    
+                        <div *ngFor="let prodotto of sottoTipo.prodottiAssociati" class="col-md-4 col-sm-6 col-xs-6 p-3">
+                            <app-prodotto-card [prodotto]="prodotto"></app-prodotto-card>
+                        </div>
+
+                   
+                    
+                </mat-tab>
+            </div>
+            
         </div>
-    </div>
+        </mat-tab-group>
 </div>
 
 

@@ -47,7 +47,10 @@ export class CarrelloServiceService {
       if(carrello.prodotti !== undefined && carrello.prodotti !== null && carrello.prodotti.length > 0){
         carrello.prodotti.forEach(element => {
           if(element.id === prodotto.id){
-            element.qnt =element.qnt + quantityToCart;
+            element.qnt = quantityToCart;
+          } else {
+            prodotto.qnt = quantityToCart;
+            carrello.prodotti.push(prodotto)
           }
         });
       }

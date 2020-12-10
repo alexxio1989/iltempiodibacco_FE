@@ -57,6 +57,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { CarrelloServiceService } from './service/carrello-service.service';
 import { IncrementerComponent } from './varie/incrementer/incrementer.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { ProdottoCardCarrelloComponent } from './card/prodotto-card-carrello/prodotto-card-carrello.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -91,7 +92,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SezioneNegoziComponent,
     NewNegozioModalComponent,
     NewNegozioModalContentComponent,
-    IncrementerComponent
+    IncrementerComponent,
+    ProdottoCardCarrelloComponent
   ],
   imports: [
     BrowserModule,
