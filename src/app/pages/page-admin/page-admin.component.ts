@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Dominio } from 'src/app/model/Dominio';
 import { Negozio } from 'src/app/model/Negozio';
 import { Prodotto } from 'src/app/model/Prodotto';
 import { DelegateServiceService } from 'src/app/service/delegate-service.service';
@@ -14,40 +15,42 @@ import { TipoServiceService } from 'src/app/service/tipo-service.service';
 export class PageAdminComponent implements OnInit {
 
   negozi: Negozio[];
-  mapProdotti: Map<string, Prodotto[]>;
+  listTipi: Dominio[];
 
-  constructor(private ps: ProdottoServiceService ,
-              private ns: NegozioServiceService , 
-              private ds: DelegateServiceService , 
-              private ts: TipoServiceService) {
-    this.ps.getOBSGetAll().subscribe(next => {
+  constructor(private ps: ProdottoServiceService,
+    private ns: NegozioServiceService,
+    private ds: DelegateServiceService,
+    private ts: TipoServiceService) {
 
-      this.setMapProdotti(next);
-      this.ds.updateResultService(next.status);
-      this.ds.updateSpinner(false);
-    });
+    this.getTipi()
 
+    this.getNegozi();
+  }
+
+  ngOnInit(): void {
+  }
+
+  adviceProdotto(event: boolean) {
+    this.getTipi();
+  }
+
+  private getNegozi() {
     this.ns.getOBSGetAll().subscribe(next => {
       this.negozi = next.list;
       this.ds.updateResultService(next.status);
       this.ds.updateSpinner(false);
     });
-  } 
-
-  private setMapProdotti(next: any) {
-    if (next.list.length > 0) {
-      this.mapProdotti = new Map<string, Prodotto[]>();
-      next.list.forEach(value => {
-        var newArray = next.list.filter(function (el) {
-          return el.tipo.codice === value.tipo.codice;
-        });
-        this.mapProdotti.set(value.tipo.descrizione, newArray);
-      });
-
-    }
   }
 
-  ngOnInit(): void {
+  private getTipi() {
+    this.ts.getOBSGetAll().subscribe(next => {
+
+      this.listTipi = next.list;
+      this.ds.updateResultService(next.status);
+      this.ds.updateSpinner(false);
+    });
   }
+
+
 
 }

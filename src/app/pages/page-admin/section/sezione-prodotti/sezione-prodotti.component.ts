@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Dominio } from 'src/app/model/Dominio';
 import { Prodotto } from 'src/app/model/Prodotto';
 import { SubDominio } from 'src/app/model/SubDominio';
@@ -16,7 +16,8 @@ export class SezioneProdottiComponent implements OnInit {
 
 
   listUnita: string[] = ["lt ( litro )","pz ( pezzo )" , "Kg ( Kilo )"];
-  listTipi: Dominio[];
+  @Input() listTipi: Dominio[];
+  @Output() adviceProdotto = new EventEmitter<boolean>();
 
   editTipo: boolean;
 
@@ -31,23 +32,11 @@ export class SezioneProdottiComponent implements OnInit {
     private ts: TipoServiceService,
     private sts: SottoTipoServiceService) {
 
-
-
-
   }
 
 
-  private getTipi() {
-    this.ts.getOBSGetAll().subscribe(next => {
-
-      this.listTipi = next.list;
-      this.ds.updateResultService(next.status);
-      this.ds.updateSpinner(false);
-    });
-  }
 
   ngOnInit(): void {
-    this.getTipi();
   }
 
   save(sottoTipo: SubDominio, prodotto: Prodotto) {
@@ -56,14 +45,14 @@ export class SezioneProdottiComponent implements OnInit {
     prodotto.tipo = newTipo
     if (prodotto.edit) {
       this.ps.getOBSUpdate(prodotto).subscribe(next => {
-        this.getTipi();
+        this.adviceProdotto.emit(true);
       }, error => {
         this.ds.updateResultService("Errore salvataggio");
         this.ds.updateSpinner(false);
       })
     } else {
       this.ps.getOBSSave(prodotto).subscribe(next => {
-        this.getTipi();
+        this.adviceProdotto.emit(true);
       }, error => {
         this.ds.updateResultService("Errore salvataggio");
         this.ds.updateSpinner(false);
@@ -99,7 +88,7 @@ export class SezioneProdottiComponent implements OnInit {
   salvaTipo(){
 
     this.ts.getOBSSave(this.newTipo).subscribe(next=>{
-      this.getTipi();
+      this.adviceProdotto.emit(true);
       this.ds.updateResultService(next.status);
       this.ds.updateSpinner(false);
     },error=>{
@@ -112,7 +101,7 @@ export class SezioneProdottiComponent implements OnInit {
   salvaSottoTipo(dominioPadre: Dominio){
     this.newSottoTipo.tipoPadre.id = dominioPadre.id;
     this.sts.getOBSSave(this.newSottoTipo).subscribe(next=>{
-      this.getTipi();
+      this.adviceProdotto.emit(true);
       this.ds.updateResultService(next.status);
       this.ds.updateSpinner(false);
     },error=>{
