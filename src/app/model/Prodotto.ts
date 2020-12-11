@@ -13,4 +13,5 @@ export class Prodotto{
     panelOpenState: boolean;
     edit: boolean;
     qnt: number;
+    unita: string;
 }
