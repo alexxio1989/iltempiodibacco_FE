@@ -42,14 +42,22 @@ export class ProdottoCardComponent implements OnInit {
   private retrieveQntProdottoFromCart() {
     let cart = localStorage.getItem("CART");
     let carrelloPharse = JSON.parse(cart);
-    if (this.prodotto !== undefined && this.prodotto !== null && carrelloPharse !== undefined && carrelloPharse !== null) {
-      carrelloPharse.prodotti.forEach(element => {
-        if (element.id === this.prodotto.id) {
-          this._value = element.qnt;
-          this.qntInCart = element.qnt;
-          this.isProdottoInCart = true;
-        }
-      });
+    if (this.prodotto !== undefined && 
+        this.prodotto !== null && 
+        carrelloPharse !== undefined && 
+        carrelloPharse !== null && 
+        carrelloPharse.prodotti.length > 0 &&
+        carrelloPharse.prodotti.some(el => el.id === this.prodotto.id)) {
+      
+        carrelloPharse.prodotti.forEach(element => {
+          if (element.id === this.prodotto.id) {
+            this._value = element.qnt;
+            this.qntInCart = element.qnt;
+            this.isProdottoInCart = true;
+          } 
+        });
+      
+     
     } else {
       this._value = 0;
       this.quantityToCart = 0;
@@ -63,14 +71,11 @@ export class ProdottoCardComponent implements OnInit {
     this.cs.aggiungiProdotto(this.prodotto , this.quantityToCart);
   }
 
-  rimuoviCarrello(){
-    this.cs.rimuoviCarrello();
+  rimuoviCarrello(prodotto: Prodotto){
+    this.cs.rimuoviCarrello(prodotto);
   }
 
   countQuantityToCart(count: number){
-    if(count === 0 && this.isProdottoInCart){
-      this.cs.rimuoviCarrello();
-    }
     this.quantityToCart = count;
   }
 

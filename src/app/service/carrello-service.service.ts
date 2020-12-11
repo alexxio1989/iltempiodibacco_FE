@@ -14,10 +14,20 @@ export class CarrelloServiceService {
 
   constructor() { }
 
-  rimuoviCarrello(){
-    localStorage.removeItem("CART");
-    this.updateCarrello(new Carrello());
+  rimuoviCarrello(prodotto: Prodotto){
+    
+    
+    let carrelloPharse = this.getCarrello();
+    if(prodotto !== undefined && prodotto !== null && carrelloPharse !== undefined && carrelloPharse !== null){
+      if(carrelloPharse.prodotti.length > 0){
+        carrelloPharse.prodotti.splice(carrelloPharse.prodotti.findIndex(p => p.id === prodotto.id), 1);
+        localStorage.removeItem("CART");
+        localStorage.setItem("CART", JSON.stringify(carrelloPharse));
+      }
+    }
+    
     this.updateCardProdotto();
+    this.updateCarrello(carrelloPharse);
   }
 
   getCarrello(): Carrello{
@@ -37,22 +47,28 @@ export class CarrelloServiceService {
     return 0;
   }
 
+
   aggiungiProdotto(prodotto: Prodotto , quantityToCart: number){
     let carrello = undefined;
     console.log("prodotto aggiunto")
     let carrelloPharse = this.getCarrello();
-    if(carrelloPharse !== undefined && carrelloPharse !== null){
+    if(carrelloPharse !== undefined && carrelloPharse !== null && carrelloPharse.prodotti.length > 0){
       carrello = carrelloPharse;
       localStorage.removeItem("CART");
       if(carrello.prodotti !== undefined && carrello.prodotti !== null && carrello.prodotti.length > 0){
-        carrello.prodotti.forEach(element => {
-          if(element.id === prodotto.id){
-            element.qnt = quantityToCart;
-          } else {
-            prodotto.qnt = quantityToCart;
-            carrello.prodotti.push(prodotto)
-          }
-        });
+      
+        if (carrello.prodotti.some(el => el.id === prodotto.id)){
+          carrello.prodotti.forEach(element => {
+            if(element.id === prodotto.id){
+              element.qnt = quantityToCart;
+            }
+          });
+
+        } else {
+          prodotto.qnt = quantityToCart;
+          carrello.prodotti.push(prodotto)
+        }
+       
       }
         
     } else {

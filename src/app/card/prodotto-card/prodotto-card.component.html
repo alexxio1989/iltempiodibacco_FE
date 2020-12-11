@@ -46,7 +46,7 @@
         </div>
 
         <div>
-          <button  *ngIf="isProdottoInCart  " mat-button (click)="$event.stopPropagation();  rimuoviCarrello()"  style="color: #6c757d;">
+          <button  *ngIf="isProdottoInCart  " mat-button (click)="$event.stopPropagation();  rimuoviCarrello(prodotto)"  style="color: #6c757d;">
             Rimuovi dal carrello
           </button>
         </div>

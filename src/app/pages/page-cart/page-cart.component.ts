@@ -22,9 +22,7 @@ export class PageCartComponent implements OnInit {
 
   constructor(private cs: CarrelloServiceService , private ds: DelegateServiceService) {
 
-    this.cs.getOBSCarrello().subscribe(next=>{
-      this.carrello = next;
-    })
+
 
     this.cs.getOBSCarrello().subscribe(next=>{
       this.carrello = next;
@@ -36,10 +34,10 @@ export class PageCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.tot = 0;
     this.carrello = this.cs.getCarrello();
       this.carrello.prodotti.forEach(prodotto => {
-        this.tot =  (prodotto.qnt * prodotto.prezzo);
+        this.tot = this.tot +  (prodotto.qnt * prodotto.prezzo);
       })
 
   }
