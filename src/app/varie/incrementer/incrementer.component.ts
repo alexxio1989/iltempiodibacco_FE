@@ -24,6 +24,7 @@ export class IncrementerComponent implements OnInit {
   _wrap: boolean = false;
   color: string = 'default';
   @Output() valueOutput = new EventEmitter<number>();
+  @Input() unita: string;
 
   @Input('value')
   set inputValue(_value: number) {
@@ -67,8 +68,13 @@ export class IncrementerComponent implements OnInit {
   }
 
   incrementValue(step: number = 1): void {
-
-    let inputValue = this._value + step;
+    let z;
+    if(Number.isInteger(step)){
+      z = this._value + step;
+    } else {
+      z = +(this._value + step).toFixed(1);
+    }
+    let inputValue = z;
 
     if (this._wrap) {
       inputValue = this.wrappedValue(inputValue);

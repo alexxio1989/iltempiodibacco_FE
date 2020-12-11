@@ -19,11 +19,13 @@
         <div class="row">
             <p class="text-muted">Quantità selezionata :</p>
              
-            <app-incrementer style="margin-top: -8px; margin-left: 15px;" (valueOutput) ="countQuantityToCart($event)"  (click)="$event.stopPropagation()" [value]="prodotto.qnt || 0" [step]="_step" [min]="_min" [max]="_max" [wrap]="_wrap"></app-incrementer>
+            <app-incrementer style="margin-top: -8px; margin-left: 15px;" [unita] = "prodotto.unita" (valueOutput) ="countQuantityToCart($event)"  (click)="$event.stopPropagation()" [value]="prodotto.qnt || 0" [step]="_step" [min]="_min" [max]="_max" [wrap]="_wrap"></app-incrementer>
 
         </div>
         <div class="row">
-            <p class="text-muted">Prezzo / pz : </p> <p>  &nbsp;{{prodotto.prezzo}} €</p>
+            <h6 class="md-display-1" style="font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important; font-size: calc(10px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+          line-height: 1.4;">
+          Prezzo : <b style="opacity: 0.7;">{{prodotto.prezzo }} € / {{prodotto.unita }}</b></h6>
         </div>
     </div>
 

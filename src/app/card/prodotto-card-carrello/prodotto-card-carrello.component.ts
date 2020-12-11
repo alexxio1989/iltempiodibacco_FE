@@ -12,7 +12,7 @@ export class ProdottoCardCarrelloComponent implements OnInit {
 
   @Input() prodotto: Prodotto;
 
-  public _step: number = 1;
+  public _step: number = 0.1;
   public _min: number = 0;
   public _max: number = Infinity;
   public _wrap: boolean = false;

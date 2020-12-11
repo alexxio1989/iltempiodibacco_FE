@@ -15,7 +15,7 @@ export class PageCartComponent implements OnInit {
 
   tot: number = 0;
 
-  public _step: number = 1;
+  public _step: number = 0.1;
   public _min: number = 0;
   public _max: number = Infinity;
   public _wrap: boolean = false;
@@ -27,7 +27,8 @@ export class PageCartComponent implements OnInit {
     this.cs.getOBSCarrello().subscribe(next=>{
       this.carrello = next;
       this.carrello.prodotti.forEach(prodotto => {
-        this.tot = (prodotto.qnt * prodotto.prezzo);
+        let x = +(this.tot + (prodotto.qnt * prodotto.prezzo)).toFixed(2);
+        this.tot = x
       })
     })
 
@@ -37,7 +38,8 @@ export class PageCartComponent implements OnInit {
     this.tot = 0;
     this.carrello = this.cs.getCarrello();
       this.carrello.prodotti.forEach(prodotto => {
-        this.tot = this.tot +  (prodotto.qnt * prodotto.prezzo);
+        let x = +(this.tot + (prodotto.qnt * prodotto.prezzo)).toFixed(2);
+        this.tot = x
       })
 
   }

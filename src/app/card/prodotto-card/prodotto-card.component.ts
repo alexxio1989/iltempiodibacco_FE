@@ -15,7 +15,7 @@ export class ProdottoCardComponent implements OnInit {
 
   state = 0;
   public _value: number;
-  public _step: number = 1;
+  public _step: number = 0.1;
   public _min: number = 0;
   public _max: number = Infinity;
   public _wrap: boolean = false;
