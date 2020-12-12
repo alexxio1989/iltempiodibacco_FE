@@ -58,6 +58,7 @@ import { CarrelloServiceService } from './service/carrello-service.service';
 import { IncrementerComponent } from './varie/incrementer/incrementer.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { ProdottoCardCarrelloComponent } from './card/prodotto-card-carrello/prodotto-card-carrello.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -125,7 +126,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatTabsModule,
     MatCardModule,
     MatMenuModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTableModule
   ],
   providers: [
     DelegateServiceService,

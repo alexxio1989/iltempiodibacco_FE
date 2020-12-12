@@ -8,7 +8,7 @@
     </mat-tab>
     <mat-tab label="Amministrazione Negozi">
         <div class="row mw-100 p-2">
-            <app-sezione-negozi [negozi] = "negozi" [listTipi] = "listTipi"></app-sezione-negozi>
+            <app-sezione-negozi [negozi] = "negozi" [listTipi] = "listTipi" (adviceNegozio) = "adviceProdotto($event)"></app-sezione-negozi>
 
         </div>
     </mat-tab>

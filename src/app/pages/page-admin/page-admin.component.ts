@@ -34,6 +34,10 @@ export class PageAdminComponent implements OnInit {
     this.getTipi();
   }
 
+  adviceNegozio(event: boolean) {
+    this.getNegozi();
+  }
+
   private getNegozi() {
     this.ns.getOBSGetAll().subscribe(next => {
       this.negozi = next.list;
