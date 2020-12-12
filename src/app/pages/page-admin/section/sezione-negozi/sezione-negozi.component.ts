@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { utils } from 'protractor';
 import { NewNegozioModalContentComponent } from 'src/app/modals/new-negozio-modal/new-negozio-modal-content/new-negozio-modal-content.component';
 import { Dominio } from 'src/app/model/Dominio';
 import { Magazino } from 'src/app/model/Magazino';
@@ -47,6 +48,24 @@ export class SezioneNegoziComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  disableProdotto(prodotto: Prodotto): boolean {
+   
+
+    if(this.negozioSelected !== undefined && 
+      this.negozioSelected.magazino.tipiAssociati !== undefined && 
+      this.negozioSelected.magazino.tipiAssociati !== null){
+
+        return this.negozioSelected.magazino.tipiAssociati.some(
+          tipo => tipo.sottoTipi.some(
+            sottotipo => sottotipo.prodottiAssociati.some(
+              p => p.id === prodotto.id)) 
+        )
+     
+
+    }
+    
+  }
 
 
   addNegozio(){

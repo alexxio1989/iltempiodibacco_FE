@@ -56,7 +56,7 @@
                         <mat-label>Tipo Prodotti</mat-label>
                         <mat-select [formControl]="toppings">
 
-                            <mat-option *ngFor="let tipo of listTipi" [value]="tipo" (click)="tipoSelezionato = tipo">
+                            <mat-option *ngFor="let tipo of listTipi" [value]="tipo" (click)="tipoSelezionato = tipo ; sottoTipoSelezionato = undefined">
                                 {{tipo.descrizione}}
                             </mat-option>
 
@@ -92,7 +92,7 @@
                             <ng-container matColumnDef="buttonAdd">
                                 <th mat-header-cell *matHeaderCellDef> </th>
                                 <td mat-cell *matCellDef="let element"> 
-                                    <button mat-button (click)="addProdotto(element)">
+                                    <button mat-button (click)="addProdotto(element)" [disabled] = "disableProdotto(element)">
                                         <mat-icon style="margin-top: -3px;">playlist_add</mat-icon>
                                     </button>
                                 </td>
