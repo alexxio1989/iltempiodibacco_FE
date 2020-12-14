@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-devkit/build-angular": "^0.1001.7",
+    "@angular-devkit/build-angular": "^0.1100.4",
     "@angular/animations": "~10.1.5",
     "@angular/cdk": "^10.2.7",
     "@angular/cli": "~10.1.5",
@@ -34,6 +34,7 @@
     "easy-star-rating": "^1.0.1",
     "express": "^4.17.1",
     "ngx-device-detector": "^2.0.0",
+    "ngx-material-timepicker": "^5.5.3",
     "ngx-stars": "^1.4.3",
     "ngx-swiper-wrapper": "^10.0.0",
     "path": "^0.12.7",

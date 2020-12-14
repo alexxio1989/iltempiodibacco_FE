@@ -59,6 +59,9 @@ import { IncrementerComponent } from './varie/incrementer/incrementer.component'
 import {MatBadgeModule} from '@angular/material/badge';
 import { ProdottoCardCarrelloComponent } from './card/prodotto-card-carrello/prodotto-card-carrello.component';
 import {MatTableModule} from '@angular/material/table';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { GiorniLavorativiComponent } from './varie/giorni-lavorativi/giorni-lavorativi.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -94,7 +97,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     NewNegozioModalComponent,
     NewNegozioModalContentComponent,
     IncrementerComponent,
-    ProdottoCardCarrelloComponent
+    ProdottoCardCarrelloComponent,
+    GiorniLavorativiComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +131,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatCardModule,
     MatMenuModule,
     MatBadgeModule,
-    MatTableModule
+    MatTableModule,
+    NgxMaterialTimepickerModule,
+    MatSlideToggleModule
   ],
   providers: [
     DelegateServiceService,

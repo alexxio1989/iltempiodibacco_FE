@@ -15,7 +15,7 @@ import { TipoServiceService } from 'src/app/service/tipo-service.service';
 export class SezioneProdottiComponent implements OnInit {
 
 
-  listUnita: string[] = ["lt ( litro )","pz ( pezzo )" , "Kg ( Kilo )"];
+  listUnita: string[] = ["lt ( litro )","pz ( pezzo )" , "Kg ( Kilo )" , "Bottiglia"];
   @Input() listTipi: Dominio[];
   @Output() adviceProdotto = new EventEmitter<boolean>();
 

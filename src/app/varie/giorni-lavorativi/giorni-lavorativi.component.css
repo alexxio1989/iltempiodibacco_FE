@@ -1,0 +1,11 @@
+.timepicker-overlay {
+    z-index: 1100 !important;
+  }
+  
+  .timepicker-backdrop-overlay {
+    z-index: 1100 !important;
+  }
+
+  .mat-tab-label {
+    min-width: 120px !important;
+  }

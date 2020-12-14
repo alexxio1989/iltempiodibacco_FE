@@ -28,3 +28,15 @@ button:focus { outline:0 !important; }
   font-size: calc(13px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
   line-height: 1.4;
 }
+
+.timepicker-overlay {
+  z-index: 1100 !important;
+}
+
+.timepicker-backdrop-overlay {
+  z-index: 1100 !important;
+}
+
+.mat-tab-label {
+  min-width: 120px !important;
+}

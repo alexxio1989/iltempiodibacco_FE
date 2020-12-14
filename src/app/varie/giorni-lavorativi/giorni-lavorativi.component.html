@@ -1,0 +1,41 @@
+<div class="row p-2">
+    <mat-tab-group mat-align-tabs="center">
+        <div class="col-12" *ngFor="let giorno of listGiornoLavorativo">
+            <mat-tab label="{{giorno.descrizione}}" class="p-3">
+                <div class="col-12 mt-4 mb-3">
+                    
+                    <mat-slide-toggle [(ngModel)]="giorno.chiuso">
+                        {{giorno.chiuso ? 'Negozio Chiuso' : 'Negozio Aperto'}}
+                    </mat-slide-toggle>
+                </div>
+                <div *ngIf="!giorno.chiuso" class="col-12">
+                    <div class="col-12">
+                        <div class="ngx-timepicker-field-example">
+                            <mat-label>Orario Apertura</mat-label>
+                            <ngx-timepicker-field [(ngModel)]="giorno.orario_apertura" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="ngx-timepicker-field-example">
+                            <mat-label>Orario Inizio Pausa</mat-label>
+                            <ngx-timepicker-field [(ngModel)]="giorno.orario_pausa_inizio" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="ngx-timepicker-field-example">
+                            <mat-label>Orario Fine Pausa</mat-label>
+                            <ngx-timepicker-field [(ngModel)]="giorno.orario_pausa_fine" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="ngx-timepicker-field-example">
+                            <mat-label>Orario Chiusura</mat-label>
+                            <ngx-timepicker-field [(ngModel)]="giorno.orario_chiusura" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-tab>
+        </div>
+    </mat-tab-group>
+</div>
