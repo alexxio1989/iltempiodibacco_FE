@@ -35,6 +35,8 @@ export class SezioneNegoziComponent implements OnInit {
 
   isAddProdotto: boolean;
 
+  
+
   constructor(public dialog: MatDialog , 
               private ns: NegozioServiceService , 
               private ds: DelegateServiceService , 
@@ -87,6 +89,28 @@ export class SezioneNegoziComponent implements OnInit {
     newMagazino.idNegozio = this.negozioSelected.id;
     newMagazino.prodottoSelected = prodotto;
     this.ms.getOBSSave(newMagazino).subscribe(next => {
+      this.negozioSelected.magazino = next;
+      this.adviceNegozio.emit(true);
+    });
+  }
+
+  deleteProdottoFromMagazino(prodotto: Prodotto){
+    let newMagazino = new Magazino();
+    newMagazino.idNegozio = this.negozioSelected.id;
+    newMagazino.prodottoSelected = prodotto;
+    this.ms.getOBSDelete(newMagazino).subscribe(next => {
+      this.negozioSelected.magazino = next;
+      this.adviceNegozio.emit(true);
+    });
+  }
+
+  modificaQnt(prodotto: Prodotto){
+    prodotto.qntRimanente = prodotto.qntProdottoEdited;
+    let newMagazino = new Magazino();
+    newMagazino.idNegozio = this.negozioSelected.id;
+    newMagazino.prodottoSelected = prodotto;
+    this.ms.getOBSUpdate(newMagazino).subscribe(next => {
+      this.negozioSelected.magazino = next;
       this.adviceNegozio.emit(true);
     });
   }

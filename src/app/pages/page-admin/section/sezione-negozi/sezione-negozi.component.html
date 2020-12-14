@@ -27,7 +27,7 @@
 
 </div>
 
-<div class="row mw-100 p-4">
+<div class="row mw-100 pl-2">
     <div class="col-12 ">
         <div *ngIf="negozioSelected !== undefined">
 
@@ -115,7 +115,7 @@
             </div>
 
             <div *ngIf="!isAddProdotto">
-                <div *ngFor="let tipo of negozioSelected.magazino.tipiAssociati" class="p-2 pt-4">
+                <div *ngFor="let tipo of negozioSelected.magazino.tipiAssociati" class="pl-2 pt-4">
 
                     <div class="row">
                         <div class="col-12">
@@ -131,33 +131,68 @@
                                     <div *ngFor="let prodotto of sottoTipo.prodottiAssociati">
                                         <div class="row p-0 mw-100 mt-2">
 
-                                            <div class="col-12">
+                                            <div class="col-12 p-0">
                                                 <mat-card>
                                                     <div class="row">
-                                                        <div class="col-6">
+                                                        <div class="col-lg-6 col-xs-12">
                                                             <div class="col-12">
                                                                 <h6 class="text-muted"
                                                                     style="font-weight: 500; font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important;">
                                                                     {{prodotto.nomeProdotto}}</h6>
-    
+
                                                             </div>
-    
+
                                                             <div class="col-12 pl-3">
-                                                                <h6 class="custom-text">Prezzo : <b style="opacity: 0.7;">{{prodotto.prezzo }} € / {{prodotto.unita }}</b></h6>
-    
+                                                                <h6 class="custom-text">Prezzo : <b
+                                                                        style="opacity: 0.7;">{{prodotto.prezzo }} € /
+                                                                        {{prodotto.unita }}</b></h6>
+
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-6">
-                                                            <div class="row">
+
+                                                        <div class="col-lg-6 col-xs-12">
+                                                         
                                                                 <div class="col-12">
-                                                                    <h6 class="custom-text">Quantità rimanente : {{prodotto.qntRimanente}} / {{prodotto.unita }}</h6>
+                                                                    <h6 class="custom-text">Quantità rimanente :
+                                                                        {{prodotto.qntRimanente}} / {{prodotto.unita }}
+                                                                    </h6>
                                                                 </div>
+                                                           
+                                                            <div *ngIf="!prodotto.addQntProdotto" class="col-12 p-0">
+                                                                <button mat-button
+                                                                    (click)="prodotto.addQntProdotto = true; prodotto.qntProdottoEdited = prodotto.qntRimanente"
+                                                                    class="custom-text" style="color: #6c757d;">
+                                                                    Modifica Qnt. Prodotto
+                                                                </button>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    
-                                                                </div>
+                                                            <div *ngIf="prodotto.addQntProdotto" class="col-12">
+                                                                <button mat-button
+                                                                    (click)="prodotto.addQntProdotto = false;"
+                                                                    class="custom-text" style="color: #6c757d;">
+                                                                    Annulla
+                                                                </button>
+
+                                                                <mat-form-field class="example-full-width">
+                                                                    <span matPrefix class="custom-text">
+                                                                        {{prodotto.unita }}&nbsp;</span>
+                                                                    <input type="number" [(ngModel)]="prodotto.qntProdottoEdited"
+                                                                        matInput>
+                                                                </mat-form-field>
+
+                                                                <button *ngIf="prodotto.qntProdottoEdited !== prodotto.qntRimanente"
+                                                                    mat-button (click)="modificaQnt(prodotto)"
+                                                                    style="color: #6c757d;">
+                                                                    Salva
+                                                                </button>
+
+                                                            </div>
+                                                            <div class="col-12 p-0">
+                                                                <button mat-button
+                                                                    (click)="deleteProdottoFromMagazino(prodotto)"
+                                                                    class="custom-text" style="color: #6c757d;">
+                                                                    Elimina Prodotto
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>

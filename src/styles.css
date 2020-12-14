@@ -22,3 +22,9 @@ button:focus { outline:0 !important; }
   font-size: calc(10px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
   line-height: 1.4;
 }
+
+.custom-h6 {
+  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important; 
+  font-size: calc(13px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+  line-height: 1.4;
+}

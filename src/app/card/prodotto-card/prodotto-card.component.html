@@ -39,27 +39,39 @@
     
         </div>
 
+        <div *ngIf="prodotto.qntRimanente === 0" class=" d-flex justify-content-center mt-3">
+          <h6 class="md-display-1" style="font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important; ">
+          Prodotto Esaurito</h6>
+    
+        </div>
+
       </div>
     </div>
     <div class="col-1 pl-0">
-      <button mat-icon-button style="margin-left: -20px"  [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <button mat-icon-button style="margin-left: -20px" [disabled]="prodotto.qntRimanente === 0" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
       </button>
-      <mat-menu class="p-3 " style="min-width: 200px;" #menu="matMenu">
+      <mat-menu class="p-3 " #menu="matMenu">
         
-        <mat-label>Seleziona qnt. prodotto</mat-label>
-        <app-incrementer  (valueOutput) ="countQuantityToCart($event)" [unita] = "prodotto.unita" (click)="$event.stopPropagation()" [value]="_value || 0" [step]="_step" [min]="_min" [max]="_max" [wrap]="_wrap"></app-incrementer>
-        
-        <div>
-          <button *ngIf="(quantityToCart > 0 && !isProdottoInCart) || ((quantityToCart > qntInCart) || (quantityToCart < qntInCart))" mat-button (click)="$event.stopPropagation();  aggiungiCarrello()"  style="color: #6c757d;">
-            {{qntInCart > 0 && (quantityToCart > qntInCart) || (quantityToCart < qntInCart) ? 'Aggiorna carrello' : 'Aggiungi al carrello'}}
-          </button>
-        </div>
+        <div class="row " >
+          <div class="col-12">
 
-        <div>
-          <button  *ngIf="isProdottoInCart  " mat-button (click)="$event.stopPropagation();  rimuoviCarrello(prodotto)"  style="color: #6c757d;">
-            Rimuovi dal carrello
-          </button>
+            <mat-label>Seleziona qnt. prodotto</mat-label>
+            
+            <app-incrementer  (valueOutput) ="countQuantityToCart($event)" [unita] = "prodotto.unita" (click)="$event.stopPropagation()" [value]="_value || 0" [step]="_step" [min]="_min" [max]="prodotto.qntRimanente" [wrap]="_wrap"></app-incrementer>
+            
+            <div>
+              <button *ngIf="(quantityToCart > 0 && !isProdottoInCart) || ((quantityToCart > qntInCart) || (quantityToCart < qntInCart))" mat-button (click)="$event.stopPropagation();  aggiungiCarrello()"  style="color: #6c757d;">
+                {{qntInCart > 0 && (quantityToCart > qntInCart) || (quantityToCart < qntInCart) ? 'Aggiorna carrello' : 'Aggiungi al carrello'}}
+              </button>
+            </div>
+    
+            <div>
+              <button  *ngIf="isProdottoInCart  " mat-button (click)="$event.stopPropagation();  rimuoviCarrello(prodotto)"  style="color: #6c757d;">
+                Rimuovi dal carrello
+              </button>
+            </div>
+          </div>
         </div>
 
       </mat-menu>

@@ -17,9 +17,9 @@
             
         </div>
         <div class="row">
-            <p class="text-muted">Quantità selezionata :</p>
+            <p class="text-muted">Qnt selezionata :</p>
              
-            <app-incrementer style="margin-top: -8px; margin-left: 15px;" [unita] = "prodotto.unita" (valueOutput) ="countQuantityToCart($event)"  (click)="$event.stopPropagation()" [value]="prodotto.qnt || 0" [step]="_step" [min]="_min" [max]="_max" [wrap]="_wrap"></app-incrementer>
+            <app-incrementer style="min-width: 180px; margin-top: -3px; padding: 0;" [unita] = "prodotto.unita" (valueOutput) ="countQuantityToCart($event)"  (click)="$event.stopPropagation()" [value]="prodotto.qnt || 0" [step]="_step" [min]="_min" [max]="_max" [wrap]="_wrap"></app-incrementer>
 
         </div>
         <div class="row">

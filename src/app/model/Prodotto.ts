@@ -14,4 +14,6 @@ export class Prodotto{
     edit: boolean;
     qnt: number;
     unita: string;
+    qntProdottoEdited: number;
+    addQntProdotto:boolean;
 }

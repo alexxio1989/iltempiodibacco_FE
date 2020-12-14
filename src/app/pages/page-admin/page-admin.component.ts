@@ -22,7 +22,7 @@ export class PageAdminComponent implements OnInit {
     private ds: DelegateServiceService,
     private ts: TipoServiceService) {
 
-    this.getTipi()
+    
 
     this.getNegozi();
   }
@@ -41,8 +41,7 @@ export class PageAdminComponent implements OnInit {
   private getNegozi() {
     this.ns.getOBSGetAll().subscribe(next => {
       this.negozi = next.list;
-      this.ds.updateResultService(next.status);
-      this.ds.updateSpinner(false);
+      this.getTipi();
     });
   }
 
