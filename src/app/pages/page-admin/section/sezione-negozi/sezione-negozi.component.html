@@ -18,14 +18,7 @@
 
 <hr />
 
-<div *ngIf="negozioSelected !== undefined && negozioSelected !== null" class="row mw-100 p-2 mb-3">
-
-    <h5 class="ml-5">{{negozioSelected !== undefined ? negozioSelected.nome : ''}}</h5>
-    <button mat-button (click)="openDialog()" style="color: #6c757d; margin-top: -5px;">
-        <mat-icon style="margin-top: -3px;">create</mat-icon>
-    </button>
-
-</div>
+<app-card-info-negozio [negozio] = "negozioSelected" [edit] = "true"></app-card-info-negozio>
 
 <div class="row mw-100 pl-2">
     <div class="col-12 ">

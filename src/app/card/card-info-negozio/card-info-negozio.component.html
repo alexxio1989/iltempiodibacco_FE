@@ -1,0 +1,30 @@
+<div *ngIf="negozio !== undefined && negozio !== null" class="row mw-100 p-2 mb-3">
+    <div class="col-12 d-inline-flex">
+
+        <h6 class="ml-2">{{negozio !== undefined ? negozio.nome : ''}}</h6>
+        <button *ngIf="edit" mat-button (click)="openDialog()" class="p-0 mini-button ml-2">
+            <mat-icon style="margin-top: -15px; height: 12px;width: 12px; margin-left: -10px;">create</mat-icon>
+        </button>
+        <button mat-button (click)="showInfo = !showInfo" class="p-0 mini-button" >
+            <mat-icon style="margin-top: -15px; height: 12px;width: 12px; margin-left: -10px;">help_outline</mat-icon>
+        </button>
+    </div>
+    <div class="col-12">
+        <h6 class="text-muted custom-text ml-2">{{negozio.recapito.indirizzo}}</h6>
+    </div>
+    <div *ngIf="showInfo" class="col-12 mt-2">
+        <h6 class="ml-2">Orari:</h6>
+        <div *ngFor="let giornoLavorativo of negozio.giorniLavorativi" class="mt-2">
+            <h6 class="custom-text text-muted ml-2">{{giornoLavorativo.descrizione}} : 
+                {{giornoLavorativo.chiuso ? 'Chiuso' : 
+                giornoLavorativo.orarioApertura +  
+                ' - ' +  giornoLavorativo.orarioPausaInizio + 
+                ' / ' + giornoLavorativo.orarioPausaFine +  
+                ' - ' + giornoLavorativo.orarioChiusura}}
+            </h6>
+        </div>
+
+    </div>
+
+
+</div>

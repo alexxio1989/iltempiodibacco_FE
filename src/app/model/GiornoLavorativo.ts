@@ -1,11 +1,13 @@
 
 
 export class GiornoLavorativo{
+    id: number;
+    idNegozio: number;
     day: number;
     descrizione: string;
-    orario_apertura: String
-    orario_pausa_inizio: String
-    orario_pausa_fine: String
-    orario_chiusura: String
+    orarioApertura: String
+    orarioPausaInizio: String
+    orarioPausaFine: String
+    orarioChiusura: String
     chiuso: boolean = true;
 }

@@ -1,0 +1,34 @@
+.icon {
+    font-size: 20px;
+}
+
+.mini-button{
+    max-width: 30px;
+    min-width: 30px !important;
+    margin-top: -7px !important;
+    color: #6c757d;
+}
+
+.mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    min-width: 40px;
+    line-height: 36px;
+    padding: 0 16px;
+    border-radius: 4px;
+    overflow: visible;
+}

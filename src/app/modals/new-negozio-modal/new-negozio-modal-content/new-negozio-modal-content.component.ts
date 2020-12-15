@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CittaEnums } from 'src/app/enums/CittaEnums';
+import { GiornoLavorativo } from 'src/app/model/GiornoLavorativo';
 import { Negozio } from 'src/app/model/Negozio';
 import { DelegateServiceService } from 'src/app/service/delegate-service.service';
 import { NegozioServiceService } from 'src/app/service/negozio-service.service';
@@ -24,6 +25,11 @@ export class NewNegozioModalContentComponent implements OnInit {
       this.negozio = this.ns.negozioSelected;
 
     }
+  }
+
+  changeGiorniLAvorativi(giorniLavorativi: GiornoLavorativo[]){
+    console.log("Giorni variati")
+    this.negozio.giorniLavorativi = giorniLavorativi;
   }
 
   salva(){

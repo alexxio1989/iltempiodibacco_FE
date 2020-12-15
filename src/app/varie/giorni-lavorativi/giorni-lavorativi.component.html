@@ -4,7 +4,7 @@
             <mat-tab label="{{giorno.descrizione}}" class="p-3">
                 <div class="col-12 mt-4 mb-3">
                     
-                    <mat-slide-toggle [(ngModel)]="giorno.chiuso">
+                    <mat-slide-toggle [(ngModel)]="giorno.chiuso" (click) ="onChange()">
                         {{giorno.chiuso ? 'Negozio Chiuso' : 'Negozio Aperto'}}
                     </mat-slide-toggle>
                 </div>
@@ -12,25 +12,25 @@
                     <div class="col-12">
                         <div class="ngx-timepicker-field-example">
                             <mat-label>Orario Apertura</mat-label>
-                            <ngx-timepicker-field [(ngModel)]="giorno.orario_apertura" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
+                            <ngx-timepicker-field [(ngModel)]="giorno.orarioApertura" (click) ="onChange()" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="ngx-timepicker-field-example">
                             <mat-label>Orario Inizio Pausa</mat-label>
-                            <ngx-timepicker-field [(ngModel)]="giorno.orario_pausa_inizio" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
+                            <ngx-timepicker-field [(ngModel)]="giorno.orarioPausaInizio" (click) ="onChange()" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="ngx-timepicker-field-example">
                             <mat-label>Orario Fine Pausa</mat-label>
-                            <ngx-timepicker-field [(ngModel)]="giorno.orario_pausa_fine" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
+                            <ngx-timepicker-field [(ngModel)]="giorno.orarioPausaFine" (click) ="onChange()" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="ngx-timepicker-field-example">
                             <mat-label>Orario Chiusura</mat-label>
-                            <ngx-timepicker-field [(ngModel)]="giorno.orario_chiusura" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
+                            <ngx-timepicker-field [(ngModel)]="giorno.orarioChiusura" (click) ="onChange()" [defaultTime]="'11:11 am'"></ngx-timepicker-field>
                         </div>
                     </div>
 
