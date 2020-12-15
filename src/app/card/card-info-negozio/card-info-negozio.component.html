@@ -6,11 +6,15 @@
             <mat-icon style="margin-top: -15px; height: 12px;width: 12px; margin-left: -10px;">create</mat-icon>
         </button>
         <button mat-button (click)="showInfo = !showInfo" class="p-0 mini-button" >
-            <mat-icon style="margin-top: -15px; height: 12px;width: 12px; margin-left: -10px;">help_outline</mat-icon>
+            <mat-icon style="margin-top: -15px; height: 12px;width: 12px; margin-left: -10px;">
+                query_builder</mat-icon>
         </button>
     </div>
     <div class="col-12">
-        <h6 class="text-muted custom-text ml-2">{{negozio.recapito.indirizzo}}</h6>
+        <h6 class="text-muted custom-text ml-2">Indirizzo : {{negozio.recapito.indirizzo}} , 00{{negozio.recapito.zip}} , {{negozio.recapito.citta}}</h6>
+    </div>
+    <div class="col-12">
+        <h6 class="text-muted custom-text ml-2">Recapito telefonico : {{negozio.recapito.telefono}}</h6>
     </div>
     <div *ngIf="showInfo" class="col-12 mt-2">
         <h6 class="ml-2">Orari:</h6>
