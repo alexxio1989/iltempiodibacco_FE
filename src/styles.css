@@ -2,6 +2,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.card-custom{
+  background-color: #f5f5f5;
+}
+
 .center {
   position: absolute;
   top: 50%;
@@ -17,21 +21,54 @@ button:focus { outline:0 !important; }
   bottom: 25px !important;
 }
 
-.custom-text {
-  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important; 
-  font-size: calc(10px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+h1{
+  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-size: calc(25px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 1.4;
+  font-weight: 700 !important;
 }
 
-.custom-h6 {
-  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important; 
-  font-size: calc(13px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+h2{
+  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-size: calc(20px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+  line-height: 1.4 !important;
+  font-weight: 700 !important;
+}
+
+h3{
+  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-size: calc(18px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 1.4;
+  font-weight: 700 !important
+}
+
+h4{
+  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-size: calc(14px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+  line-height: 1.4;
+  font-weight: 600 !important;
+  opacity: 0.6 !important;
+}
+
+h5{
+  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-size: calc(11px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+  line-height: 1.4;
+  font-weight: 600 !important;
+  opacity: 0.6 !important;
+}
+
+h6{
+  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-size: calc(8px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+  line-height: 1.4;
+  opacity: 0.5;
+  font-weight: 400 !important;
 }
 
 .timepicker-overlay {
   z-index: 1100 !important;
-}
+} 
 
 .timepicker-backdrop-overlay {
   z-index: 1100 !important;

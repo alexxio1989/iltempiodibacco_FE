@@ -1,5 +1,5 @@
-<mat-form-field >
-    <mat-label>{{negozioSelected !== undefined ? negozioSelected.nome : 'Negozi disponibili'}}</mat-label>
+<mat-form-field class="ml-3" >
+    <mat-label><h5>{{negozioSelected !== undefined ? negozioSelected.nome : 'Negozi disponibili'}}</h5></mat-label>
     <mat-select [formControl]="toppings">
 
         <mat-option *ngFor="let negozio of negozi" [value]="negozio" (click)="negozioSelected = negozio">

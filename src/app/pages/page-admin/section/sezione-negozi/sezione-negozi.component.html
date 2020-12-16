@@ -1,11 +1,11 @@
 <div class="row mw-100 p-2">
     <div class="col-12 ">
         <mat-form-field class="ml-3">
-            <mat-label>I Tuoi Negozi</mat-label>
+            <mat-label><h5>I Tuoi Negozi</h5></mat-label>
             <mat-select [formControl]="toppings">
 
                 <mat-option *ngFor="let negozio of negozi" [value]="negozio" (click)="negozioSelected = negozio">
-                    {{negozio.nome}}
+                    {{negozio.nome}} 
                 </mat-option>
 
             </mat-select>
@@ -24,8 +24,7 @@
     <div class="col-12 ">
         <div *ngIf="negozioSelected !== undefined">
 
-            <h6 class="text-muted custom-text">
-                Magazzino</h6>
+            <h4 class="ml-2">Magazzino</h4>
 
             <hr />
 
@@ -112,8 +111,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <h6 class="text-muted custom-text">
-                                {{tipo.descrizione}}</h6>
+                            <h6>{{tipo.descrizione}}</h6>
                         </div>
                     </div>
                     <mat-tab-group>
@@ -129,16 +127,12 @@
                                                     <div class="row">
                                                         <div class="col-lg-6 col-xs-12">
                                                             <div class="col-12">
-                                                                <h6 class="text-muted"
-                                                                    style="font-weight: 500; font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important;">
-                                                                    {{prodotto.nomeProdotto}}</h6>
+                                                                <h5>{{prodotto.nomeProdotto}}</h5>
 
                                                             </div>
 
                                                             <div class="col-12 pl-3">
-                                                                <h6 class="custom-text">Prezzo : <b
-                                                                        style="opacity: 0.7;">{{prodotto.prezzo }} € /
-                                                                        {{prodotto.unita }}</b></h6>
+                                                                <h5>Prezzo : <b style="opacity: 0.7;">{{prodotto.prezzo }} € / {{prodotto.unita }}</b></h5>
 
                                                             </div>
 
@@ -147,23 +141,21 @@
                                                         <div class="col-lg-6 col-xs-12">
                                                          
                                                                 <div class="col-12">
-                                                                    <h6 class="custom-text">Quantità rimanente :
-                                                                        {{prodotto.qntRimanente}} / {{prodotto.unita }}
-                                                                    </h6>
+                                                                    <h5>Quantità rimanente : {{prodotto.qntRimanente}} / {{prodotto.unita }}</h5>
                                                                 </div>
                                                            
                                                             <div *ngIf="!prodotto.addQntProdotto" class="col-12 p-0">
                                                                 <button mat-button
                                                                     (click)="prodotto.addQntProdotto = true; prodotto.qntProdottoEdited = prodotto.qntRimanente"
-                                                                    class="custom-text" style="color: #6c757d;">
-                                                                    Modifica Qnt. Prodotto
+                                                                     style="color: #6c757d;">
+                                                                    <h6>Modifica Qnt. Prodotto</h6>
                                                                 </button>
                                                             </div>
                                                             <div *ngIf="prodotto.addQntProdotto" class="col-12">
                                                                 <button mat-button
                                                                     (click)="prodotto.addQntProdotto = false;"
-                                                                    class="custom-text" style="color: #6c757d;">
-                                                                    Annulla
+                                                                    style="color: #6c757d;">
+                                                                    <h6>Annulla</h6>
                                                                 </button>
 
                                                                 <mat-form-field class="example-full-width">
@@ -176,15 +168,15 @@
                                                                 <button *ngIf="prodotto.qntProdottoEdited !== prodotto.qntRimanente"
                                                                     mat-button (click)="modificaQnt(prodotto)"
                                                                     style="color: #6c757d;">
-                                                                    Salva
+                                                                    <h6>Salva</h6>
                                                                 </button>
 
                                                             </div>
                                                             <div class="col-12 p-0">
                                                                 <button mat-button
                                                                     (click)="deleteProdottoFromMagazino(prodotto)"
-                                                                    class="custom-text" style="color: #6c757d;">
-                                                                    Elimina Prodotto
+                                                                   style="color: #6c757d;">
+                                                                   <h6>Elimina Prodotto</h6>
                                                                 </button>
                                                             </div>
                                                         </div>

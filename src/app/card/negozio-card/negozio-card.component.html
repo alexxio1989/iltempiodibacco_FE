@@ -4,11 +4,11 @@
 
 
 
-<div *ngFor="let tipo of negozio.magazino.tipiAssociati" class="p-2 pt-4">
+<div *ngFor="let tipo of negozio.magazino.tipiAssociati"  class="p-2 pt-4 card-custom">
         
     <div class="row">
         <div class="col-12">
-            <h5 class="text-muted" style="font-weight: 700; font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important;">{{tipo.descrizione}}</h5>   
+            <h4 class="ml-4">{{tipo.descrizione}}</h4>   
         </div>
     </div>
     <mat-tab-group>
