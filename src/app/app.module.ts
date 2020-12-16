@@ -64,6 +64,8 @@ import { GiorniLavorativiComponent } from './varie/giorni-lavorativi/giorni-lavo
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CardInfoNegozioComponent } from './card/card-info-negozio/card-info-negozio.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -137,7 +139,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatTableModule,
     NgxMaterialTimepickerModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     DelegateServiceService,
@@ -149,7 +153,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
-    }
+    },
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

@@ -25,6 +25,8 @@ export class PageHomeComponent implements OnInit {
       if(next.list.length === 1){
         this.negozioSelected = next.list[0];
       }
+      localStorage.removeItem('NEGOZI');
+      localStorage.setItem('NEGOZI', JSON.stringify(next.list))
       this.ds.updateResultService(next.status);
       this.ds.updateSpinner(false);
     });
