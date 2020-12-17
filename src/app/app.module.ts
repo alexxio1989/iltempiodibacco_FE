@@ -66,6 +66,7 @@ import { CardInfoNegozioComponent } from './card/card-info-negozio/card-info-neg
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NgxStripeModule } from 'ngx-stripe';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -141,7 +142,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatSlideToggleModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgxStripeModule.forRoot("pk_test_s8tEdMSkAYFFxo6AkOmhFyQc0050euNRAW")
   ],
   providers: [
     DelegateServiceService,

@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { utils } from 'protractor';
 import { ContentModalLoginComponent } from 'src/app/modals/modal-login/content-modal-login/content-modal-login.component';
@@ -10,6 +10,10 @@ import { Negozio } from 'src/app/model/Negozio';
 import { User } from 'src/app/model/User';
 import { CarrelloServiceService } from 'src/app/service/carrello-service.service';
 import { DelegateServiceService } from 'src/app/service/delegate-service.service';
+import { StripeService, StripeCardComponent } from 'ngx-stripe';
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StripeCardElementOptions, StripeElement, StripeElementsOptions } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-page-cart',
@@ -17,6 +21,8 @@ import { DelegateServiceService } from 'src/app/service/delegate-service.service
   styleUrls: ['./page-cart.component.css']
 })
 export class PageCartComponent implements OnInit {
+
+  @ViewChild(StripeCardComponent) card: StripeCardComponent;
 
   carrello: Carrello = new Carrello();
 
@@ -30,13 +36,17 @@ export class PageCartComponent implements OnInit {
   negozioSelected: Negozio;
   acquisto: Acquisto = new Acquisto();
   errorCalendar: string;
+  error: any;
+  complete = false;
+  element: StripeElement;
+  isUtenteLogged: boolean;
 
   modPagamentoSelezionato: ModPagamento = new ModPagamento;
   
   listModPagamento = [{"codice":"CC","descrizione":"Carta di Credito"},{"codice":"RIN","descrizione":"Ritiro in Negozio"},{"codice":"PAC","descrizione":"Pagamento alla consegna"}];
   utente: User = new User();
 
-  constructor(private cs: CarrelloServiceService , private ds: DelegateServiceService,public dialog: MatDialog) {
+  constructor(private stripeService: StripeService,private cs: CarrelloServiceService , private ds: DelegateServiceService,public dialog: MatDialog , private fb: FormBuilder) {
 
 
     this.cs.getOBSCarrello().subscribe(next=>{
@@ -47,7 +57,53 @@ export class PageCartComponent implements OnInit {
       })
     })
 
+    this.ds.getOBSUser().subscribe(next => {
+      this.utente = next;
+    });
+
   }
+
+  get disableAcquista(): boolean{
+    if('CC' === this.modPagamentoSelezionato.codice){
+      return this.acquisto.stripeToken === undefined || this.acquisto.stripeToken === null;
+    } else if('RIN' === this.modPagamentoSelezionato.codice) {
+      return this.negozioSelected === undefined || (this.acquisto.dataRitiro=== undefined || this.acquisto.dataRitiro === null)
+    } else if('PAC' === this.modPagamentoSelezionato.codice) {
+      return false;
+    }
+  }
+
+  cardUpdated(result) {
+    this.element = result.element;
+    this.complete = result.complete;
+    this.error = undefined;
+  }
+
+  cardOptions: StripeCardElementOptions = {
+    style: {
+      base: {
+        color: '#303238',
+        fontSize: '16px',
+        fontFamily: '"Open Sans", sans-serif',
+        fontSmoothing: 'antialiased',
+        '::placeholder': {
+          color: '#CFD7DF',
+        },
+      },
+      invalid: {
+        color: '#e5424d',
+        ':focus': {
+          color: '#303238',
+        },
+      },
+    }
+  };
+
+  elementsOptions: StripeElementsOptions = {
+    locale: 'it'
+  };
+
+  stripeTest: FormGroup;
 
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
@@ -61,21 +117,25 @@ export class PageCartComponent implements OnInit {
     let negozi = localStorage.getItem("NEGOZI");
     this.negozi = JSON.parse(negozi);
     this.carrello = this.cs.getCarrello();
-      this.carrello.prodotti.forEach(prodotto => {
-        let x = +(this.tot + (prodotto.qnt * prodotto.prezzo)).toFixed(2);
-        this.tot = x
-      })
-
-  }
-
-  get isUtenteLogged(): boolean{
+    this.carrello.prodotti.forEach(prodotto => {
+      let x = +(this.tot + (prodotto.qnt * prodotto.prezzo)).toFixed(2);
+      this.tot = x
+    })
+  
+    this.stripeTest = this.fb.group({
+      name: ['', [Validators.required]]
+    });
     const localUser = localStorage.getItem('USER');
     let LoggedUtente = JSON.parse(localUser);
     if(LoggedUtente !== undefined && LoggedUtente !== null){
       this.utente = LoggedUtente;
+      this.isUtenteLogged = this.utente !== undefined && this.utente !== null;
     }
-    return localUser !== undefined && localUser !== null;
+      
+
   }
+
+  
 
   openDialog() {
     const dialogRef = this.dialog.open(ContentModalLoginComponent);
@@ -93,6 +153,20 @@ export class PageCartComponent implements OnInit {
     }
   }
 
+  createToken(): void {
+    const name = this.stripeTest.get('name').value;
+    this.stripeService
+      .createToken(this.card.element, { name })
+      .subscribe((result) => {
+        if (result.token) {
+          // Use the token
+          this.acquisto.stripeToken = result.token.id;
+        
+        } else if (result.error) {
+          console.log(result.error.message);
+        }
+      });
+  }
   
 
 }

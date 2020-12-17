@@ -10,5 +10,6 @@ export class Acquisto{
     dataAcquisto: Date;
     totale: number;
     dataRitiro: Date;
+    stripeToken: string;
 
 }
