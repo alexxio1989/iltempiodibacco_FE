@@ -30,7 +30,7 @@
 <div *ngIf="modPagamentoSelezionato.codice === 'CC'" class="row mt-3">
  
     <div class="col-12 d-flex justify-content-end">
-        <form class="w-25" novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+        <form style="min-width: 300px;" novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
             <ngx-stripe-card
               [options]="cardOptions"
               [elementsOptions]="elementsOptions"
