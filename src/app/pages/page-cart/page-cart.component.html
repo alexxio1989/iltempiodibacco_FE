@@ -21,7 +21,7 @@
             <mat-select>
 
                 <mat-option *ngFor="let mod of listModPagamento" [value]="modPagamentoSelezionato"
-                    (click)="modPagamentoSelezionato = mod ; negozioSelected = undefined; acquisto.negozio = undefined">{{mod.descrizione}}</mat-option>
+                    (click)="modPagamentoSelezionato = mod ; negozioSelected = undefined; acquisto.negozioRitiro = undefined">{{mod.descrizione}}</mat-option>
             </mat-select>
         </mat-form-field>
     </div>
@@ -57,7 +57,7 @@
             </mat-label>
             <mat-select>
 
-                <mat-option *ngFor="let negozio of negozi" [value]="negozio" (click)="negozioSelected = negozio; acquisto.negozio = negozio">
+                <mat-option *ngFor="let negozio of negozi" [value]="negozio" (click)="negozioSelected = negozio; acquisto.negozioRitiro = negozio">
                     <div class="row" style="max-height: 35px;">
                         <div class="col-12">
                             {{negozio.nome}}

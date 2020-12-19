@@ -14,6 +14,7 @@ import { StripeService, StripeCardComponent } from 'ngx-stripe';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StripeCardElementOptions, StripeElement, StripeElementsOptions } from '@stripe/stripe-js';
+import { ModPagamentoService } from 'src/app/service/mod-pagamento.service';
 
 @Component({
   selector: 'app-page-cart',
@@ -43,11 +44,15 @@ export class PageCartComponent implements OnInit {
 
   modPagamentoSelezionato: ModPagamento = new ModPagamento;
   
-  listModPagamento = [{"codice":"CC","descrizione":"Carta di Credito"},{"codice":"RIN","descrizione":"Ritiro in Negozio"},{"codice":"PAC","descrizione":"Pagamento alla consegna"}];
+  listModPagamento: [] ;
   utente: User = new User();
 
-  constructor(private stripeService: StripeService,private cs: CarrelloServiceService , private ds: DelegateServiceService,public dialog: MatDialog , private fb: FormBuilder) {
+  constructor(private mps: ModPagamentoService , private stripeService: StripeService,private cs: CarrelloServiceService , private ds: DelegateServiceService,public dialog: MatDialog , private fb: FormBuilder) {
 
+    this.mps.getOBSGetAll().subscribe(next => {
+      this.ds.updateSpinner(false);
+      this.listModPagamento = next.list;
+    })
 
     this.cs.getOBSCarrello().subscribe(next=>{
       this.carrello = next;
