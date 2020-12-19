@@ -13,5 +13,7 @@ export class Acquisto{
     modalitaPagamento: ModPagamento;
     negozioRitiro: Negozio;
     stripeToken: string;
+    idUtente: number;
+    status: string;
 
 }

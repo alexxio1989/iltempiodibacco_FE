@@ -11,7 +11,7 @@ export class ModalLoginComponent implements OnInit {
 
 
   
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {} 
   
   ngOnInit(): void {
   }

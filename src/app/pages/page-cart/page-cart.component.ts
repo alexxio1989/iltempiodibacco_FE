@@ -15,6 +15,8 @@ import { StripeService, StripeCardComponent } from 'ngx-stripe';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StripeCardElementOptions, StripeElement, StripeElementsOptions } from '@stripe/stripe-js';
 import { ModPagamentoService } from 'src/app/service/mod-pagamento.service';
+import { ModalConfermaAcquistoComponent } from 'src/app/modals/modal-conferma-acquisto/modal-conferma-acquisto.component';
+import { AcquistoService } from 'src/app/service/acquisto.service';
 
 @Component({
   selector: 'app-page-cart',
@@ -47,7 +49,13 @@ export class PageCartComponent implements OnInit {
   listModPagamento: [] ;
   utente: User = new User();
 
-  constructor(private mps: ModPagamentoService , private stripeService: StripeService,private cs: CarrelloServiceService , private ds: DelegateServiceService,public dialog: MatDialog , private fb: FormBuilder) {
+  constructor(private mps: ModPagamentoService , 
+    private stripeService: StripeService,
+    private cs: CarrelloServiceService ,
+     private ds: DelegateServiceService,
+     public dialog: MatDialog ,
+      private fb: FormBuilder,
+      private as: AcquistoService) {
 
     this.mps.getOBSGetAll().subscribe(next => {
       this.ds.updateSpinner(false);
@@ -140,7 +148,13 @@ export class PageCartComponent implements OnInit {
 
   }
 
-  
+  openDialogAcquisto() {
+    const dialogRef = this.dialog.open(ModalConfermaAcquistoComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   openDialog() {
     const dialogRef = this.dialog.open(ContentModalLoginComponent);
@@ -152,7 +166,12 @@ export class PageCartComponent implements OnInit {
 
   acquista(){
     if(this.isUtenteLogged){
-
+      this.acquisto.idUtente = this.utente.id;
+      this.acquisto.prodotti = this.carrello.prodotti;
+      this.acquisto.totale = this.tot;
+      this.acquisto.modalitaPagamento = this.modPagamentoSelezionato;
+      this.as.acquisto = this.acquisto;
+      this.openDialogAcquisto()
     } else {
       this.openDialog();
     }
@@ -166,7 +185,7 @@ export class PageCartComponent implements OnInit {
         if (result.token) {
           // Use the token
           this.acquisto.stripeToken = result.token.id;
-        
+          this.acquista();
         } else if (result.error) {
           console.log(result.error.message);
         }

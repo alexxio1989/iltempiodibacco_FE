@@ -14,6 +14,13 @@ export class CarrelloServiceService {
 
   constructor() { }
 
+  rimuoviCarrelloAll(){
+    localStorage.removeItem("CART");
+    this.updateCardProdotto();
+    let carrelloPharse = this.getCarrello();
+    this.updateCarrello(carrelloPharse);
+  }
+
   rimuoviCarrello(prodotto: Prodotto){
     
     

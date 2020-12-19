@@ -67,6 +67,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxStripeModule } from 'ngx-stripe';
+import { ModalConfermaAcquistoComponent } from './modals/modal-conferma-acquisto/modal-conferma-acquisto.component';
+import { AcquistoService } from './service/acquisto.service';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -104,7 +106,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     IncrementerComponent,
     ProdottoCardCarrelloComponent,
     GiorniLavorativiComponent,
-    CardInfoNegozioComponent
+    CardInfoNegozioComponent,
+    ModalConfermaAcquistoComponent
   ],
   imports: [
     BrowserModule,
@@ -152,6 +155,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     NegozioServiceService,
     MagazinoServiceService,
     CarrelloServiceService,
+    AcquistoService,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
