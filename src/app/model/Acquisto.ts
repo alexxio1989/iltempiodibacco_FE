@@ -1,6 +1,8 @@
 import { ModPagamento } from './ModPagamento';
 import { Negozio } from './Negozio';
 import { Prodotto } from './Prodotto';
+import { Status } from './Status';
+import { User } from './User';
 
 export class Acquisto{
 
@@ -13,7 +15,7 @@ export class Acquisto{
     modalitaPagamento: ModPagamento;
     negozioRitiro: Negozio;
     stripeToken: string;
-    idUtente: number;
-    status: string;
+    utente: User;
+    status: Status;
 
 }

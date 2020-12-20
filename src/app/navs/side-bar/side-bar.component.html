@@ -3,7 +3,7 @@
         <div class="w-100 p-2 d-flex justify-content-center">
             <button mat-button></button>
         </div>
-        <div *ngIf="isUtenteLogged && !isSuperUser" class="w-100 p-2 d-flex justify-content-center">
+        <div *ngIf="isUtenteLogged " class="w-100 p-2 d-flex justify-content-center">
             <button mat-button style="color: #6c757d;" (click)="goToUserPage()">
                 <mat-icon style="margin-top: -3px;">account_circle</mat-icon>
                 {{utente.nome}} {{utente.cognome}}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Acquisto } from 'src/app/model/Acquisto';
+import { Carrello } from 'src/app/model/Carrello';
 import { AcquistoService } from 'src/app/service/acquisto.service';
 import { CarrelloServiceService } from 'src/app/service/carrello-service.service';
 import { DelegateServiceService } from 'src/app/service/delegate-service.service';
@@ -23,7 +24,8 @@ export class ModalConfermaAcquistoComponent implements OnInit {
     this.as.getOBSSave(this.acquisto).subscribe(next=>{
       this.ds.updateSpinner(false);
       this.cs.rimuoviCarrelloAll();
-      this.route.navigate(['/']);
+      this.cs.updateCarrello(new Carrello());
+      this.route.navigate(['/user']);
     })
   }
 

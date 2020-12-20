@@ -166,7 +166,7 @@ export class PageCartComponent implements OnInit {
 
   acquista(){
     if(this.isUtenteLogged){
-      this.acquisto.idUtente = this.utente.id;
+      this.acquisto.utente = this.utente;
       this.acquisto.prodotti = this.carrello.prodotti;
       this.acquisto.totale = this.tot;
       this.acquisto.modalitaPagamento = this.modPagamentoSelezionato;

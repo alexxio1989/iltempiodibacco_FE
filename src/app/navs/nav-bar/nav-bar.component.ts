@@ -17,7 +17,12 @@ export class NavBarComponent implements OnInit {
 
   constructor(private ds: DelegateServiceService,private route: Router , private cs: CarrelloServiceService) { 
     this.cs.getOBSCarrello().subscribe(next=>{
-      this.carrello = next;
+      if(next === null || next === undefined){
+        this.carrello = new Carrello();
+      } else {
+        this.carrello = next;
+
+      }
       this.badgeCount = this.carrello.prodotti.length;
     })
   }
