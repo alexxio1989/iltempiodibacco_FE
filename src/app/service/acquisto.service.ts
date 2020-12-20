@@ -20,4 +20,14 @@ export class AcquistoService {
     this.ds.updateSpinner(true);
     return this.http.post(ServiceCore.baseURl + EndPoint.API_ACQUISTO + "save", obj);
   }
+
+  getOBSGetAllUtente(idUtente: number): Observable<any>{
+    this.ds.updateSpinner(true);
+    return this.http.post(ServiceCore.baseURl + EndPoint.API_ACQUISTO + "getallutente", idUtente);
+  }
+
+  getOBSUpdate(obj: Acquisto): Observable<any>{
+    this.ds.updateSpinner(true);
+    return this.http.post(ServiceCore.baseURl + EndPoint.API_ACQUISTO + "update", obj);
+  }
 }
