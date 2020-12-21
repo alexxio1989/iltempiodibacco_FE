@@ -19,7 +19,7 @@
         <div class="row">
             <h5 class="mt-1">Qnt selezionata :</h5>
              
-            <app-incrementer style="min-width: 180px; margin-top: -3px; padding: 0;" [unita] = "prodotto.unita" (valueOutput) ="countQuantityToCart($event)"  (click)="$event.stopPropagation()" [value]="prodotto.qnt || 0" [step]="_step" [min]="_min" [max]="_max" [wrap]="_wrap"></app-incrementer>
+            <app-incrementer style="min-width: 180px; margin-top: -3px; padding: 0;" [unita] = "prodotto.unita" (valueOutput) ="countQuantityToCart($event)"  (click)="$event.stopPropagation()" [value]="prodotto.qnt || 0" [step]="prodotto.step" [min]="_min" [max]="_max" [wrap]="_wrap"></app-incrementer>
 
         </div>
         <div class="row">

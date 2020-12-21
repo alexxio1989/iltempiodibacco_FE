@@ -16,4 +16,5 @@ export class Prodotto{
     unita: string;
     qntProdottoEdited: number;
     addQntProdotto:boolean;
+    step: number;
 }

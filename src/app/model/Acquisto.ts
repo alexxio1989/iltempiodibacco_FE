@@ -17,5 +17,6 @@ export class Acquisto{
     stripeToken: string;
     utente: User;
     status: Status;
+    dataCosegnaPrevista: Date
 
 }

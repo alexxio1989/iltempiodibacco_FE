@@ -13,6 +13,8 @@ export class AcquistoCardUtenteComponent implements OnInit {
 
   @Input() acquisto: Acquisto;
 
+  displayedColumns: string[] = ['nomeprodotto', 'qnt', 'prezzo'];
+
   constructor(private as: AcquistoService,private ds: DelegateServiceService) { }
 
   ngOnInit(): void {

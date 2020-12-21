@@ -46,7 +46,7 @@
 
             <mat-label>Seleziona qnt. prodotto</mat-label>
             
-            <app-incrementer  (valueOutput) ="countQuantityToCart($event)" [unita] = "prodotto.unita" (click)="$event.stopPropagation()" [value]="_value || 0" [step]="_step" [min]="_min" [max]="prodotto.qntRimanente" [wrap]="_wrap"></app-incrementer>
+            <app-incrementer  (valueOutput) ="countQuantityToCart($event)" [unita] = "prodotto.unita" (click)="$event.stopPropagation()" [value]="_value || 0" [step]="prodotto.step" [min]="_min" [max]="prodotto.qntRimanente" [wrap]="_wrap"></app-incrementer>
             
             <div>
               <button *ngIf="(quantityToCart > 0 && !isProdottoInCart) || ((quantityToCart > qntInCart) || (quantityToCart < qntInCart))" mat-button (click)="$event.stopPropagation();  aggiungiCarrello()"  style="color: #6c757d;">
