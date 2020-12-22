@@ -31,6 +31,6 @@ export class NegozioCardComponent implements OnInit {
       this.highValue =  this.highValue - this.pageSize;
      }   
       this.pageIndex = event.pageIndex;
-}
+  }
 
 }

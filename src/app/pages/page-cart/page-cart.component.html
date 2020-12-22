@@ -1,100 +1,103 @@
-<div *ngFor="let prodotto of carrello.prodotti">
-    <hr />
-    <app-prodotto-card-carrello [prodotto]="prodotto"></app-prodotto-card-carrello>
-</div>
+<div class="pl-4 pr-4">
 
-<div class="row mt-3">
-    <hr />
-    <div class="col-12 d-flex justify-content-end">
-
-        <h5>Totale :</h5>
-        <h5> &nbsp;{{ tot}} €</h5>
+    <div *ngFor="let prodotto of carrello.prodotti">
+        <hr />
+        <app-prodotto-card-carrello [prodotto]="prodotto"></app-prodotto-card-carrello>
     </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12 d-flex justify-content-end">
-        <mat-form-field>
-            <mat-label>
-                <h5>Modalità di pagamento</h5>
-            </mat-label>
-            <mat-select>
-
-                <mat-option *ngFor="let mod of listModPagamento" [value]="modPagamentoSelezionato"
-                    (click)="modPagamentoSelezionato = mod ; negozioSelected = undefined; acquisto.negozioRitiro = undefined">{{mod.descrizione}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-</div>
-
-<div *ngIf="modPagamentoSelezionato.codice === 'CC'" class="row mt-3">
- 
-    <div class="col-12 d-flex justify-content-end">
-        <form style="min-width: 300px;" novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
-            <ngx-stripe-card
-              [options]="cardOptions"
-              [elementsOptions]="elementsOptions"
-              (change)="cardUpdated($event)" 
-            ></ngx-stripe-card>
-            <div class="col-12 d-flex justify-content-end mt-2">
-
-                <button mat-button type="submit" [disabled]="!complete">
-                  Acquista
-                </button>
-            </div>
-          </form>
-    </div>
-</div>
-
-
-<div *ngIf="modPagamentoSelezionato.codice === 'RIN'" class="row mt-3">
-    <div class="col-12 d-flex justify-content-end">
-
-
-        <mat-form-field class="ml-3">
-            <mat-label>
-                <h5>{{negozioSelected !== undefined ? negozioSelected.nome : 'Negozi disponibili'}}</h5>
-            </mat-label>
-            <mat-select>
-
-                <mat-option *ngFor="let negozio of negozi" [value]="negozio" (click)="negozioSelected = negozio; acquisto.negozioRitiro = negozio">
-                    <div class="row" style="max-height: 35px;">
-                        <div class="col-12">
-                            {{negozio.nome}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <h6>{{negozio.recapito.indirizzo}}</h6>
-                        </div>
-                    </div>
-                </mat-option>
-
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <div *ngIf="negozioSelected !== undefined" class="col-12 d-flex justify-content-end">
-
-        <mat-form-field appearance="fill">
-            <mat-label>Data di ritiro</mat-label>
-            <input matInput [matDatepickerFilter]="myFilter" [(ngModel)]="acquisto.dataRitiro" [matDatepicker]="dp3" disabled>
-            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-          </mat-form-field>
     
+    <div class="row mt-3">
+        <hr />
+        <div class="col-12 d-flex justify-content-end">
+    
+            <h5>Totale :</h5>
+            <h5> &nbsp;{{ tot}} €</h5>
+        </div>
     </div>
-</div>
-
-<div *ngIf="modPagamentoSelezionato.codice === 'PAC'" class="row mt-3">
-    <div class="col-12 d-flex justify-content-end">
-        <h5>Indirizzo di consegna : {{utente.recapito.indirizzo}} - {{utente.recapito.zip}} / {{utente.recapito.citta}}</h5>
+    
+    <div class="row mt-3">
+        <div class="col-12 d-flex justify-content-end">
+            <mat-form-field>
+                <mat-label>
+                    <h5>Modalità di pagamento</h5>
+                </mat-label>
+                <mat-select>
+    
+                    <mat-option *ngFor="let mod of listModPagamento" [value]="modPagamentoSelezionato"
+                        (click)="modPagamentoSelezionato = mod ; negozioSelected = undefined; acquisto.negozioRitiro = undefined">{{mod.descrizione}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
-</div>
-
-<div *ngIf="modPagamentoSelezionato.codice !== undefined && 'CC' !== modPagamentoSelezionato.codice" class="row mt-3">
-    <div class="col-12 d-flex justify-content-end pr-2">
-        <button mat-button matSuffix mat-icon-button (click)="acquista()" class="mr-5" [disabled] = "disableAcquista">
-                Acquista
-        </button>
+    
+    <div *ngIf="modPagamentoSelezionato.codice === 'CC'" class="row mt-3">
+     
+        <div class="col-12 d-flex justify-content-end">
+            <form style="min-width: 300px;" novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+                <ngx-stripe-card
+                  [options]="cardOptions"
+                  [elementsOptions]="elementsOptions"
+                  (change)="cardUpdated($event)" 
+                ></ngx-stripe-card>
+                <div class="col-12 d-flex justify-content-end mt-2">
+    
+                    <button mat-button type="submit" [disabled]="!complete">
+                      Acquista
+                    </button>
+                </div>
+              </form>
+        </div>
+    </div>
+    
+    
+    <div *ngIf="modPagamentoSelezionato.codice === 'RIN'" class="row mt-3">
+        <div class="col-12 d-flex justify-content-end">
+    
+    
+            <mat-form-field class="ml-3">
+                <mat-label>
+                    <h5>{{negozioSelected !== undefined ? negozioSelected.nome : 'Negozi disponibili'}}</h5>
+                </mat-label>
+                <mat-select>
+    
+                    <mat-option *ngFor="let negozio of negozi" [value]="negozio" (click)="negozioSelected = negozio; acquisto.negozioRitiro = negozio">
+                        <div class="row" style="max-height: 35px;">
+                            <div class="col-12">
+                                {{negozio.nome}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h6>{{negozio.recapito.indirizzo}}</h6>
+                            </div>
+                        </div>
+                    </mat-option>
+    
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngIf="negozioSelected !== undefined" class="col-12 d-flex justify-content-end">
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Data di ritiro</mat-label>
+                <input matInput [matDatepickerFilter]="myFilter" [(ngModel)]="acquisto.dataRitiro" [matDatepicker]="dp3" disabled>
+                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+              </mat-form-field>
+        
+        </div>
+    </div>
+    
+    <div *ngIf="modPagamentoSelezionato.codice === 'PAC'" class="row mt-3">
+        <div class="col-12 d-flex justify-content-end">
+            <h5>Indirizzo di consegna : {{utente.recapito.indirizzo}} - {{utente.recapito.zip}} / {{utente.recapito.citta}}</h5>
+        </div>
+    </div>
+    
+    <div *ngIf="modPagamentoSelezionato.codice !== undefined && 'CC' !== modPagamentoSelezionato.codice" class="row mt-3">
+        <div class="col-12 d-flex justify-content-end pr-2">
+            <button mat-button matSuffix mat-icon-button (click)="acquista()" class="mr-5" [disabled] = "disableAcquista">
+                    Acquista
+            </button>
+        </div>
     </div>
 </div>

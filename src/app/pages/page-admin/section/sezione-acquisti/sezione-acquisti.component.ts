@@ -12,14 +12,32 @@ import { DelegateServiceService } from 'src/app/service/delegate-service.service
 })
 export class SezioneAcquistiComponent implements OnInit {
 
-  @Input() acquisti: Acquisto[];
+  @Input() acquisti: Acquisto[] = [];
   @Input() listStatus: Status[];
+
+  pageIndex: number = 0;
+  pageSize: number = 1;
+  lowValue: number = 0;
+  highValue: number = 1;
 
   constructor(private as: AcquistoService,private ds: DelegateServiceService) { }
 
   ngOnInit(): void {
    
     
+  }
+
+  getPaginatorData(event){
+    console.log(event);
+    if(event.pageIndex === this.pageIndex + 1){
+       this.lowValue = this.lowValue + this.pageSize;
+       this.highValue =  this.highValue + this.pageSize;
+      }
+   else if(event.pageIndex === this.pageIndex - 1){
+      this.lowValue = this.lowValue - this.pageSize;
+      this.highValue =  this.highValue - this.pageSize;
+     }   
+      this.pageIndex = event.pageIndex;
   }
 
 }
