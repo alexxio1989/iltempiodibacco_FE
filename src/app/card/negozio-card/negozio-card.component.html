@@ -1,32 +1,30 @@
+<div *ngFor="let tipo of negozio.magazino.tipiAssociati | 
+slice: lowValue : highValue" class="p-2 pt-4 card-custom mb-3">
 
-
-
-
-<div *ngFor="let tipo of negozio.magazino.tipiAssociati"  class="p-2 pt-4 card-custom mb-3">
-        
     <div class="row">
         <div class="col-12">
-            <h4 class="ml-4">{{tipo.descrizione}}</h4>   
+            <h4 class="ml-4">{{tipo.descrizione}}</h4>
         </div>
     </div>
     <mat-tab-group>
         <div class="row ">
             <div *ngFor="let sottoTipo of tipo.sottoTipi">
-                <mat-tab label="{{sottoTipo.descrizione}}" > 
+                <mat-tab label="{{sottoTipo.descrizione}}">
                     <div class="row p-0 mw-100">
 
-                        <div *ngFor="let prodotto of sottoTipo.prodottiAssociati" class="col-md-4 col-sm-6 col-xs-6 p-3">
+                        <div *ngFor="let prodotto of sottoTipo.prodottiAssociati"
+                            class="col-md-4 col-sm-6 col-xs-6 p-3">
                             <app-prodotto-card [prodotto]="prodotto"></app-prodotto-card>
                         </div>
                     </div>
 
-                   
-                    
+
+
                 </mat-tab>
             </div>
-            
+
         </div>
-        </mat-tab-group>
+    </mat-tab-group>
 </div>
-
-
+<mat-paginator [length]="negozio.magazino.tipiAssociati.length" [pageSize]="pageSize" (page)="getPaginatorData($event)">
+</mat-paginator>

@@ -74,6 +74,7 @@ import { AcquistoCardUtenteComponent } from './card/acquisto-card-utente/acquist
 import { SezioneAcquistiComponent } from './pages/page-admin/section/sezione-acquisti/sezione-acquisti.component';
 
 
+
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
   direction: 'horizontal',
