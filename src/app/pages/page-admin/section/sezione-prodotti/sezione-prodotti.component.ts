@@ -45,16 +45,18 @@ export class SezioneProdottiComponent implements OnInit {
     prodotto.tipo = newTipo
     if (prodotto.edit) {
       this.ps.getOBSUpdate(prodotto).subscribe(next => {
+        this.ds.updateResultService(next.status);
         this.adviceProdotto.emit(true);
       }, error => {
-        this.ds.updateResultService("Errore salvataggio");
+        this.ds.updateResultService(error.status);
         this.ds.updateSpinner(false);
       })
     } else {
       this.ps.getOBSSave(prodotto).subscribe(next => {
+        this.ds.updateResultService(next.status);
         this.adviceProdotto.emit(true);
       }, error => {
-        this.ds.updateResultService("Errore salvataggio");
+        this.ds.updateResultService(error.status);
         this.ds.updateSpinner(false);
       })
 
@@ -92,7 +94,7 @@ export class SezioneProdottiComponent implements OnInit {
       this.ds.updateResultService(next.status);
       this.ds.updateSpinner(false);
     },error=>{
-      this.ds.updateResultService("Errore salvataggio");
+      this.ds.updateResultService(error.status);
         this.ds.updateSpinner(false);
     })
 
@@ -105,7 +107,7 @@ export class SezioneProdottiComponent implements OnInit {
       this.ds.updateResultService(next.status);
       this.ds.updateSpinner(false);
     },error=>{
-      this.ds.updateResultService("Errore salvataggio");
+      this.ds.updateResultService(error.status);
         this.ds.updateSpinner(false);
     })
   }

@@ -1,4 +1,6 @@
-
-<div *ngFor="let acquisto of acquisti">
+<mat-paginator [length]="acquisti !== undefined ? acquisti.length : 0" [pageSize]="pageSize" (page)="getPaginatorData($event)">
+</mat-paginator>
+<div *ngFor="let acquisto of acquisti  |
+slice: lowValue : highValue">
     <app-acquisto-card-utente [acquisto] = "acquisto"></app-acquisto-card-utente>
 </div>

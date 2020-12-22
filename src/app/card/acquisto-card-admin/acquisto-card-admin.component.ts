@@ -34,6 +34,10 @@ export class AcquistoCardAdminComponent implements OnInit {
     this.as.getOBSUpdate(this.acquisto).subscribe(next => {
       this.as.updateAcquisti(next.list);
       this.ds.updateSpinner(false);
+      this.ds.updateResultService(next.status)
+    },error=>{
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.status)
     })
   }
 

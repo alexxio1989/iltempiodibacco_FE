@@ -54,6 +54,9 @@ export class PageAdminComponent implements OnInit {
       this.negozi = next.list;
       this.ds.updateNegozi(this.negozi);
       this.getTipi();
+    },error=>{
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.status)
     });
   }
 
@@ -61,7 +64,9 @@ export class PageAdminComponent implements OnInit {
     this.ts.getOBSGetAll().subscribe(next => {
       this.getAcquisti();
       this.listTipi = next.list;
-      this.ds.updateResultService(next.status);
+    },error=>{
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.status)
     });
   }
 
@@ -70,6 +75,10 @@ export class PageAdminComponent implements OnInit {
       this.acquisti = next.list;
       this.listStatus = next.listStatus;
       this.ds.updateSpinner(false);
+      this.ds.updateResultService(next.status)
+    },error=>{
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.status)
     });
   }
 

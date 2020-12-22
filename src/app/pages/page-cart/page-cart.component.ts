@@ -60,6 +60,10 @@ export class PageCartComponent implements OnInit {
     this.mps.getOBSGetAll().subscribe(next => {
       this.ds.updateSpinner(false);
       this.listModPagamento = next.list;
+      this.ds.updateResultService(next.status)
+    },error=>{
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.status)
     })
 
     this.cs.getOBSCarrello().subscribe(next=>{

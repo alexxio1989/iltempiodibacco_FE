@@ -23,9 +23,13 @@ export class ModalConfermaAcquistoComponent implements OnInit {
   acquista(){
     this.as.getOBSSave(this.acquisto).subscribe(next=>{
       this.ds.updateSpinner(false);
+      this.ds.updateResultService(next.status)
       this.cs.rimuoviCarrelloAll();
       this.cs.updateCarrello(new Carrello());
       this.route.navigate(['/user']);
+    },error => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.status)
     })
   }
 

@@ -90,7 +90,12 @@ export class SezioneNegoziComponent implements OnInit {
     newMagazino.prodottoSelected = prodotto;
     this.ms.getOBSSave(newMagazino).subscribe(next => {
       this.negozioSelected.magazino = next;
+      this.ds.updateResultService("PRODOTTO AGGIUNGO CON SUCCESSO");
+      this.isAddProdotto = false;
       this.adviceNegozio.emit(true);
+    },error=>{
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService("ERRORE DURANTE L'AGGIUNTA DEL PRODOTTO")
     });
   }
 
@@ -100,7 +105,11 @@ export class SezioneNegoziComponent implements OnInit {
     newMagazino.prodottoSelected = prodotto;
     this.ms.getOBSDelete(newMagazino).subscribe(next => {
       this.negozioSelected.magazino = next;
+      this.ds.updateResultService("PRODOTTO ELIMINATO DAL MAGAZZINO CORRETTAMENTE")
       this.adviceNegozio.emit(true);
+    },error=>{
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService("ERRORE DURANTE L'ELIMINAZIONE DEL PRODOTTO DAL MAGAZZINO")
     });
   }
 
@@ -111,7 +120,13 @@ export class SezioneNegoziComponent implements OnInit {
     newMagazino.prodottoSelected = prodotto;
     this.ms.getOBSUpdate(newMagazino).subscribe(next => {
       this.negozioSelected.magazino = next;
+      this.ds.updateResultService("QUANTITA' PRODOTTO AGGIORNATA CORRETTAMENTE")
+      this.ds.updateResultService(next.status)
       this.adviceNegozio.emit(true);
+    },error=>{
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService("ERRORE DURANTE L'AGGIORNAMENTO DEL PRODOTTO")
+      this.ds.updateResultService(error.status)
     });
   }
 
