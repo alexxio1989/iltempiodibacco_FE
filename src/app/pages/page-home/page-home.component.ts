@@ -22,9 +22,7 @@ export class PageHomeComponent implements OnInit {
   constructor(private ns: NegozioServiceService , private ds: DelegateServiceService) {
     this.ns.getOBSGetAll().subscribe(next => {
       this.negozi = next.list;
-      if(next.list.length === 1){
-        this.negozioSelected = next.list[0];
-      }
+      this.ds.updateNegozi(this.negozi);
       localStorage.removeItem('NEGOZI');
       localStorage.setItem('NEGOZI', JSON.stringify(next.list))
       this.ds.updateResultService(next.status);
@@ -34,5 +32,9 @@ export class PageHomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  changeNegozio(negozio: Negozio){
+    this.negozioSelected = negozio;
+  } 
 
 }

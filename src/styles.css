@@ -77,3 +77,8 @@ h6{
 .mat-tab-label {
   min-width: 120px !important;
 }
+
+.scrollable-content{
+  overflow: auto;
+  height: 500px;
+}

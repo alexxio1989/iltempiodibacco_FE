@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NewNegozioModalContentComponent } from 'src/app/modals/new-negozio-modal/new-negozio-modal-content/new-negozio-modal-content.component';
 import { Negozio } from 'src/app/model/Negozio';
@@ -12,19 +12,31 @@ import { NegozioServiceService } from 'src/app/service/negozio-service.service';
 })
 export class CardInfoNegozioComponent implements OnInit {
 
-  @Input() negozio: Negozio;
+  negozioSel: Negozio;
   @Input() edit: boolean;
+  negozi: Negozio[];
+  @Output() negozioSelected = new EventEmitter<Negozio>();
   showInfo: boolean;
 
   constructor(public dialog: MatDialog , 
     private ns: NegozioServiceService , 
-    private ds: DelegateServiceService ) { }
+    private ds: DelegateServiceService ) { 
+
+      this.ds.getOBSNegozi().subscribe(next => {
+        this.negozi = next;
+        if(this.negozi.length === 1){
+          this.negozioSel = this.negozi[0];
+          this.negozioSelected.emit(this.negozi[0]);
+        }
+      })
+    }
 
   ngOnInit(): void {
+
   }
 
   openDialog() {
-    this.ns.negozioSelected = this.negozio;
+    this.ns.negozioSelected = this.negozioSel;
     const dialogRef = this.dialog.open(NewNegozioModalContentComponent);
 
     dialogRef.afterClosed().subscribe(result => {

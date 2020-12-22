@@ -115,4 +115,8 @@ export class SezioneNegoziComponent implements OnInit {
     });
   }
 
+  changeNegozio(negozio: Negozio){
+    this.negozioSelected = negozio;
+  }
+
 }
