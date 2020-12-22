@@ -1,34 +1,41 @@
 <div class="p-2">
-    <mat-form-field class="ml-3" >
-        <mat-label><h5>{{negozioSel !== undefined ? negozioSel.nome : 'Negozi disponibili'}}</h5></mat-label>
+
+    <mat-form-field class="ml-4" style="width: 200px;">
+        <mat-label>
+            <h5>{{negozioSel !== undefined ? negozioSel.nome : 'Negozi disponibili'}}</h5>
+        </mat-label>
         <mat-select>
-    
-            <mat-option *ngFor="let negozio of negozi" [value]="negozio" (click)="negozioSel = negozio; negozioSelected.emit(negozio)">
+
+            <mat-option *ngFor="let negozio of negozi" [value]="negozio"
+                (click)="negozioSel = negozio; negozioSelected.emit(negozio)">
                 {{negozio.nome}}
             </mat-option>
-    
+
         </mat-select>
     </mat-form-field>
-    
+
+
+
     <div *ngIf="edit">
         <app-new-negozio-modal></app-new-negozio-modal>
-    
+
     </div>
-    
-    <div *ngIf="negozioSel !== undefined && negozioSel !== null" class="row mw-100 p-2 mb-3">
+
+    <div *ngIf="negozioSel !== undefined && negozioSel !== null" class="row mw-100 p-2 pl-4 mb-3">
         <div class="col-12 d-inline-flex">
-    
+
             <h4 class="ml-2">{{negozioSel !== undefined ? negozioSel.nome : ''}}</h4>
             <button *ngIf="edit" mat-button (click)="openDialog()" class="p-0 mini-button ml-2">
                 <mat-icon style="margin-top: -15px; height: 12px;width: 12px; margin-left: -10px;">create</mat-icon>
             </button>
-            <button mat-button (click)="showInfo = !showInfo" class="p-0 mini-button" >
+            <button mat-button (click)="showInfo = !showInfo" class="p-0 mini-button">
                 <mat-icon style="margin-top: -15px; height: 12px;width: 12px; margin-left: -10px;">
                     query_builder</mat-icon>
             </button>
         </div>
         <div class="col-12">
-            <h6 class="ml-2">Indirizzo : {{negozioSel.recapito.indirizzo}} , 00{{negozioSel.recapito.zip}} , {{negozioSel.recapito.citta}}</h6>
+            <h6 class="ml-2">Indirizzo : {{negozioSel.recapito.indirizzo}} , 00{{negozioSel.recapito.zip}} ,
+                {{negozioSel.recapito.citta}}</h6>
         </div>
         <div class="col-12">
             <h6 class="ml-2">Recapito telefonico : {{negozioSel.recapito.telefono}}</h6>
@@ -36,7 +43,7 @@
         <div *ngIf="showInfo" class="col-12 mt-2">
             <h5 class="ml-2">Orari:</h5>
             <div *ngFor="let giornoLavorativo of negozioSel.giorniLavorativi" class="mt-2">
-                <h6 class="ml-2">{{giornoLavorativo.descrizione}} : 
+                <h6 class="ml-2">{{giornoLavorativo.descrizione}} :
                     {{giornoLavorativo.chiuso ? 'Chiuso' : 
                     giornoLavorativo.orarioApertura +  
                     ' - ' +  giornoLavorativo.orarioPausaInizio + 
@@ -44,9 +51,9 @@
                     ' - ' + giornoLavorativo.orarioChiusura}}
                 </h6>
             </div>
-    
+
         </div>
-    
-    
+
+
     </div>
 </div>
