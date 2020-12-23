@@ -73,6 +73,9 @@ export class PageAdminComponent implements OnInit {
   private getAcquisti(){
     this.as.getOBSGetAll().subscribe(next => {
       this.acquisti = next.list;
+      if(this.acquisti !== undefined && this.acquisti !== null && this.acquisti.length > 0){
+        this.acquisti.sort((a,b) => a.id - b.id).reverse();
+      }
       this.listStatus = next.listStatus;
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status)

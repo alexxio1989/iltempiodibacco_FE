@@ -1,0 +1,11 @@
+
+
+
+<mat-form-field class="example-form-field" style="width: 300px;">
+    <mat-label>Cerca per Codice Acquisto</mat-label>
+    <input matInput type="text" [(ngModel)]="code">
+    <button mat-button *ngIf="code" matSuffix mat-icon-button aria-label="Clear"
+        (click)="code=''">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>

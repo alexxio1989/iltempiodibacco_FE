@@ -29,6 +29,9 @@ export class PageUserComponent implements OnInit {
     }
     this.as.getOBSGetAllUtente(this.utente.id).subscribe(next => {
       this.acquisti = next;
+      if(this.acquisti !== undefined && this.acquisti !== null && this.acquisti.length > 0){
+        this.acquisti.sort((a,b) => a.id - b.id).reverse();
+      }
       this.ds.updateSpinner(false);
     },error=>{
       this.ds.updateSpinner(false);
