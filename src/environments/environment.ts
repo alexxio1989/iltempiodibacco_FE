@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   //API_ENDPOINT : 'http://localhost:8080'
-  API_ENDPOINT : 'https://shopbe.herokuapp.com'
+  API_ENDPOINT : 'https://shopbe.herokuapp.com',
+  API_PM_MANAGER : 'https://prjtmanager.herokuapp.com'
 };
 
 /*

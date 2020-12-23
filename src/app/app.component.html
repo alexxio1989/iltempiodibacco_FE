@@ -1,16 +1,23 @@
-<mat-sidenav-container fullscreen>
-
-  <app-nav-bar></app-nav-bar>
-
-  <div class="container pl-0 pr-0 mb-3">
-      <div class="row">
-          <div class="col-12 pt-3 pl-0 pr-0">
-              <router-outlet></router-outlet>
+<div *ngIf="isProjectEnable">
+    <mat-sidenav-container fullscreen>
+    
+      <app-nav-bar></app-nav-bar>
+    
+      <div class="container pl-0 pr-0 mb-3">
+          <div class="row">
+              <div class="col-12 pt-3 pl-0 pr-0">
+                  <router-outlet></router-outlet>
+              </div>
           </div>
       </div>
-  </div>
-  
-  <app-spinner></app-spinner>
-  <app-side-bar></app-side-bar>
-  
-</mat-sidenav-container>
+      
+      <app-spinner></app-spinner>
+      <app-side-bar></app-side-bar>
+      
+    </mat-sidenav-container>
+
+</div>
+
+<div *ngIf="!isProjectEnable">
+Project disabled
+</div>

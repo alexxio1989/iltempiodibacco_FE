@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DelegateServiceService } from './service/delegate-service.service';
+import { PrjtserviceService } from './service/prjtservice.service';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +13,19 @@ export class AppComponent {
 
   showSpinner: false;
 
-  constructor(private ds: DelegateServiceService , private _snackBar: MatSnackBar ){
+  isProjectEnable: boolean;
+
+  constructor(private ds: DelegateServiceService , private _snackBar: MatSnackBar , private prjts: PrjtserviceService){
     
     this.ds.getOBSSpinner().subscribe(next => {
       this.showSpinner = next;
     })
     this.ds.getOBSResultService().subscribe(next => {
       this.openSnackBar(next);
+    })
+
+    this.prjts.getOBSEnableProject().subscribe(next => {
+      this.isProjectEnable = next;
     })
     
   }
