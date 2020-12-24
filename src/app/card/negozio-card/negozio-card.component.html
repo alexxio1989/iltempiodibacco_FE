@@ -10,7 +10,7 @@ slice: lowValue : highValue" class="p-2 pt-4 card-custom mb-3">
         <div class="row ">
             <div *ngFor="let sottoTipo of tipo.sottoTipi">
                 <mat-tab label="{{sottoTipo.descrizione}}">
-                    <div class="row p-0 pt-2 pl-3 pr-4 mw-100">
+                    <div class="row p-0 pt-3 pl-3 pr-4 mw-100">
 
                         <div *ngFor="let prodotto of sottoTipo.prodottiAssociati"
                             class="col-md-4 col-sm-6 col-xs-6">
@@ -26,5 +26,5 @@ slice: lowValue : highValue" class="p-2 pt-4 card-custom mb-3">
         </div>
     </mat-tab-group>
 </div>
-<mat-paginator [length]="negozio.magazino.tipiAssociati.length" [pageSize]="pageSize" (page)="getPaginatorData($event)">
+<mat-paginator class="footer" [length]="negozio.magazino.tipiAssociati.length" [pageSize]="pageSize" (page)="getPaginatorData($event)">
 </mat-paginator>
