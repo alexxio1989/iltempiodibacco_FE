@@ -25,6 +25,7 @@ export class AppComponent {
     })
 
     this.prjts.getOBSEnableProject().subscribe(next => {
+      this.ds.updateSpinner(false);
       this.isProjectEnable = next;
     })
     

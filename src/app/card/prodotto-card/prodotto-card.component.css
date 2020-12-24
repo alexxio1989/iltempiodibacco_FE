@@ -22,3 +22,29 @@
     width: 100%;
    
   }
+
+  .card {
+    flex-direction: row;
+  }
+  .card img {
+    width: 40%;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .img-custom{
+    height: 8.8rem; 
+    width: 8.8rem; 
+    max-height: 8.8rem; 
+    background-color: rgb(300, 300, 300);
+  }
+
+  .nome-prodotto{
+    margin-bottom: -15px; margin-top: -20px;
+  }
+
+  .info-box{
+    -webkit-box-shadow: -5px 0px 5px -3px #616161;
+    box-shadow: -3px 0px 4px -5px #616161;
+    min-height: 8.8 rem;
+  }

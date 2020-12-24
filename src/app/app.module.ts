@@ -74,6 +74,7 @@ import { AcquistoCardUtenteComponent } from './card/acquisto-card-utente/acquist
 import { SezioneAcquistiComponent } from './pages/page-admin/section/sezione-acquisti/sezione-acquisti.component';
 import { BoldTextPipe } from './pipe/bold-text.pipe';
 import { FindAcquistoComponent } from './varie/find-acquisto/find-acquisto.component';
+import { FormatTextPipe } from './pipe/format-text.pipe';
 
 
 
@@ -119,7 +120,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AcquistoCardAdminComponent,
     SezioneAcquistiComponent,
     BoldTextPipe,
-    FindAcquistoComponent
+    FindAcquistoComponent,
+    FormatTextPipe
   ],
   imports: [
     BrowserModule,
