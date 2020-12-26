@@ -1,18 +1,20 @@
 
     <div class="col-12 d-flex justify-content-center">
-        <mat-form-field class="ml-4" style="width: 250px;">
-            <mat-label>
-                <h5>Prodotti disponibili</h5>
-            </mat-label>
-            <mat-select>
-        
-                <mat-option *ngFor="let tipo of negozio.magazino.tipiAssociati" [(value)]="tipoSelected"
-                    (click)="tipoSelected = tipo">
-                    {{tipo.descrizione}}
-                </mat-option>
-        
-            </mat-select>
-        </mat-form-field>
+        <form [formGroup]="prodottiForm">
+            <mat-form-field class="ml-4" style="width: 250px;">
+                <mat-label>
+                    <h5>Prodotti disponibili</h5>
+                </mat-label>
+                <mat-select formControlName="prodottiForm">
+            
+                    <mat-option *ngFor="let tipo of negozio.magazino.tipiAssociati" [(value)]="tipoSelected"
+                        (click)="tipoSelected = tipo">
+                        {{tipo.descrizione}}
+                    </mat-option>
+            
+                </mat-select>
+            </mat-form-field>
+        </form>
     </div>
 
 

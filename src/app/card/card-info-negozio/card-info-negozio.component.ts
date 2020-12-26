@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { NewNegozioModalContentComponent } from 'src/app/modals/new-negozio-modal/new-negozio-modal-content/new-negozio-modal-content.component';
 import { Negozio } from 'src/app/model/Negozio';
@@ -12,6 +13,8 @@ import { NegozioServiceService } from 'src/app/service/negozio-service.service';
 })
 export class CardInfoNegozioComponent implements OnInit {
 
+  negoziForm: FormGroup;
+
   negozioSel: Negozio;
   @Input() edit: boolean;
   negozi: Negozio[];
@@ -20,18 +23,23 @@ export class CardInfoNegozioComponent implements OnInit {
 
   constructor(public dialog: MatDialog , 
     private ns: NegozioServiceService , 
-    private ds: DelegateServiceService ) { 
-
-      this.ds.getOBSNegozi().subscribe(next => {
-        this.negozi = next;
-        if(this.negozi.length === 1){
-          this.negozioSel = this.negozi[0];
-          this.negozioSelected.emit(this.negozi[0]);
-        }
-      })
-    }
+    private ds: DelegateServiceService ,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.negoziForm = this.fb.group({
+			negoziForm: [null, Validators.required]
+    });
+    
+    this.ds.getOBSNegozi().subscribe(next => {
+      this.negozi = next;
+      if(this.negozi.length === 1){
+        this.negozioSel = this.negozi[0];
+        this.negozioSelected.emit(this.negozi[0]);
+        this.negoziForm.get('negoziForm').setValue(this.negozioSel);
+      }
+    })
 
   }
 

@@ -1,19 +1,20 @@
-<div class="p-2">
+<div class="p-2 mt-2">
 
+
+<form [formGroup]="negoziForm">
     <mat-form-field class="ml-4" style="width: 200px;">
         <mat-label>
-            <h5>{{negozioSel !== undefined ? negozioSel.nome : 'Negozi disponibili'}}</h5>
+            <h5>Negozi disponibili</h5>
         </mat-label>
-        <mat-select>
-
-            <mat-option *ngFor="let negozio of negozi" [value]="negozio"
+        <mat-select placeholder="Category" formControlName="negoziForm">
+            <mat-option *ngFor="let negozio of negozi" [value]="negozioSel"
                 (click)="negozioSel = negozio; negozioSelected.emit(negozio)">
                 {{negozio.nome}}
             </mat-option>
-
         </mat-select>
     </mat-form-field>
-
+    
+</form>
 
 
     <div *ngIf="edit">
