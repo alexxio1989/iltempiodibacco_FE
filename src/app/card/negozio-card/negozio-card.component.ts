@@ -13,27 +13,17 @@ export class NegozioCardComponent implements OnInit {
 
   @Input() negozio: Negozio;
 
-  pageIndex: number = 0;
-  pageSize: number = 0;
-  lowValue: number = 0;
-  highValue: number = 0;
 
   tipoSelected: Dominio;
+
+  isMobile: boolean;
 
   constructor(private deviceService: DeviceDetectorService) { }
 
   ngOnInit(): void {
 
-    const isMobile = this.deviceService.isMobile();
+    this.isMobile = this.deviceService.isMobile();
 
-    if(isMobile){
-
-      this.pageSize = 1;
-      this.highValue = 1;
-    } else {
-      this.pageSize = 3;
-      this.highValue = 3;
-    }
     
     if(this.negozio !== undefined && this.negozio.magazino.tipiAssociati.length > 0){
       this.tipoSelected = this.negozio.magazino.tipiAssociati[0];
@@ -41,17 +31,5 @@ export class NegozioCardComponent implements OnInit {
 
   }
 
-  getPaginatorData(event){
-    console.log(event);
-    if(event.pageIndex === this.pageIndex + 1){
-       this.lowValue = this.lowValue + this.pageSize;
-       this.highValue =  this.highValue + this.pageSize;
-      }
-   else if(event.pageIndex === this.pageIndex - 1){
-      this.lowValue = this.lowValue - this.pageSize;
-      this.highValue =  this.highValue - this.pageSize;
-     }   
-      this.pageIndex = event.pageIndex;
-  }
 
 }

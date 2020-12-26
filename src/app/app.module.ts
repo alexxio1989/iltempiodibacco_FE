@@ -75,6 +75,7 @@ import { SezioneAcquistiComponent } from './pages/page-admin/section/sezione-acq
 import { BoldTextPipe } from './pipe/bold-text.pipe';
 import { FindAcquistoComponent } from './varie/find-acquisto/find-acquisto.component';
 import { FormatTextPipe } from './pipe/format-text.pipe';
+import { ProdottoCardSmComponent } from './card/prodotto-card-sm/prodotto-card-sm.component';
 
 
 
@@ -121,7 +122,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SezioneAcquistiComponent,
     BoldTextPipe,
     FindAcquistoComponent,
-    FormatTextPipe
+    FormatTextPipe,
+    ProdottoCardSmComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@
   <img src="{{prodotto.image}}" *ngIf="prodotto.image !== undefined && prodotto.image !== null && prodotto.image !== ''"
     class="card-img-top img-custom" alt="...">
   <img *ngIf="prodotto.image === undefined || prodotto.image === null || prodotto.image === ''" alt="Web Studio"
-    src="../../../assets/images/default.png" />
+  class="card-img-top img-custom" src="../../../assets/images/default.png" />
   <div class="card-body pt-0 info-box">
     <div class="row">
       <div class="col-11 pt-4 pl-0 pr-0">

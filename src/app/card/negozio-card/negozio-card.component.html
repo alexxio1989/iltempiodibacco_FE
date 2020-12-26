@@ -29,19 +29,14 @@
             <div class="row">
                 <div *ngFor="let sottoTipo of tipoSelected.sottoTipi">
                     <mat-tab label="{{sottoTipo.descrizione}}">
-                        <div class="row w-100 pl-3 pt-3">
-                            <div class="col-12 p-0 pl-2 d-flex">
-                                <div *ngFor="let prodotto of sottoTipo.prodottiAssociati | slice: lowValue : highValue" class="col-md-4 col-sm-6 col-xs-6 p-0">
-                                    <app-prodotto-card [prodotto]="prodotto"></app-prodotto-card>
+                        <div class="row w-100 pt-3" style="padding-left: 2.6rem!important;">
+                     
+                         
+                                <div *ngFor="let prodotto of sottoTipo.prodottiAssociati " class="col-md-4 col-sm-6 col-xs-6 p-0">
+                                    <app-prodotto-card-sm [prodotto]="prodotto"></app-prodotto-card-sm>
                                 </div>
-                                
-                            </div>
+                         
                         </div>
-                        
-                        <mat-paginator class="mt-3" [length]="sottoTipo.prodottiAssociati.length" [pageSize]="pageSize" (page)="getPaginatorData($event)">
-                        </mat-paginator>
-    
-    
                     </mat-tab>
                 </div>
     
