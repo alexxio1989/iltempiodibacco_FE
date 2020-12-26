@@ -24,9 +24,10 @@
     max-height: 8rem !important; 
     position: relative;
     left: -20px ;
+    background-color: white;
     
 }
 .profile-card-5 .card-img-block img{
     border-radius:5px;
-    box-shadow:0 0 3px rgba(0,0,0,0.63);
+    box-shadow:0 0 3px rgba(121, 121, 121, 0.63);
 }

@@ -1,6 +1,20 @@
 <app-card-info-negozio (negozioSelected)="changeNegozio($event)" [edit]="false">
 </app-card-info-negozio>
-<hr />
+
+<div class="row p-0">
+    <div class="col-12 p-0">
+        <hr />
+    </div>
+    
+        <div class="col-8 p-0"></div>
+        <div class="col-4 p-0">
+            <div class="img-shop-container d-flex justify-content-center align-items-center">
+                <img alt="Web Studio" class="img-shop" src="../../../assets/images/shop.png" />
+            </div>
+
+        </div>
+   
+</div>
 
 
 <div *ngIf="negozioSelected !== undefined">

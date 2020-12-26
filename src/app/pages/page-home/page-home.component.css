@@ -1,3 +1,21 @@
 app-negozio-card {
     width: 100%;
 }
+
+
+.img-shop-container{
+    width: 7rem;
+    height: 7rem;
+    max-height: 7rem;
+    border-radius: 50%;
+    box-shadow:0 0 3px rgba(121, 121, 121, 0.63);
+    margin-top:-70px;
+    background-color: white;
+    
+}
+
+.img-shop {
+    width: 6rem;
+    height: 6rem;
+    max-height: 6rem;
+}
