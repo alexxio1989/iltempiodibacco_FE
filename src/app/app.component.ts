@@ -24,10 +24,10 @@ export class AppComponent {
       this.openSnackBar(next);
     })
 
-    this.prjts.getOBSEnableProject().subscribe(next => {
-      this.ds.updateSpinner(false);
-      this.isProjectEnable = next;
-    })
+    // this.prjts.getOBSEnableProject().subscribe(next => {
+    //   this.ds.updateSpinner(false);
+    //   this.isProjectEnable = next;
+    // })
     
   }
 
