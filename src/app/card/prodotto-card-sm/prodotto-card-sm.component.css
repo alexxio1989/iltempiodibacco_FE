@@ -12,9 +12,9 @@
 
 /*Profile Card 5*/
 .profile-card-5{
-    margin-top:20px;
+    margin-top:10px;
     margin-left: 20px;
-    width: 21rem;
+    width: 95%;
     flex-direction: row;
 }
 
