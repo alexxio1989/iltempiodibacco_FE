@@ -4,7 +4,6 @@
 }
 
 .container-img{
-  height: 10rem !important;
   background-color: #ececec;
   max-width: 36.666667% !important;
 
@@ -23,7 +22,7 @@
     width: 8rem; 
     max-height: 8rem !important; 
     position: relative;
-    left: -20px ;
+    left: -40px ;
     background-color: white;
     
 }

@@ -1,6 +1,6 @@
 <div class="card profile-card-5 row">
    
-    <div class=" col-5 d-flex align-items-center p-0 container-img">
+    <div class=" col-5 d-flex align-items-center p-4 container-img">
         <div class="card-img-block">
             <img src="{{prodotto.image}}"
                 *ngIf="prodotto.image !== undefined && prodotto.image !== null && prodotto.image !== ''"
@@ -24,14 +24,15 @@
                 <h5>Prodotto Esaurito</h5>
               </div>
 
-              <div *ngIf="prodotto.qntRimanente > 0" class="row ">
-                <div class="col-12">
+              <div *ngIf="prodotto.qntRimanente > 0" class="row d-flex justify-content-center">
+               
+                  <div class="col-12">
+                    <app-incrementer (valueOutput)="countQuantityToCart($event)" [unita]="prodotto.unita"
+                      (click)="$event.stopPropagation()" [value]="_value || 0" [step]="prodotto.step" [min]="_min"
+                      [max]="prodotto.qntRimanente" [wrap]="_wrap"></app-incrementer>
+                  </div>
     
-                  <app-incrementer (valueOutput)="countQuantityToCart($event)" [unita]="prodotto.unita"
-                    (click)="$event.stopPropagation()" [value]="_value || 0" [step]="prodotto.step" [min]="_min"
-                    [max]="prodotto.qntRimanente" [wrap]="_wrap"></app-incrementer>
-    
-                  <div>
+                  <div class="col-12 d-flex justify-content-center pr-0">
                     <button
                       *ngIf="(quantityToCart > 0 && !isProdottoInCart) || ((quantityToCart > qntInCart) || (quantityToCart < qntInCart))"
                       mat-button (click)="$event.stopPropagation();  aggiungiCarrello()" style="color: #6c757d;">
@@ -39,13 +40,13 @@
                     </button>
                   </div>
     
-                  <div>
+                  <div class="col-12 d-flex justify-content-center pr-0">
                     <button *ngIf="isProdottoInCart  " mat-button
                       (click)="$event.stopPropagation();  rimuoviCarrello(prodotto)" style="color: #6c757d;">
                       Rimuovi dal carrello
                     </button>
                   </div>
-                </div>
+               
               </div>
       
             </div>
