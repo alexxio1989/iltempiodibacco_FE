@@ -9,7 +9,7 @@
             <mat-select placeholder="Category" formControlName="negoziForm">
                 <mat-option *ngFor="let negozio of negozi" [value]="negozioSel"
                     (click)="negozioSel = negozio; negozioSelected.emit(negozio)">
-                    {{negozio.nome}}
+                    <h5>{{negozio.nome}}</h5>
                 </mat-option>
             </mat-select>
         </mat-form-field>
