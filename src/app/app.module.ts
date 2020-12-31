@@ -76,8 +76,39 @@ import { BoldTextPipe } from './pipe/bold-text.pipe';
 import { FindAcquistoComponent } from './varie/find-acquisto/find-acquisto.component';
 import { FormatTextPipe } from './pipe/format-text.pipe';
 import { ProdottoCardSmComponent } from './card/prodotto-card-sm/prodotto-card-sm.component';
+import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
+import { ServiceCore } from './service/core/ServiceCore';
 
-
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: ServiceCore.baseURl 
+  },
+  position: "bottom",
+  theme: "classic",
+  palette: {
+    popup: {
+      background: "#000000",
+      text: "#ffffff",
+      link: "#ffffff"
+    },
+    button: {
+      background: "#f1d600",
+      text: "#000000",
+      border: "transparent"
+    }
+  },
+  type: "info",
+  content: {
+    message: "This website uses cookies to ensure you get the best experience on our website.",
+    dismiss: "Got it!",
+    deny: "Decline",
+    link: "Learn more",
+    href: "https://cookiesandyou.com",
+    policy: "Cookie Policy",
+    header: "Cookies used on the website!",
+    allow: "Allow cookies"
+  }
+}
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -162,7 +193,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxStripeModule.forRoot("pk_test_s8tEdMSkAYFFxo6AkOmhFyQc0050euNRAW")
+    NgxStripeModule.forRoot("pk_test_s8tEdMSkAYFFxo6AkOmhFyQc0050euNRAW"),
+    NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [
     DelegateServiceService,
