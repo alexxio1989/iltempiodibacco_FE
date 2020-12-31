@@ -25,14 +25,24 @@
             <div class="row">
                 <div *ngFor="let sottoTipo of tipoSelected.sottoTipi">
                     <mat-tab label="{{sottoTipo.descrizione}}">
-                        <div class="row w-100 pt-3 pl-4" >
+                        <div *ngIf="!isMobile" class="row w-100 pt-3 pl-4" >
                      
                          
                                 <div *ngFor="let prodotto of sottoTipo.prodottiAssociati " class="col-md-4 col-sm-6 col-xs-6 pl-2">
-                                    <app-prodotto-card-sm [prodotto]="prodotto"></app-prodotto-card-sm>
+                                    <app-prodotto-card [prodotto]="prodotto"></app-prodotto-card>
                                 </div>
+
                          
                         </div>
+
+                        <div *ngIf="isMobile" class="row p-4" >
+                     
+
+                            <div *ngFor="let prodotto of sottoTipo.prodottiAssociati " class="col-6 p-0 mb-2 pt-4">
+                                <app-prodotto-card-sm [prodotto]="prodotto"></app-prodotto-card-sm>
+                            </div>
+                     
+                    </div>
                     </mat-tab>
                 </div>
     

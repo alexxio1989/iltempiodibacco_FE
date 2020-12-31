@@ -1,58 +1,57 @@
-<div class="card ml-3" style="width: 22rem;">
-  <img src="{{prodotto.image}}" *ngIf="prodotto.image !== undefined && prodotto.image !== null && prodotto.image !== ''"
-    class="card-img-top img-custom" alt="...">
-  <img *ngIf="prodotto.image === undefined || prodotto.image === null || prodotto.image === ''" alt="Web Studio"
-  class="card-img-top img-custom" src="../../../assets/images/default.png" />
-  <div class="card-body pt-0 info-box">
-    <div class="row">
-      <div class="col-11 pt-4 pl-0 pr-0">
-        <div class="d-flex justify-content-center nome-prodotto mt-2" [innerHTML]="prodotto.nomeProdotto | formatText"></div>
-
-        <div class=" d-flex justify-content-center mt-3">
-          <h5>Prezzo : <b style="opacity: 0.7;">{{prodotto.prezzo }} € / {{prodotto.unita }}</b></h5>
-        </div>
-
-        <div *ngIf="prodotto.qntRimanente === 0" class=" d-flex justify-content-center mt-3">
-          <h5>Prodotto Esaurito</h5>
-        </div>
-
+<div class="card profile-card-5 row">
+   
+  <div class=" col-5 d-flex align-items-center p-4 container-img">
+      <div class="card-img-block">
+          <img src="{{prodotto.image}}"
+              *ngIf="prodotto.image !== undefined && prodotto.image !== null && prodotto.image !== ''"
+              class="img-card" alt="...">
+          <img *ngIf="prodotto.image === undefined || prodotto.image === null || prodotto.image === ''" alt="Web Studio"
+              class="img-card " src="../../../assets/images/default.png" />
+  
       </div>
-      <div class="col-1 pl-1 pr-0 pt-0">
-        <button mat-icon-button style="margin-left: -20px" [disabled]="prodotto.qntRimanente === 0"
-          [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu class="p-3 "  #menu="matMenu">
 
-          <div class="row ">
-            <div class="col-12">
-
-              <mat-label>Seleziona qnt. prodotto</mat-label>
-
-              <app-incrementer (valueOutput)="countQuantityToCart($event)" [unita]="prodotto.unita"
-                (click)="$event.stopPropagation()" [value]="_value || 0" [step]="prodotto.step" [min]="_min"
-                [max]="prodotto.qntRimanente" [wrap]="_wrap"></app-incrementer>
-
-              <div>
-                <button
-                  *ngIf="(quantityToCart > 0 && !isProdottoInCart) || ((quantityToCart > qntInCart) || (quantityToCart < qntInCart))"
-                  mat-button (click)="$event.stopPropagation();  aggiungiCarrello()" style="color: #6c757d;">
-                  {{qntInCart > 0 && (quantityToCart > qntInCart) || (quantityToCart < qntInCart) ? 'Aggiorna carrello' : 'Aggiungi al carrello'}}
-                </button>
-              </div>
-
-              <div>
-                <button *ngIf="isProdottoInCart  " mat-button
-                  (click)="$event.stopPropagation();  rimuoviCarrello(prodotto)" style="color: #6c757d;">
-                  Rimuovi dal carrello
-                </button>
-              </div>
+  </div>
+  <div class="col-7 pt-2 pr-0">
+      <div class="row">
+          <div class="col-12 pt-2 pl-0 pr-0">
+            <div class="d-flex justify-content-center nome-prodotto mt-2" [innerHTML]="prodotto.nomeProdotto | formatText"></div>
+    
+            <div class=" d-flex justify-content-center mt-3">
+              <h5>Prezzo : <b style="opacity: 0.7;">{{prodotto.prezzo }} € / {{prodotto.unita }}</b></h5>
             </div>
-          </div>
+    
+            <div *ngIf="prodotto.qntRimanente === 0" class=" d-flex justify-content-center mt-3 pt-3">
+              <h5>Prodotto Esaurito</h5>
+            </div>
 
-        </mat-menu>
-      </div>
-    </div>
+            <div *ngIf="prodotto.qntRimanente > 0" class="row d-flex justify-content-center">
+             
+                <div class="col-12 pt-3">
+                  <app-incrementer (valueOutput)="countQuantityToCart($event)" [unita]="prodotto.unita"
+                    (click)="$event.stopPropagation()" [value]="_value || 0" [step]="prodotto.step" [min]="_min"
+                    [max]="prodotto.qntRimanente" [wrap]="_wrap"></app-incrementer>
+                </div>
+  
+                <div class="col-12 d-flex justify-content-center pr-0">
+                  <button
+                    *ngIf="(quantityToCart > 0 && !isProdottoInCart) || ((quantityToCart > qntInCart) || (quantityToCart < qntInCart))"
+                    mat-button (click)="$event.stopPropagation();  aggiungiCarrello()" style="color: #6c757d;">
+                    {{qntInCart > 0 && (quantityToCart > qntInCart) || (quantityToCart < qntInCart) ? 'Aggiorna carrello' : 'Aggiungi al carrello'}}
+                  </button>
+                </div>
+  
+                <div class="col-12 d-flex justify-content-center pr-0">
+                  <button *ngIf="isProdottoInCart  " mat-button
+                    (click)="$event.stopPropagation();  rimuoviCarrello(prodotto)" style="color: #6c757d;">
+                    Rimuovi dal carrello
+                  </button>
+                </div>
+             
+            </div>
+    
+          </div>
+         
+        </div>
 
   </div>
 </div>

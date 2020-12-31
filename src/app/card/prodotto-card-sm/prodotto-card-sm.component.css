@@ -1,32 +1,28 @@
 .img-card{
-  height: 8rem; 
-    width: 8rem; 
+  height: 6rem; 
+  width: 6rem; 
 }
 
 .container-img{
   background-color: #ececec;
-  max-width: 36.666667% !important;
 
 }
 
 /*Profile Card 5*/
 .profile-card-5{
-    margin-top:10px;
-    margin-left: 20px;
     width: 95%;
-    flex-direction: row;
+    height: auto;
+    padding-bottom: 5px;
 }
 
-.profile-card-5 .card-img-block {
-    height: 8rem; 
-    width: 8rem; 
-    max-height: 8rem !important; 
-    position: relative;
-    left: -40px ;
-    background-color: white;
-    
-}
-.profile-card-5 .card-img-block img{
-    border-radius:5px;
+.card-img-block {
+  height: 6rem; 
+  width: 6rem; 
+  max-height: 6rem !important; 
+  position: relative;
+  top: -20px ;
+  background-color: white;
+  border-radius:5px;
     box-shadow:0 0 3px rgba(121, 121, 121, 0.63);
+  
 }
