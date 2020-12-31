@@ -3,7 +3,6 @@ app-negozio-card {
 }
 
 .row-img-shop-container {
-    display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -14,9 +13,9 @@ app-negozio-card {
 
 
 .img-shop-container{
-    width: 5rem;
-    height: 5rem;
-    max-height: 5rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    max-height: 4.5rem;
     border-radius: 25%;
     box-shadow:0 0 3px rgba(121, 121, 121, 0.63);
     margin-top:-55px;

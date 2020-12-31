@@ -78,6 +78,7 @@ import { FormatTextPipe } from './pipe/format-text.pipe';
 import { ProdottoCardSmComponent } from './card/prodotto-card-sm/prodotto-card-sm.component';
 import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
 import { ServiceCore } from './service/core/ServiceCore';
+import { TextSmallPipe } from './pipe/text-small.pipe';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -154,7 +155,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     BoldTextPipe,
     FindAcquistoComponent,
     FormatTextPipe,
-    ProdottoCardSmComponent
+    ProdottoCardSmComponent,
+    TextSmallPipe
   ],
   imports: [
     BrowserModule,

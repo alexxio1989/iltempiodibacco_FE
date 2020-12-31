@@ -1,6 +1,7 @@
 
     <div class="col-12 d-flex justify-content-center">
-        <form [formGroup]="prodottiForm">
+        <form class="row" [formGroup]="prodottiForm">
+          
             <mat-form-field style="width: 250px;">
                 <mat-label>
                     <h5>I Nostri prodotti</h5>
@@ -8,8 +9,7 @@
                 <mat-select formControlName="prodottiForm">
             
                     <mat-option *ngFor="let tipo of negozio.magazino.tipiAssociati" [(value)]="tipoSelected"
-                        (click)="tipoSelected = tipo">
-                        {{tipo.descrizione}}
+                        (click)="tipoSelected = tipo" [innerHTML]="tipo.descrizione| textSmall">
                     </mat-option>
             
                 </mat-select>
