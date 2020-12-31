@@ -2,9 +2,9 @@
 
 
     <form [formGroup]="negoziForm">
-        <mat-form-field class="ml-4" style="width: 200px;">
+        <mat-form-field class="ml-4" style="width: 300px;">
             <mat-label>
-                <h5>Negozi disponibili</h5>
+                <h5>Scegli il negozio che preferisci</h5>
             </mat-label>
             <mat-select placeholder="Category" formControlName="negoziForm">
                 <mat-option *ngFor="let negozio of negozi" [value]="negozioSel"
