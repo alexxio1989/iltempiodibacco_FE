@@ -1,25 +1,28 @@
-<div class="row d-flex justify-content-center mt-2 mw-100 ml-1">
-  <button 
-    mat-button 
-    mat-icon-button 
-    matPrefix 
-    aria-label="Remove" 
-    [color]="getColor()" 
-    (click)="incrementValue(-_step)" 
-    [disabled]="shouldDisableDecrement(_value)">
-    <mat-icon>remove</mat-icon>
-  </button>
-  <h5>{{_value}} / {{unita}}</h5>
-  
-  <button 
-    mat-button 
-    mat-icon-button 
-    matSuffix
-    aria-label="Add" 
-    [color]="getColor()" 
-    (click)="incrementValue(_step)" 
-    [disabled]="shouldDisableIncrement(_value)">
-    <mat-icon>add</mat-icon>
-  </button>
+<div class="mt-2 mw-100 ml-1 pl-2 pr-2">
+  <div class="d-flex justify-content-center pt-2 inc-style">
+    <button 
+      mat-button 
+      mat-icon-button 
+      matPrefix 
+      aria-label="Remove" 
+      [color]="getColor()" 
+      (click)="incrementValue(-_step)" 
+      [disabled]="shouldDisableDecrement(_value)">
+      <mat-icon>remove</mat-icon>
+    </button>
+    <h5>{{_value}} / {{unita}}</h5>
+    
+    <button 
+      mat-button 
+      mat-icon-button 
+      matSuffix
+      aria-label="Add" 
+      [color]="getColor()" 
+      (click)="incrementValue(_step)" 
+      [disabled]="shouldDisableIncrement(_value)">
+      <mat-icon>add</mat-icon>
+    </button>
+
+  </div>
 </div>
 

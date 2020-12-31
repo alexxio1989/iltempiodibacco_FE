@@ -2,3 +2,8 @@ button{
   margin-top: -15px;
 }
 
+.inc-style{
+  background-color: rgb(241, 241, 241);
+  max-width: 100%;
+}
+

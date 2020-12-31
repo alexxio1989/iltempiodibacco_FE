@@ -11,7 +11,7 @@
         </div>
 
     </div>
-    <div class="col-7 pt-2 ">
+    <div class="col-7 pt-2 pr-0">
         <div class="row">
             <div class="col-12 pt-2 pl-0 pr-0">
               <div class="d-flex justify-content-center nome-prodotto mt-2" [innerHTML]="prodotto.nomeProdotto | formatText"></div>
@@ -20,13 +20,13 @@
                 <h5>Prezzo : <b style="opacity: 0.7;">{{prodotto.prezzo }} € / {{prodotto.unita }}</b></h5>
               </div>
       
-              <div *ngIf="prodotto.qntRimanente === 0" class=" d-flex justify-content-center mt-3">
+              <div *ngIf="prodotto.qntRimanente === 0" class=" d-flex justify-content-center mt-3 pt-3">
                 <h5>Prodotto Esaurito</h5>
               </div>
 
               <div *ngIf="prodotto.qntRimanente > 0" class="row d-flex justify-content-center">
                
-                  <div class="col-12">
+                  <div class="col-12 pt-3">
                     <app-incrementer (valueOutput)="countQuantityToCart($event)" [unita]="prodotto.unita"
                       (click)="$event.stopPropagation()" [value]="_value || 0" [step]="prodotto.step" [min]="_min"
                       [max]="prodotto.qntRimanente" [wrap]="_wrap"></app-incrementer>
