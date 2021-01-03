@@ -6,4 +6,6 @@ export class Dominio{
     descrizione: string;
     sottoTipi: SubDominio[];
     editSottoTipo: boolean;
+
+ 
 }

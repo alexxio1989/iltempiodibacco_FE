@@ -18,15 +18,14 @@ export class AppComponent implements OnInit, OnDestroy  {
   isProjectEnable: boolean;
 
   //keep refs to subscriptions to be able to unsubscribe later
-  // private popupOpenSubscription: Subscription;
-  // private popupCloseSubscription: Subscription;
-  // private initializeSubscription: Subscription;
-  // private statusChangeSubscription: Subscription;
-  // private revokeChoiceSubscription: Subscription;
-  // private noCookieLawSubscription: Subscription;
+  private popupOpenSubscription: Subscription;
+  private popupCloseSubscription: Subscription;
+  private initializeSubscription: Subscription;
+  private statusChangeSubscription: Subscription;
+  private revokeChoiceSubscription: Subscription;
+  private noCookieLawSubscription: Subscription;
 
-  constructor(private ds: DelegateServiceService , private _snackBar: MatSnackBar , private prjts: PrjtserviceService) {
-    //, private ccService: NgcCookieConsentService){
+  constructor(private ds: DelegateServiceService , private _snackBar: MatSnackBar , private prjts: PrjtserviceService , private ccService: NgcCookieConsentService){
     
     this.ds.getOBSSpinner().subscribe(next => {
       this.showSpinner = next;
@@ -47,55 +46,55 @@ export class AppComponent implements OnInit, OnDestroy  {
 
   ngOnInit() {
     // subscribe to cookieconsent observables to react to main events
-    // this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
-    //   () => {
-    //     console.log("")
-    //     // you can use this.ccService.getConfig() to do stuff...
-    //   });
+    this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
+      () => {
+        console.log("")
+        // you can use this.ccService.getConfig() to do stuff...
+      });
  
-    // this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
-    //   () => {
-    //     console.log("")
-    //     // you can use this.ccService.getConfig() to do stuff...
-    //   });
+    this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
+      () => {
+        console.log("")
+        // you can use this.ccService.getConfig() to do stuff...
+      });
  
-    // this.initializeSubscription = this.ccService.initialize$.subscribe(
-    //   (event: NgcInitializeEvent) => {
+    this.initializeSubscription = this.ccService.initialize$.subscribe(
+      (event: NgcInitializeEvent) => {
 
-    //     console.log("")
-    //     // you can use this.ccService.getConfig() to do stuff...
-    //   });
+        console.log("")
+        // you can use this.ccService.getConfig() to do stuff...
+      });
  
-    // this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
-    //   (event: NgcStatusChangeEvent) => {
+    this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
+      (event: NgcStatusChangeEvent) => {
 
-    //     console.log("")
-    //     // you can use this.ccService.getConfig() to do stuff...
-    //   });
+        console.log("")
+        // you can use this.ccService.getConfig() to do stuff...
+      });
  
-    // this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
-    //   () => {
-    //     console.log("")
-    //     // you can use this.ccService.getConfig() to do stuff...
-    //   });
+    this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
+      () => {
+        console.log("")
+        // you can use this.ccService.getConfig() to do stuff...
+      });
  
-    //   this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
-    //   (event: NgcNoCookieLawEvent) => {
-    //     console.log("")
-    //     // you can use this.ccService.getConfig() to do stuff...
-    //   });
+      this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
+      (event: NgcNoCookieLawEvent) => {
+        console.log("")
+        // you can use this.ccService.getConfig() to do stuff...
+      });
 
-    //   this.ccService.close(true);
+      this.ccService.close(true);
   }
 
   ngOnDestroy() {
     // unsubscribe to cookieconsent observables to prevent memory leaks
-    // this.popupOpenSubscription.unsubscribe();
-    // this.popupCloseSubscription.unsubscribe();
-    // this.initializeSubscription.unsubscribe();
-    // this.statusChangeSubscription.unsubscribe();
-    // this.revokeChoiceSubscription.unsubscribe();
-    // this.noCookieLawSubscription.unsubscribe();
+    this.popupOpenSubscription.unsubscribe();
+    this.popupCloseSubscription.unsubscribe();
+    this.initializeSubscription.unsubscribe();
+    this.statusChangeSubscription.unsubscribe();
+    this.revokeChoiceSubscription.unsubscribe();
+    this.noCookieLawSubscription.unsubscribe();
   }
 
   openSnackBar(message: string) {

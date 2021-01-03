@@ -24,8 +24,7 @@ export class PageHomeComponent implements OnInit {
     this.dps.getOBSDatiPageHome().subscribe(next => {
       this.negozi = next.list;
       this.ds.updateNegozi(this.negozi);
-      localStorage.removeItem('NEGOZI');
-      localStorage.setItem('NEGOZI', JSON.stringify(next.list))
+    
       this.ds.updateSpinner(false);
     },error=> {
       this.ds.updateResultService('Recupero dati pagina in errore');

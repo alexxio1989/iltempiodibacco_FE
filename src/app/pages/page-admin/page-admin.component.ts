@@ -36,8 +36,7 @@ export class PageAdminComponent implements OnInit {
       this.acquisti = next.listAcquisti;
       this.listStatus = next.listStatus;
       this.ds.updateNegozi(this.negozi);
-      localStorage.removeItem('NEGOZI');
-      localStorage.setItem('NEGOZI', JSON.stringify(next.list))
+ 
       this.ds.updateSpinner(false);
       this.ds.updateResultService('Recupero dati pagina admin avvenuto con successo');
     },error=> {

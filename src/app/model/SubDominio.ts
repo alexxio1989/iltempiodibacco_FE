@@ -9,4 +9,9 @@ export class SubDominio{
     idPadre: number;
     tipoPadre: Dominio = new Dominio();
     prodottiAssociati: Prodotto[];
+
+    pageIndex: number = 0;
+    pageSize: number = 2;
+    lowValue: number = 0;
+    highValue: number = 2;
 }
