@@ -195,7 +195,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxStripeModule.forRoot("pk_test_s8tEdMSkAYFFxo6AkOmhFyQc0050euNRAW"),
+    NgxStripeModule.forRoot(ServiceCore.stripe_token),
     NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [
