@@ -112,4 +112,12 @@ export class SezioneProdottiComponent implements OnInit {
     })
   }
 
+  deleteTipo(tipo: Dominio){
+
+  }
+
+  deleteSottoTipo(tipo: SubDominio){
+
+  }
+
 }

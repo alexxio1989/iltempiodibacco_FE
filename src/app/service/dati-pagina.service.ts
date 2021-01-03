@@ -18,7 +18,7 @@ export class DatiPaginaService {
   }
 
   getOBSDatiPageHome(): Observable<any>{
-    this.ds.updateSpinner(true);
+    //this.ds.updateSpinner(true);
     return this.http.get(ServiceCore.baseURl + EndPoint.API_DATI_PAGINA + "home");
   }
 }
