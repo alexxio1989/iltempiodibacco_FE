@@ -3,5 +3,5 @@
 </mat-paginator>  
 <div *ngFor="let acquisto of acquisti | 
 slice: lowValue : highValue">
-    <app-acquisto-card-admin [acquisto] = "acquisto" [listStatus] = "listStatus"></app-acquisto-card-admin>
+    <app-acquisto-card-admin [acquisto] = "acquisto" [listStatus] = "listStatus" (adviceAcquisti) = "editAcquistoEmit($event)"></app-acquisto-card-admin>
 </div>

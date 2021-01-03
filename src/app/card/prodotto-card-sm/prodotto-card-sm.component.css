@@ -1,6 +1,6 @@
 .img-card{
-  height: 6rem; 
-  width: 6rem; 
+  height: 8rem; 
+  width: 8rem; 
 }
 
 .container-img{
@@ -12,17 +12,26 @@
 .profile-card-5{
     width: 95%;
     height: auto;
-    padding-bottom: 5px;
+    padding-bottom: -5px;
+}
+
+.card-info-container {
+  height: 50%; 
+  width: 100%;
+  top: -25px ;
+  position: relative;
 }
 
 .card-img-block {
-  height: 6rem; 
-  width: 6rem; 
-  max-height: 6rem !important; 
+  height: 8rem; 
+  width: 8rem; 
+  max-height: 8rem !important; 
   position: relative;
-  top: -20px ;
   background-color: white;
   border-radius:5px;
-    box-shadow:0 0 3px rgba(121, 121, 121, 0.63);
+  top: -5px ;
+  box-shadow:0 0 3px rgba(121, 121, 121, 0.63);
+  margin-left: auto;
+  margin-right: auto;
   
 }

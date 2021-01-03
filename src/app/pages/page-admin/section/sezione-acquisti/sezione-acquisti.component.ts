@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Acquisto } from 'src/app/model/Acquisto';
 import { Status } from 'src/app/model/Status';
 import { User } from 'src/app/model/User';
@@ -14,6 +14,7 @@ export class SezioneAcquistiComponent implements OnInit {
 
   @Input() acquisti: Acquisto[] = [];
   @Input() listStatus: Status[];
+  @Output() adviceAcquisti= new EventEmitter<boolean>();
 
   pageIndex: number = 0;
   pageSize: number = 1;
@@ -38,6 +39,10 @@ export class SezioneAcquistiComponent implements OnInit {
       this.highValue =  this.highValue - this.pageSize;
      }   
       this.pageIndex = event.pageIndex;
+  }
+
+  editAcquistoEmit(event: boolean){
+    this.adviceAcquisti.emit(true);
   }
 
 }

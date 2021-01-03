@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Negozio } from 'src/app/model/Negozio';
 import { Prodotto } from 'src/app/model/Prodotto';
+import { DatiPaginaService } from 'src/app/service/dati-pagina.service';
 import { DelegateServiceService } from 'src/app/service/delegate-service.service';
 import { NegozioServiceService } from 'src/app/service/negozio-service.service';
 import { ProdottoServiceService } from 'src/app/service/prodotto-service.service';
@@ -19,13 +20,15 @@ export class PageHomeComponent implements OnInit {
 
   negozioSelected: Negozio;
 
-  constructor(private ns: NegozioServiceService , private ds: DelegateServiceService) {
-    this.ns.getOBSGetAll().subscribe(next => {
+  constructor(private ns: NegozioServiceService , private ds: DelegateServiceService , private dps: DatiPaginaService) {
+    this.dps.getOBSDatiPageHome().subscribe(next => {
       this.negozi = next.list;
       this.ds.updateNegozi(this.negozi);
       localStorage.removeItem('NEGOZI');
       localStorage.setItem('NEGOZI', JSON.stringify(next.list))
-      this.ds.updateResultService(next.status);
+      this.ds.updateSpinner(false);
+    },error=> {
+      this.ds.updateResultService('Recupero dati pagina in errore');
       this.ds.updateSpinner(false);
     });
   }

@@ -11,4 +11,5 @@ export class EndPoint {
     public static API_SOTTOTIPO='/sottotipo/';
     public static API_MOD_PAGAMENTO='/modpagamento/';
     public static API_ACQUISTO='/acquisto/';
+    public static API_DATI_PAGINA='/datipagina/';
 }

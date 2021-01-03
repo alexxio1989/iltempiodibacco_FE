@@ -15,7 +15,7 @@
         </mat-tab>
         <mat-tab label="Amministrazione Ordini">
             <div class="row mw-100 p-3">
-                <app-sezione-acquisti [acquisti] = "acquisti" [listStatus] = "listStatus"></app-sezione-acquisti>
+                <app-sezione-acquisti [acquisti] = "acquisti" [listStatus] = "listStatus" (adviceAcquisti) = "adviceAcquisti($event)"></app-sezione-acquisti> 
     
             </div>
         </mat-tab>

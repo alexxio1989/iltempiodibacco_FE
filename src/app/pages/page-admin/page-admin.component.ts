@@ -5,6 +5,7 @@ import { Negozio } from 'src/app/model/Negozio';
 import { Prodotto } from 'src/app/model/Prodotto';
 import { Status } from 'src/app/model/Status';
 import { AcquistoService } from 'src/app/service/acquisto.service';
+import { DatiPaginaService } from 'src/app/service/dati-pagina.service';
 import { DelegateServiceService } from 'src/app/service/delegate-service.service';
 import { NegozioServiceService } from 'src/app/service/negozio-service.service';
 import { ProdottoServiceService } from 'src/app/service/prodotto-service.service';
@@ -25,12 +26,26 @@ export class PageAdminComponent implements OnInit {
   constructor(private ps: ProdottoServiceService,
     private ns: NegozioServiceService,
     private ds: DelegateServiceService,
-    private ts: TipoServiceService,private as: AcquistoService) {
+    private ts: TipoServiceService,private as: AcquistoService,
+    private dps: DatiPaginaService) {
       
 
+    this.dps.getOBSDatiPageAdmin().subscribe(next => {
+      this.negozi = next.list;
+      this.listTipi = next.listTipo;
+      this.acquisti = next.listAcquisti;
+      this.listStatus = next.listStatus;
+      this.ds.updateNegozi(this.negozi);
+      localStorage.removeItem('NEGOZI');
+      localStorage.setItem('NEGOZI', JSON.stringify(next.list))
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService('Recupero dati pagina admin avvenuto con successo');
+    },error=> {
+      this.ds.updateResultService('Recupero dati pagina in errore');
+      this.ds.updateSpinner(false);
+    });
     
 
-    this.getNegozi();
 
     this.as.getOBSUpdateAcquisti().subscribe(next => {
       this.acquisti = next;
@@ -49,11 +64,15 @@ export class PageAdminComponent implements OnInit {
     this.getNegozi();
   }
 
+  adviceAcquisti(event: boolean) {
+    this.getAcquisti();
+  }
+
   private getNegozi() {
     this.ns.getOBSGetAll().subscribe(next => {
       this.negozi = next.list;
       this.ds.updateNegozi(this.negozi);
-      this.getTipi();
+      this.ds.updateSpinner(false);
     },error=>{
       this.ds.updateSpinner(false);
       this.ds.updateResultService(error.status)
@@ -62,8 +81,8 @@ export class PageAdminComponent implements OnInit {
 
   private getTipi() {
     this.ts.getOBSGetAll().subscribe(next => {
-      this.getAcquisti();
       this.listTipi = next.list;
+      this.ds.updateSpinner(false);
     },error=>{
       this.ds.updateSpinner(false);
       this.ds.updateResultService(error.status)
@@ -78,10 +97,10 @@ export class PageAdminComponent implements OnInit {
       }
       this.listStatus = next.listStatus;
       this.ds.updateSpinner(false);
-      this.ds.updateResultService(next.status)
+      this.ds.updateResultService("Recupero acquisti avvenuta con successo")
     },error=>{
       this.ds.updateSpinner(false);
-      this.ds.updateResultService(error.status)
+      this.ds.updateResultService("Recupero acquisti in errore")
     });
   }
 

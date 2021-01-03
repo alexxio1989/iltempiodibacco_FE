@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Acquisto } from 'src/app/model/Acquisto';
 import { Status } from 'src/app/model/Status';
 import { AcquistoService } from 'src/app/service/acquisto.service';
@@ -13,6 +13,7 @@ export class AcquistoCardAdminComponent implements OnInit {
 
   @Input() acquisto: Acquisto;
   @Input() listStatus: Status[];
+  @Output() adviceAcquisti= new EventEmitter<boolean>();
 
   statusSelected: Status;
   dataConsegna: Date;
@@ -35,6 +36,7 @@ export class AcquistoCardAdminComponent implements OnInit {
       this.as.updateAcquisti(next.list);
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status)
+      this.adviceAcquisti.emit(true);
     },error=>{
       this.ds.updateSpinner(false);
       this.ds.updateResultService(error.status)
