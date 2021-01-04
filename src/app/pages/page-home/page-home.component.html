@@ -1,8 +1,9 @@
-<app-card-info-negozio (negozioSelected)="changeNegozio($event)" [edit]="false">
+
+<app-card-info-negozio  (negozioSelected)="changeNegozio($event)" [edit]="false">
 </app-card-info-negozio>
 
 <hr />
-<div class="row-img-shop-container ">
+<div *ngIf="pageloaded" class="row-img-shop-container ">
  
     
         <div class="col-9 "></div>
@@ -16,6 +17,6 @@
 </div>
 
 
-<div *ngIf="negozioSelected !== undefined">
+<div *ngIf="pageloaded">
     <app-negozio-card [negozio]="negozioSelected"></app-negozio-card>
 </div>

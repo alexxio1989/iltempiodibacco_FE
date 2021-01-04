@@ -20,11 +20,13 @@ export class PageHomeComponent implements OnInit {
 
   negozioSelected: Negozio;
 
+  pageloaded: boolean;
+
   constructor(private ns: NegozioServiceService , private ds: DelegateServiceService , private dps: DatiPaginaService) {
     this.dps.getOBSDatiPageHome().subscribe(next => {
       this.negozi = next.list;
       this.ds.updateNegozi(this.negozi);
-    
+      this.pageloaded = true;
       this.ds.updateSpinner(false);
     },error=> {
       this.ds.updateResultService('Recupero dati pagina in errore');
