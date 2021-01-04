@@ -1,10 +1,21 @@
-
 <h2 mat-dialog-title>Conferma Acquisto</h2>
 <mat-dialog-content class="mat-typography">
-
+  <div class="row">
+    <div class="col-12">
+      <div *ngFor="let prodotto of acquisto.prodotti">
+        <h4>{{prodotto.nomeProdotto}}</h4>
+          <h6>{{prodotto.qnt}} / {{prodotto.unita}}</h6>
+          <hr />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h4>Totale : {{acquisto.totale}} €</h4>
+    </div>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Annulla</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click) = "acquista()" >Acquista</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="acquista()">Acquista</button>
 </mat-dialog-actions>
-

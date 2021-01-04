@@ -1,7 +1,119 @@
-<app-find-acquisto [acquisti] = "acquisti"></app-find-acquisto>
-<mat-paginator [length]="acquisti !== undefined ? acquisti.length : 0" [pageSize]="pageSize" (page)="getPaginatorData($event)">
-</mat-paginator>
-<div *ngFor="let acquisto of acquisti  |
-slice: lowValue : highValue">
-    <app-acquisto-card-utente [acquisto] = "acquisto"></app-acquisto-card-utente>
-</div>
+
+
+<h3 class="ml-3 mb-3 mt-4">Ciao {{utente.nome}}</h3>
+
+<h5 class="ml-3 mb-3 mt-4">Ecco i tuoi dati</h5>
+
+        <mat-tab-group mat-align-tabs="start">
+            <mat-tab label="Anagrafica">
+                <div *ngIf="!edit" class="row w-100">
+                    <div class="col-12 p-3 pl-5">
+                        <h5>Nome : {{utente.nome}}</h5>
+                        <h5>Cognome : {{utente.cognome}}</h5>
+                        <h5>Email : {{utente.email}}</h5>
+                        <h5>Città : {{utente.recapito.citta}}</h5>
+                        <h5>Indirizzo : {{utente.recapito.indirizzo}}</h5>
+                        <h5>Codice Postale : {{utente.recapito.zip}}</h5>
+                        <h5>Recapito Telefonico : {{utente.recapito.telefono}}</h5>
+                    </div>
+                </div>
+                <div *ngIf="!edit" class="row w-100">
+                    <div class="col-12 p-2 pl-5">
+                        <button mat-button style="color: #6c757d; margin-top: -15px;" class="p-0" (click)="edit= true">
+                            Modifica
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="edit" class="row w-100 pl-3 pt-2">
+                    
+                        <div class="col-6 p-2">
+                            <mat-form-field class="example-form-field" style="width: 95%;">
+                                <mat-label>Nome</mat-label>
+                                <input matInput type="text" [(ngModel)]="utente.nome">
+                                <button mat-button *ngIf="utente.nome" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="utente.nome=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="col-6 p-2">
+                            <mat-form-field class="example-form-field  " style="width: 95%;">
+                                <mat-label>Cognome</mat-label>
+                                <input matInput type="text" [(ngModel)]="utente.cognome">
+                                <button mat-button *ngIf="utente.cognome" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="utente.nome=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                            
+                        </div>
+                        <div class="col-6 p-2">
+                            <mat-form-field class="example-form-field  " style="width: 95%;" style="width: 95%;">
+                                <mat-label>Email</mat-label>
+                                <input matInput type="text" [(ngModel)]="utente.email">
+                                <button mat-button *ngIf="utente.email" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="utente.email=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                            
+                        </div>
+                        <div class="col-6 p-2">
+                            <mat-form-field class="example-form-field  " style="width: 95%;">
+                                <mat-label>Indirizzo</mat-label>
+                                <input matInput type="text" [(ngModel)]="utente.recapito.indirizzo">
+                                <button mat-button *ngIf="utente.recapito.indirizzo" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="utente.recapito.indirizzo=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                            
+                        </div>
+                        <div class="col-6 p-2">
+                            <mat-form-field class="example-full-width " style="width: 95%;">
+                                <mat-label>Codice postale</mat-label>
+                                <input matInput maxlength="5" [(ngModel)]="utente.recapito.zip" placeholder="Es. 00172">
+                            </mat-form-field>
+                            
+                        </div>
+                        <div class="col-6 p-2">
+                            <mat-form-field class="example-full-width  " style="width: 95%;">
+                                <mat-label>Citta</mat-label>
+                                <input matInput [(ngModel)]="utente.recapito.citta" placeholder="Es. Roma">
+                            </mat-form-field>
+                            
+                        </div>
+                        <div class="col-6 p-2">
+                            <mat-form-field class="example-full-width  " style="width: 95%;">
+                                <mat-label>Recapito telefonico</mat-label>
+                                <input matInput [(ngModel)]="utente.recapito.telefono" placeholder="Es. 333 34 ...">
+                            </mat-form-field>
+                            
+                        </div>
+                        <div class="col-12">
+                            <button mat-button style="color: #6c757d; margin-top: -15px;" class="p-0" (click)="edit= false">
+                                Annulla
+                            </button>
+
+                            <button mat-button style="color: #6c757d; margin-top: -15px;" class="p-0" disabled>
+                                Aggiorna
+                            </button>
+                            
+                        </div>
+                   
+                </div>
+            </mat-tab>
+            <mat-tab label="I Tuoi Acquisti">
+                <!-- <app-find-acquisto [acquisti] = "acquisti"></app-find-acquisto> -->
+                <mat-paginator [length]="acquisti !== undefined ? acquisti.length : 0" [pageSize]="pageSize" (page)="getPaginatorData($event)">
+                </mat-paginator>
+                <div *ngFor="let acquisto of acquisti  |
+                slice: lowValue : highValue">
+                    <app-acquisto-card-utente [acquisto] = "acquisto"></app-acquisto-card-utente>
+                </div>
+
+            </mat-tab>
+        </mat-tab-group>
+
+

@@ -67,11 +67,16 @@ export class PageCartComponent implements OnInit {
     })
 
     this.cs.getOBSCarrello().subscribe(next=>{
-      this.carrello = next;
-      this.carrello.prodotti.forEach(prodotto => {
-        let x = +(this.tot + (prodotto.qnt * prodotto.prezzo)).toFixed(2);
-        this.tot = x
-      })
+      if(next !== undefined && next !== null){
+        this.carrello = next;
+        this.carrello.prodotti.forEach(prodotto => {
+          let x = +(this.tot + (prodotto.qnt * prodotto.prezzo)).toFixed(2);
+          this.tot = x
+        })
+
+      } else {
+        this.carrello = new Carrello();
+      }
     })
 
     this.ds.getOBSUser().subscribe(next => {

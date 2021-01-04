@@ -19,6 +19,8 @@ export class PageUserComponent implements OnInit {
   lowValue: number = 0;
   highValue: number = 1;
 
+  edit: boolean;
+
   constructor(private as: AcquistoService,private ds: DelegateServiceService) { }
 
   ngOnInit(): void {
@@ -32,6 +34,7 @@ export class PageUserComponent implements OnInit {
       if(this.acquisti !== undefined && this.acquisti !== null && this.acquisti.length > 0){
         this.acquisti.sort((a,b) => a.id - b.id).reverse();
       }
+
       this.ds.updateSpinner(false);
     },error=>{
       this.ds.updateSpinner(false);
