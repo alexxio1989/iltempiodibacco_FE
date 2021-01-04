@@ -5,5 +5,7 @@ button{
 .inc-style{
   background-color: rgb(241, 241, 241);
   max-width: 100%;
+  min-height: 20px;
+  height: 45px;
 }
 
