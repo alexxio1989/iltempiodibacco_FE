@@ -1,20 +1,20 @@
 <div class="p-2">
     <mat-tab-group mat-align-tabs="start">
         <mat-tab label="Sezione Prodotti">
-            <div class="row mw-100 p-3">
+            <div class="row mw-100 pl-3">
                 <app-sezione-prodotti [listTipi] = "listTipi" (adviceProdotto) = "adviceProdotto($event)"></app-sezione-prodotti>
     
             </div>
     
         </mat-tab>
         <mat-tab label="Amministrazione Negozi">
-            <div class="row mw-100 p-3">
+            <div class="row mw-100 pl-3">
                 <app-sezione-negozi [negozi] = "negozi" [listTipi] = "listTipi" (adviceNegozio) = "adviceProdotto($event)"></app-sezione-negozi>
     
             </div>
         </mat-tab>
         <mat-tab label="Amministrazione Ordini">
-            <div class="row mw-100 p-3">
+            <div class="row mw-100 pl-3">
                 <app-sezione-acquisti [acquisti] = "acquisti" [listStatus] = "listStatus" (adviceAcquisti) = "adviceAcquisti($event)"></app-sezione-acquisti> 
     
             </div>
