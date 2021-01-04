@@ -19,9 +19,9 @@ export class SezioneProdottiComponent implements OnInit {
   @Input() listTipi: Dominio[];
   @Output() adviceProdotto = new EventEmitter<boolean>();
 
-  editTipo: boolean;
+  addTipo: boolean;
 
-  editSottoTipo: boolean;
+  addSottoTipo: boolean;
 
   newTipo: Dominio = new Dominio();
 
@@ -108,16 +108,53 @@ export class SezioneProdottiComponent implements OnInit {
       this.ds.updateSpinner(false);
     },error=>{
       this.ds.updateResultService(error.status);
-        this.ds.updateSpinner(false);
+      this.ds.updateSpinner(false);
     })
   }
 
   deleteTipo(tipo: Dominio){
-
+    this.ts.getOBSDelete(tipo).subscribe(next => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService("Eliminazione Tipo avvenuta con successo");
+      this.adviceProdotto.emit(true);
+    },error => {
+      this.ds.updateResultService("errore durante l'eliminazione del tipo");
+      this.ds.updateSpinner(false);
+    })
   }
 
   deleteSottoTipo(tipo: SubDominio){
+    this.sts.getOBSDelete(tipo).subscribe(next => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService("Eliminazione Sotto Tipo Avvenuta con successo");
+      this.adviceProdotto.emit(true);
+    },error => {
+      this.ds.updateResultService("errore durante l'eliminazione del sotto-tipo");
+      this.ds.updateSpinner(false);
+    })
+  }
 
+
+  updateTipo(tipo: Dominio){
+    this.ts.getOBSUpdate(tipo).subscribe(next => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService("Update Tipo avvenuto con successo");
+      this.adviceProdotto.emit(true);
+    },error => {
+      this.ds.updateResultService("errore durante l'update del tipo");
+      this.ds.updateSpinner(false);
+    })
+  }
+
+  updateSottoTipo(tipo: SubDominio){
+    this.sts.getOBSUpdate(tipo).subscribe(next => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService("Update Sotto Tipo avvenuto con successo");
+      this.adviceProdotto.emit(true);
+    },error => {
+      this.ds.updateResultService("errore durante l'update del sotto-tipo");
+      this.ds.updateSpinner(false);
+    })
   }
 
 }

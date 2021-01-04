@@ -1,22 +1,22 @@
 <div class="row mt-3">
     <div class="col-12">
-        <button *ngIf="!editTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="editTipo = true;">
+        <button *ngIf="!addTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="addTipo = true;">
             <mat-icon style="margin-top: -3px;">add</mat-icon>
             Aggiungi Tipo Prodotto
         </button>
 
-        <mat-form-field *ngIf="editTipo" class="example-full-width">
+        <mat-form-field *ngIf="addTipo" class="example-full-width">
             <mat-label>Nome tipo prodotto</mat-label>
             <input matInput type="text" [(ngModel)]="newTipo.descrizione">
         </mat-form-field>
 
 
 
-        <button *ngIf="editTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="editTipo = false;">
+        <button *ngIf="addTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="addTipo = false;">
             Annulla
         </button>
 
-        <button *ngIf="editTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="salvaTipo()">
+        <button *ngIf="addTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="salvaTipo()">
             Salva
         </button>
 
@@ -27,13 +27,28 @@
 
     <div class="row">
         <div class="col-12 d-flex  ">
-            <h4>
-                {{tipo.descrizione}} 
+            <h4 *ngIf="!tipo.editTipo">
+                {{tipo.descrizione}}
             </h4>
-            <button *ngIf="!tipo.editSottoTipo" mat-button style="color: #6c757d; margin-top: -10px;"
-                                    (click)="deleteTipo(tipo)">
-                                    <mat-icon >clear</mat-icon>
-                                </button>
+            <button *ngIf="!tipo.editTipo" mat-button style="color: #6c757d; margin-top: -10px;" (click)="deleteTipo(tipo)">
+                <mat-icon>clear</mat-icon>
+            </button>
+            <button *ngIf="!tipo.editTipo" mat-button style="color: #6c757d; margin-top: -10px;" (click)="tipo.editTipo = true">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <mat-form-field *ngIf="tipo.editTipo" class="example-full-width">
+                <mat-label>Nome Tipo prodotto</mat-label>
+                <input matInput type="text" [(ngModel)]="tipo.descrizione">
+            </mat-form-field>
+
+
+            <button *ngIf="tipo.editTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="tipo.editTipo  = false;">
+                Annulla
+            </button>
+
+            <button *ngIf="tipo.editTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="updateTipo(tipo)">
+                Salva
+            </button>
         </div>
     </div>
     <div class="row">
@@ -45,25 +60,22 @@
                     <ng-template mat-tab-label>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <button *ngIf="!tipo.editSottoTipo" mat-button style="color: #6c757d; margin-top: -15px;"
-                                    (click)="tipo.editSottoTipo = true;">
+                                <button *ngIf="!tipo.addSottoTipo" mat-button style="color: #6c757d; margin-top: -15px;" (click)="tipo.addSottoTipo = true;">
                                     <mat-icon style="margin-top: -3px;">add</mat-icon>
                                     Aggiungi Sotto Tipo Prodotto
                                 </button>
 
-                                <mat-form-field *ngIf="tipo.editSottoTipo" class="example-full-width">
+                                <mat-form-field *ngIf="tipo.addSottoTipo" class="example-full-width">
                                     <mat-label>Nome Sotto tipo prodotto</mat-label>
                                     <input matInput type="text" [(ngModel)]="newSottoTipo.descrizione">
                                 </mat-form-field>
 
 
-                                <button *ngIf="tipo.editSottoTipo" mat-button style="color: #6c757d; margin-top: -2px;"
-                                    (click)="tipo.editSottoTipo = false;">
+                                <button *ngIf="tipo.addSottoTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="tipo.addSottoTipo = false;">
                                     Annulla
                                 </button>
 
-                                <button *ngIf="tipo.editSottoTipo" mat-button style="color: #6c757d; margin-top: -2px;"
-                                    (click)="salvaSottoTipo(tipo)">
+                                <button *ngIf="tipo.addSottoTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="salvaSottoTipo(tipo)">
                                     Salva
                                 </button>
 
@@ -72,11 +84,11 @@
                         </div>
                     </ng-template>
                 </mat-tab>
-                <div *ngIf="!editSottoTipo">
+                <div *ngIf="!addSottoTipo">
 
                     <div *ngFor="let sottoTipo of tipo.sottoTipi">
 
-                        <mat-tab label="{{sottoTipo.descrizione}}">
+                        <mat-tab *ngIf="!sottoTipo.editSubTipo" label="{{sottoTipo.descrizione}}">
                             <div class="row mw-100  p-3">
                                 <button mat-button style="color: #6c757d;" (click)="addProdotto(tipo , sottoTipo)">
                                     <mat-icon style="margin-top: -3px;">add</mat-icon>
@@ -85,164 +97,194 @@
 
                             </div>
                             <div class="row mw-100 p-2">
-                                
-                                    <div class="col-12">
-                                        <mat-accordion>
-    
-    
-                                            <div *ngFor="let prodotto of sottoTipo.prodottiAssociati" >
-    
-                                                <mat-expansion-panel class="mb-2" (opened)="prodotto.panelOpenState = true"
-                                                    (closed)="prodotto.panelOpenState = false">
-                                                    <mat-expansion-panel-header>
-                                                        <mat-panel-title>
-                                                            <div *ngIf="prodotto.id === undefined || prodotto.id === 0">
-                                                                Nuovo Prodotto
-    
-                                                            </div>
-                                                            <div *ngIf="prodotto.id !== undefined && prodotto.id > 0">
-                                                                {{prodotto.nomeProdotto}}
-    
-                                                            </div>
-                                                        </mat-panel-title>
-    
-                                                    </mat-expansion-panel-header>
-    
-                                                    <div class="row d-flex justify-content-center"
-                                                        *ngIf="prodotto.id !== undefined && prodotto.id > 0 && !prodotto.edit">
-    
-                                                        <div class="col-12">
-                                                            <h5>{{prodotto.descrizione}}</h5>
-                                                        </div>
-    
-    
-    
-                                                        <div class="col-12">
-    
-    
-                                                            <img *ngIf="prodotto.image !== undefined && prodotto.image !== null && prodotto.image !== ''"
-                                                                alt="Web Studio" class="img-fluid" src="{{prodotto.image}}"
-                                                                width="200" height="200" />
-                                                            <img *ngIf="prodotto.image === undefined || prodotto.image === null || prodotto.image === ''"
-                                                                alt="Web Studio" class="img-fluid"
-                                                                src="../../../assets/images/default.png" width="200"
-                                                                height="200" />
-    
-                                                        </div>
-    
-    
-    
-                                                        <div class="col-12 mt-3">
-                                                            <h6>Prezzo : <b style=" opacity: 0.7;">{{prodotto.prezzo }} € / {{prodotto.unita }}</b></h6>
-                                                        </div>
-    
-    
-                                                        <div *ngIf="prodotto.id !== undefined && prodotto.id > 0">
-                                                            <button mat-button
-                                                                (click)="prodotto.edit = true">Modifica</button>
-                                                        </div>
-                                                    </div>
-                                                    <div *ngIf="(prodotto.id === undefined || prodotto.id === 0) || prodotto.edit"
-                                                        class="row">
-                                                        <div class="col-12">
-    
-                                                            <div class="row mb-2">
-    
-                                                                <mat-form-field class="example-form-field ml-3">
-                                                                    <mat-label>Inserisci nome prodotto</mat-label>
-                                                                    <input matInput type="text"
-                                                                        [(ngModel)]="prodotto.nomeProdotto">
-                                                                    <button mat-button *ngIf="prodotto.nomeProdotto"
-                                                                        matSuffix mat-icon-button aria-label="Clear"
-                                                                        (click)="prodotto.nomeProdotto=''">
-                                                                        <mat-icon>close</mat-icon>
-                                                                    </button>
-                                                                </mat-form-field>
-                                                            </div>
-    
-                                                            <div class="row mb-2">
-                                                                <mat-form-field class="example-form-field ml-3">
-                                                                    <mat-label>Inserisci descrizioneee</mat-label>
-                                                                    <input matInput type="text"
-                                                                        [(ngModel)]="prodotto.descrizione">
-                                                                    <button mat-button *ngIf="prodotto.descrizione"
-                                                                        matSuffix mat-icon-button aria-label="Clear"
-                                                                        (click)="prodotto.descrizione=''">
-                                                                        <mat-icon>close</mat-icon>
-                                                                    </button>
-                                                                </mat-form-field>
-                                                            </div>
-    
-                                                            <mat-form-field>
-                                                                <mat-label>
-                                                                    {{prodotto.unita !== undefined && prodotto.unita !== null && prodotto.unita !== '' ? prodotto.unita : 'Unita di misura' }}
-                                                                </mat-label>
-                                                                <mat-select>
-    
-                                                                    <mat-option *ngFor="let unt of listUnita"
-                                                                        [value]="prodotto.unita"
-                                                                        (click)="prodotto.unita = unt">{{unt}}</mat-option>
-                                                                </mat-select>
-                                                            </mat-form-field>
-    
-    
-                                                            <div class="row mb-2">
-    
-                                                                <button mat-button (click)="fileInput.click()">
-                                                                    <mat-icon>add_photo_alternate</mat-icon>
-                                                                    <span>Seleziona immagine</span>
-                                                                    <input #fileInput type="file"
-                                                                        (change)="fileChange($event , prodotto)"
-                                                                        style="display:none;" />
-                                                                </button>
-    
-    
-                                                                <div class="mt-2"
-                                                                    *ngIf="prodotto.image !== undefined && prodotto.image !== null">
-                                                                    <img style="max-width: 100px; max-height: 100px;"
-                                                                        src="{{prodotto.image}}" alt="Red dot" />
-                                                                </div>
-                                                            </div>
-    
-                                                            <div class="row mb-2">
-    
-                                                                <mat-form-field appearance="fill"
-                                                                    class="example-form-field ml-3">
-                                                                    <mat-label>Prezzo prodotto</mat-label>
-                                                                    <input matInput type="number"
-                                                                        [(ngModel)]="prodotto.prezzo"
-                                                                        class="example-right-align">
-                                                                    <span matPrefix>€&nbsp;</span>
-                                                                </mat-form-field>
 
-                                                                <mat-form-field appearance="fill"
-                                                                    class="example-form-field ml-3">
-                                                                    <mat-label>Step (Quantità selezionabile durante l'acquisto del prodotto)</mat-label>
-                                                                    <input matInput type="number"
-                                                                        [(ngModel)]="prodotto.step"
-                                                                        class="example-right-align">
-                                                                </mat-form-field>
-    
-                                                            </div>
-    
-                                                            <div
-                                                                *ngIf="(prodotto.id === undefined || prodotto.id === 0) || prodotto.edit">
-                                                                <button mat-button
-                                                                    (click)="save(sottoTipo,prodotto)">Salva</button>
-                                                            </div>
-    
+                                <div class="col-12">
+                                    <mat-accordion>
+
+
+                                        <div *ngFor="let prodotto of sottoTipo.prodottiAssociati">
+
+                                            <mat-expansion-panel class="mb-2" (opened)="prodotto.panelOpenState = true"
+                                                (closed)="prodotto.panelOpenState = false">
+                                                <mat-expansion-panel-header>
+                                                    <mat-panel-title>
+                                                        <div *ngIf="prodotto.id === undefined || prodotto.id === 0">
+                                                            Nuovo Prodotto
+
                                                         </div>
+                                                        <div *ngIf="prodotto.id !== undefined && prodotto.id > 0">
+                                                            {{prodotto.nomeProdotto}}
+
+                                                        </div>
+                                                    </mat-panel-title>
+
+                                                </mat-expansion-panel-header>
+
+                                                <div class="row d-flex justify-content-center"
+                                                    *ngIf="prodotto.id !== undefined && prodotto.id > 0 && !prodotto.edit">
+
+                                                    <div class="col-12">
+                                                        <h5>{{prodotto.descrizione}}</h5>
                                                     </div>
-    
-                                                </mat-expansion-panel>
-    
-                                            </div>
-                                        </mat-accordion>
-                                    </div>
-                                
+
+
+
+                                                    <div class="col-12">
+
+
+                                                        <img *ngIf="prodotto.image !== undefined && prodotto.image !== null && prodotto.image !== ''"
+                                                            alt="Web Studio" class="img-fluid" src="{{prodotto.image}}"
+                                                            width="200" height="200" />
+                                                        <img *ngIf="prodotto.image === undefined || prodotto.image === null || prodotto.image === ''"
+                                                            alt="Web Studio" class="img-fluid"
+                                                            src="../../../assets/images/default.png" width="200"
+                                                            height="200" />
+
+                                                    </div>
+
+
+
+                                                    <div class="col-12 mt-3">
+                                                        <h6>Prezzo : <b style=" opacity: 0.7;">{{prodotto.prezzo }} € /
+                                                                {{prodotto.unita }}</b></h6>
+                                                    </div>
+
+
+                                                    <div *ngIf="prodotto.id !== undefined && prodotto.id > 0">
+                                                        <button mat-button
+                                                            (click)="prodotto.edit = true">Modifica</button>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="(prodotto.id === undefined || prodotto.id === 0) || prodotto.edit"
+                                                    class="row">
+                                                    <div class="col-12">
+
+                                                        <div class="row mb-2">
+
+                                                            <mat-form-field class="example-form-field ml-3">
+                                                                <mat-label>Inserisci nome prodotto</mat-label>
+                                                                <input matInput type="text"
+                                                                    [(ngModel)]="prodotto.nomeProdotto">
+                                                                <button mat-button *ngIf="prodotto.nomeProdotto"
+                                                                    matSuffix mat-icon-button aria-label="Clear"
+                                                                    (click)="prodotto.nomeProdotto=''">
+                                                                    <mat-icon>close</mat-icon>
+                                                                </button>
+                                                            </mat-form-field>
+                                                        </div>
+
+                                                        <div class="row mb-2">
+                                                            <mat-form-field class="example-form-field ml-3">
+                                                                <mat-label>Inserisci descrizioneee</mat-label>
+                                                                <input matInput type="text"
+                                                                    [(ngModel)]="prodotto.descrizione">
+                                                                <button mat-button *ngIf="prodotto.descrizione"
+                                                                    matSuffix mat-icon-button aria-label="Clear"
+                                                                    (click)="prodotto.descrizione=''">
+                                                                    <mat-icon>close</mat-icon>
+                                                                </button>
+                                                            </mat-form-field>
+                                                        </div>
+
+                                                        <mat-form-field>
+                                                            <mat-label>
+                                                                {{prodotto.unita !== undefined && prodotto.unita !== null && prodotto.unita !== '' ? prodotto.unita : 'Unita di misura' }}
+                                                            </mat-label>
+                                                            <mat-select>
+
+                                                                <mat-option *ngFor="let unt of listUnita"
+                                                                    [value]="prodotto.unita"
+                                                                    (click)="prodotto.unita = unt">{{unt}}</mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+
+
+                                                        <div class="row mb-2">
+
+                                                            <button mat-button (click)="fileInput.click()">
+                                                                <mat-icon>add_photo_alternate</mat-icon>
+                                                                <span>Seleziona immagine</span>
+                                                                <input #fileInput type="file"
+                                                                    (change)="fileChange($event , prodotto)"
+                                                                    style="display:none;" />
+                                                            </button>
+
+
+                                                            <div class="mt-2"
+                                                                *ngIf="prodotto.image !== undefined && prodotto.image !== null">
+                                                                <img style="max-width: 100px; max-height: 100px;"
+                                                                    src="{{prodotto.image}}" alt="Red dot" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-2">
+
+                                                            <mat-form-field appearance="fill"
+                                                                class="example-form-field ml-3">
+                                                                <mat-label>Prezzo prodotto</mat-label>
+                                                                <input matInput type="number"
+                                                                    [(ngModel)]="prodotto.prezzo"
+                                                                    class="example-right-align">
+                                                                <span matPrefix>€&nbsp;</span>
+                                                            </mat-form-field>
+
+                                                            <mat-form-field appearance="fill"
+                                                                class="example-form-field ml-3">
+                                                                <mat-label>Step (Quantità selezionabile durante
+                                                                    l'acquisto del prodotto)</mat-label>
+                                                                <input matInput type="number"
+                                                                    [(ngModel)]="prodotto.step"
+                                                                    class="example-right-align">
+                                                            </mat-form-field>
+
+                                                        </div>
+
+                                                        <div
+                                                            *ngIf="(prodotto.id === undefined || prodotto.id === 0) || prodotto.edit">
+                                                            <button mat-button
+                                                                (click)="save(sottoTipo,prodotto)">Salva</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </mat-expansion-panel>
+
+                                        </div>
+                                    </mat-accordion>
+                                </div>
+
 
                             </div>
 
+                        </mat-tab>
+
+                        <mat-tab class="p-0" disabled>
+                            <ng-template mat-tab-label>
+                                <div class="row mt-2">
+                                    <div class="col-12 p-0">
+                                        <button *ngIf="!sottoTipo.editSubTipo" mat-button style="color: #6c757d; margin-top: -15px;" class="p-0" (click)="deleteSottoTipo(sottoTipo)">
+                                            <mat-icon>clear</mat-icon>
+                                        </button>
+                                        <button *ngIf="!sottoTipo.editSubTipo" mat-button style="color: #6c757d; margin-top: -15px;" class="p-0" (click)="sottoTipo.editSubTipo = true">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <mat-form-field *ngIf="sottoTipo.editSubTipo" class="example-full-width">
+                                            <mat-label>Nome Tipo prodotto</mat-label>
+                                            <input matInput type="text" [(ngModel)]="sottoTipo.descrizione">
+                                        </mat-form-field>
+                            
+                            
+                                        <button *ngIf="sottoTipo.editSubTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="sottoTipo.editSubTipo = false;">
+                                            Annulla
+                                        </button>
+                            
+                                        <button *ngIf="sottoTipo.editSubTipo" mat-button style="color: #6c757d; margin-top: -2px;" (click)="updateSottoTipo(sottoTipo)">
+                                            Salva
+                                        </button>
+                                    </div>
+                                </div>
+                            </ng-template>
                         </mat-tab>
 
 

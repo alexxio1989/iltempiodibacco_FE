@@ -14,4 +14,5 @@ export class SubDominio{
     pageSize: number = 2;
     lowValue: number = 0;
     highValue: number = 2;
+    editSubTipo: boolean;
 }

@@ -5,7 +5,8 @@ export class Dominio{
     codice: string;
     descrizione: string;
     sottoTipi: SubDominio[];
-    editSottoTipo: boolean;
+    addSottoTipo: boolean;
+    editTipo: boolean;
 
  
 }
