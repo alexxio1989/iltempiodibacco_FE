@@ -21,6 +21,17 @@ button:focus { outline:0 !important; }
   bottom: 25px !important;
 }
 
+.bg-gray{
+  background-color: #eaeaea!important;
+}
+
+.brand{
+  font-family: 'Rouge Script', cursive; 
+  margin-left: 20px;
+  font-size: calc(20px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+  font-weight: 700 !important;
+}
+
 h1{
   font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
   font-size: calc(25px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;

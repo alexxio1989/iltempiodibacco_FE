@@ -1,19 +1,19 @@
-<div class="navbar navbar-dark bg-dark">
-    <a href="" class="navbar-brand" style="font-family: 'Raleway',sans-serif">
+<div class="navbar navbar-light bg-gray">
+    <a href="" class="navbar-brand brand" >
         
-        Il tempio di bacco 
+        Il Tempio di Bacco 
     </a>
     <form class="form-inline">
-        <button *ngIf="badgeCount > 0" mat-button style="color: white;" (click)="goToCartPage()">
+        <button *ngIf="badgeCount > 0" mat-button style="color: #676767;" (click)="goToCartPage()">
             <mat-icon matBadge="{{badgeCount}}" matBadgeColor="warn" style="margin-top: -3px;">shopping_cart</mat-icon>
         </button>
 
-        <button *ngIf="badgeCount === 0" mat-button style="color: white;" disabled="true">
+        <button *ngIf="badgeCount === 0" mat-button style="color: #676767;" disabled="true">
             <mat-icon style="margin-top: -3px;">remove_shopping_cart</mat-icon>
         </button>
        
         <button class="btn btn-lg" (click)="openSideBar()">
-            <i class="fa fa-bars" style="color:white"></i>
+            <i class="fa fa-bars" style="color:#676767"></i>
         </button>
 
     </form>
