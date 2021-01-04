@@ -40,6 +40,7 @@ export class SideBarComponent implements OnInit {
   }
   logout(){
     localStorage.removeItem('USER');
+    localStorage.removeItem('COOKIE_CONSENT');
     this.route.navigate(['/']);
     this.ds.updateSideBar(false);
   }

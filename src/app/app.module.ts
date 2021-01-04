@@ -101,8 +101,8 @@ const cookieConfig: NgcCookieConsentConfig = {
   },
   type: "info",
   content: {
-    message: "This website uses cookies to ensure you get the best experience on our website.",
-    dismiss: "Got it!",
+    message: "Questo sito utilizza i cookies per garantirti il miglior utilizzo del nostro servizio",
+    dismiss: "Accetto",
     deny: "Decline",
     link: "Learn more",
     href: "https://cookiesandyou.com",

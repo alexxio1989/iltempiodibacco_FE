@@ -48,43 +48,40 @@ export class AppComponent implements OnInit, OnDestroy  {
     // subscribe to cookieconsent observables to react to main events
     this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
       () => {
-        console.log("")
         // you can use this.ccService.getConfig() to do stuff...
       });
  
     this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
       () => {
-        console.log("")
         // you can use this.ccService.getConfig() to do stuff...
       });
  
     this.initializeSubscription = this.ccService.initialize$.subscribe(
       (event: NgcInitializeEvent) => {
 
-        console.log("")
         // you can use this.ccService.getConfig() to do stuff...
       });
  
     this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
       (event: NgcStatusChangeEvent) => {
 
-        console.log("")
+        localStorage.setItem("COOKIE_CONSENT" , "true");
         // you can use this.ccService.getConfig() to do stuff...
       });
  
     this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
       () => {
-        console.log("")
         // you can use this.ccService.getConfig() to do stuff...
       });
  
       this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
       (event: NgcNoCookieLawEvent) => {
-        console.log("")
         // you can use this.ccService.getConfig() to do stuff...
       });
 
-      this.ccService.close(true);
+      if(localStorage.getItem("COOKIE_CONSENT") !== undefined && localStorage.getItem("COOKIE_CONSENT") !== null){
+        this.ccService.fadeOut();
+      } 
   }
 
   ngOnDestroy() {
